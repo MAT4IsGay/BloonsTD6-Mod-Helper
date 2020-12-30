@@ -78,6 +78,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Utils\Il2CppUtils.cs" />
+    <Compile Include="Extensions\AttackModelExt.cs" />
+    <Compile Include="Extensions\Il2CppReferenceArrayExt.cs" />
+    <Compile Include="Extensions\Il2CppGenericsExt.cs" />
+    <Compile Include="Extensions\ListExt.cs" />
     <Compile Include="Extensions\TowerExt.cs" />
     <Compile Include="Extensions\BloonExt.cs" />
     <Compile Include="Extensions\BloonModelExt.cs" />
@@ -89,12 +94,10 @@
     <Compile Include="Extensions\TowerModelExt.cs" />
     <Compile Include="Extensions\UpgradeModelExt.cs" />
     <Compile Include="MelonMain.cs" />
-    <Compile Include="Patches\Btd6Player_GetAnalyticsInfo.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
-    <Compile Include="Patches\ProfileModel_Validate.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\Serializer.cs" />

@@ -7,11 +7,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static bool? IsUpgradeUnlocked(this UpgradeModel upgradeModel)
         {
-            var profile = Game.instance.GetProfileModel();
-            if (profile is null)
-                return null;
-
-            return profile.acquiredUpgrades.Contains(upgradeModel.name);
+            return Game.instance.GetBtd6Player()?.HasUpgrade(upgradeModel.name);
         }
     }
 }

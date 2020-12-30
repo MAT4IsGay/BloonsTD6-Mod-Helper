@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.Simulation.Towers;
+﻿using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Behaviors.Attack;
 using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
+using System.Linq;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -25,20 +27,20 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Attack GetAttack(this Tower tower)
         {
-            Attack attack = null;
+            return tower.GetTowerBehavior<Attack>();
+        }
+
+        public static T GetTowerBehavior<T>(this Tower tower) where T : TowerBehavior
+        {
             var behaviors = tower.towerBehaviors;
-            for (int i = 0; i < behaviors.Count; i++)
+            for (int i = 0; i < behaviors.count; i++)
             {
                 var behavior = behaviors[i];
-                var behaviorName = behavior.model.name;
-
-                if (!behaviorName.ToLower().Contains("attack"))
-                    continue;
-
-                attack = behavior.TryCast<Attack>();
+                if (behavior.model.name.Contains(typeof(T).Name))
+                    return behavior.TryCast<T>();
             }
 
-            return attack;
+            return null;
         }
     }
 }
