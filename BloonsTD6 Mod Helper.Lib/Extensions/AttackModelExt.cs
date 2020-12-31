@@ -5,20 +5,24 @@ using UnhollowerBaseLib;
 using BloonsTD6_Mod_Helper.Api.Utils;
 using MelonLoader;
 using System;
+using Assets.Scripts.Models.GenericBehaviors;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class AttackModelExt
     {
-        public static bool HasBehavior<T>(this AttackModel attackModel) where T : AttackBehaviorModel
+        public static bool HasBehavior<T>(this AttackModel attackModel) where T : Model
         {
+            if (attackModel.behaviors == null || attackModel.behaviors.Count == 0)
+                return false;
+
             try { var result = attackModel.behaviors.First(item => item.name.Contains(typeof(T).Name)); }
-            catch (InvalidOperationException) { return false; }
+            catch (Exception) { return false; }
 
             return true;
         }
 
-        public static T GetBehavior<T>(this AttackModel attackModel) where T : AttackBehaviorModel
+        public static T GetBehavior<T>(this AttackModel attackModel) where T : Model
         {
             var behaviors = attackModel.behaviors;
             if (attackModel.behaviors is null || attackModel.behaviors.Count == 0)
@@ -29,20 +33,20 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return result.TryCast<T>();
         }
 
-        public static void AddBehavior<T>(this AttackModel attackModel, T behavior) where T : AttackBehaviorModel
+        public static void AddBehavior<T>(this AttackModel attackModel, T behavior) where T : Model
         {
-            attackModel.behaviors = Il2CppUtils.Add(attackModel.behaviors, behavior);
+            var behaviors = attackModel.behaviors;
+            Il2CppUtils.Add(ref behaviors, behavior);
+            attackModel.behaviors = behaviors;
         }
 
-        public static void RemoveBehavior<T>(this AttackModel attackModel) where T : AttackBehaviorModel
+        public static void RemoveBehavior<T>(this AttackModel attackModel) where T : Model
         {
-            if (!attackModel.HasBehavior<T>())
-                return;
-
-            attackModel.RemoveBehavior(attackModel.GetBehavior<T>());
+            while (attackModel.HasBehavior<T>())
+                attackModel.RemoveBehavior(attackModel.GetBehavior<T>());
         }
 
-        public static void RemoveBehavior<T>(this AttackModel attackModel, T behavior) where T : AttackBehaviorModel
+        public static void RemoveBehavior<T>(this AttackModel attackModel, T behavior) where T : Model
         {
             if (!attackModel.HasBehavior<T>())
                 return;

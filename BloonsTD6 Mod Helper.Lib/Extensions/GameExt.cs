@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using Assets.Scripts.Models.TowerSets;
 using UnhollowerBaseLib;
 using Assets.Scripts.Models.PowerSets;
+using BloonsTD6_Mod_Helper.Lib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -55,6 +56,23 @@ namespace BloonsTD6_Mod_Helper.Extensions
            [Optional] int pathTwoUpgrade, [Optional] int pathThreeUpgrade)
         {
             return game.model?.GetTower(towerName, pathOneUpgrade, pathTwoUpgrade, pathThreeUpgrade);
+        }
+
+
+        public static void ShowMessage(this Game game, string message, [Optional] string title)
+        {
+            game.ShowMessage(message, 2f, title);
+        }
+
+        public static void ShowMessage(this Game game, string message, float displayTime, [Optional] string title)
+        {
+            var msg = new NkhMsg();
+            msg.MsgShowTime = displayTime;
+            msg.NkhText = new NkhText();
+            msg.NkhText.Body = message;
+            msg.NkhText.Title = title;
+
+            NotificationMgr.AddNotification(msg);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame;
+using BloonsTD6_Mod_Helper.Lib;
 using MelonLoader;
 using System;
 using System.Reflection;
@@ -19,6 +20,8 @@ namespace BloonsTD6_Mod_Helper
         {
             if (Game.instance is null)
                 return;
+
+            NotificationMgr.CheckForNotifications();
 
             if (InGame.instance is null)
                 return;

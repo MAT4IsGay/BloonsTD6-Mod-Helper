@@ -8,7 +8,7 @@ namespace BloonsTD6_Mod_Helper.Api.Utils
 {
     public class Il2CppUtils
     {
-        public static Il2CppReferenceArray<T> Add<T> (Il2CppReferenceArray<T> array, T item) where T : Il2CppObjectBase
+        public static void Add<T> (ref Il2CppReferenceArray<T> array, T item) where T : Il2CppObjectBase
         {
             var initialArray = array;
             array = new Il2CppReferenceArray<T>(initialArray.Length + 1);
@@ -17,10 +17,9 @@ namespace BloonsTD6_Mod_Helper.Api.Utils
                 array[i] = initialArray[i];
 
             array[array.Length - 1] = item;
-            return array;
         }
 
-        public static Il2CppReferenceArray<T> Remove<T>(Il2CppReferenceArray<T> array, T item) where T : Il2CppObjectBase
+        public static void Remove<T>(ref Il2CppReferenceArray<T> array, T item) where T : Il2CppObjectBase
         {
             var initialArray = array;
             array = new Il2CppReferenceArray<T>(initialArray.Length - 1);
@@ -34,8 +33,6 @@ namespace BloonsTD6_Mod_Helper.Api.Utils
                 array[i] = initialArray[i];
                 i++;
             }
-
-            return array;
         }
     }
 }

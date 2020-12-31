@@ -1,13 +1,21 @@
-﻿using System;
+﻿using BloonsTD6_Mod_Helper.Api.Utils;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class ListExt
     {
+        public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T> (this List<T> list) where T : Il2CppObjectBase
+        {
+            var il2cppArray = new Il2CppReferenceArray<T>(0);
+            foreach (var item in list)
+                Il2CppUtils.Add(ref il2cppArray, item);
+
+            return il2cppArray;
+        }
+
         public static int GetMaxValue(this List<int> numbers)
         {
             var max = 0;
