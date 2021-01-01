@@ -21,11 +21,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class TowerModelExt
     {
+        /// <summary>
+        /// Not Tested
+        /// </summary>
         public static void SetMaxAmount(this TowerModel towerModel, int max)
         {
             towerModel.GetTowerDetailsModel().towerCount = max;
-            var details = Game.instance?.GetTowerDetailsModels().TryCast<Il2CppSystem.Collections.Generic.List<TowerDetailsModel>>();
-            InGame.instance?.GetTowerInventory().SetTowerMaxes(details);
+            var details = Game.instance?.GetTowerDetailModels().TryCast<Il2CppSystem.Collections.Generic.List<TowerDetailsModel>>();
+            InGame.instance?.GetTowerInventory(0).SetTowerMaxes(details);
         }
 
         public static TowerDetailsModel GetTowerDetailsModel(this TowerModel towerModel)
@@ -124,136 +127,5 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return desiredTowers;
         }
-
-
-
-
-
-
-        public static void AddBehavior<T>(this TowerModel towerModel, T behavior) where T : Model
-        {
-            var behaviors = towerModel.behaviors;
-            Il2CppUtils.Add(ref behaviors, behavior);
-            towerModel.behaviors = behaviors;
-        }
-
-        public static bool HasBehavior<T>(this TowerModel towerModel) where T : Model
-        {
-            if (towerModel.behaviors == null || towerModel.behaviors.Count == 0)
-                return false;
-
-            try { var result = towerModel.behaviors.First(item => item.name.Contains(typeof(T).Name)); }
-            catch (Exception) { return false; }
-
-            return true;
-        }
-
-
-        public static T GetBehavior<T>(this TowerModel towerModel) where T : Model
-        {
-            var behaviors = towerModel.behaviors;
-            var result = behaviors.FirstOrDefault(behavior => behavior.name.Contains(typeof(T).Name));
-            return result.TryCast<T>();
-        }
-
-        public static List<T> GetBehaviors<T>(this TowerModel towerModel) where T : Model
-        {
-            var behaviors = towerModel.behaviors;
-            if (towerModel.behaviors is null || towerModel.behaviors.Count == 0)
-                return null;
-
-            var results = new Il2CppReferenceArray<T>(0);
-            foreach (var behavior in behaviors)
-            {
-                if (behavior.name.Contains(typeof(T).Name))
-                    Il2CppUtils.Add(ref results, behavior.TryCast<T>());
-            }
-
-            return results.ToList();
-        }
-
-
-        /// <summary>
-        /// This is probably not done. Make sure you can remove a SINGLE behavior
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="towerModel"></param>
-        public static void RemoveBehavior<T>(this TowerModel towerModel) where T : Model
-        {
-            if (!towerModel.HasBehavior<T>())
-                return;
-
-            var behaviors = towerModel.GetBehaviors<T>();
-            foreach (var item in behaviors)
-                towerModel.RemoveBehavior(item);
-        }
-
-        /// <summary>
-        /// This is probably not done. Make sure it removes a SINGLE behavior
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="towerModel"></param>
-        /// <param name="behavior"></param>
-        public static void RemoveBehavior<T>(this TowerModel towerModel, T behavior) where T : Model
-        {
-            if (!towerModel.HasBehavior<T>())
-                return;
-
-            int itemsRemoved = 0;
-            var behaviors = towerModel.behaviors;
-            towerModel.behaviors = new Il2CppReferenceArray<Model>(behaviors.Length - 1);
-
-            for (int i = 0; i < behaviors.Length; i++)
-            {
-                var item = behaviors[i];
-                if (item.name == behavior.name)
-                {
-                    itemsRemoved++;
-                    continue;
-                }
-
-                towerModel.behaviors[i - itemsRemoved] = item;
-            }
-        }
-
-        // removed to use list insted
-        /*public static AttackModel GetAttackModel(this TowerModel towerModel)
-        {
-            if (!towerModel.HasBehavior<AttackModel>())
-                return null;
-
-            return towerModel.GetBehavior<AttackModel>();
-        }*/
-
-        
-
-        /*public static void RemoveBehavior<T>(this TowerModel towerModel) where T : TowerBehaviorModel
-        {
-            while (towerModel.HasBehavior<T>())
-                towerModel.RemoveBehavior(towerModel.GetBehavior<T>());
-        }*/
-
-        /*public static void RemoveBehavior<T>(this TowerModel towerModel, T behavior) where T : TowerBehaviorModel
-        {
-            if (!towerModel.HasBehavior<T>())
-                return;
-
-            bool foundItem = false;
-            var behaviors = towerModel.behaviors;
-            towerModel.behaviors = new Il2CppReferenceArray<Model>(behaviors.Length - 1);
-
-            for (int i = 0; i < behaviors.Length; i++)
-            {
-                var item = behaviors[i];
-                if (item.name == behavior.name)
-                {
-                    foundItem = true;
-                    continue;
-                }
-
-                int index = (foundItem) ? i - 1 : i;
-                towerModel.behaviors[index] = item;
-            }
-        }*/
     }
 }

@@ -9,6 +9,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class TowerExt
     {
+        public static void SetTowerModel(this Tower tower, TowerModel towerModel) => tower.UpdateRootModel(towerModel);
         public static void SellTower(this Tower tower) => InGame.instance.SellTower(tower.GetTowerToSimulation());
 
         public static TowerToSimulation GetTowerToSimulation(this Tower tower)

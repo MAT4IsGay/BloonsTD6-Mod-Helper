@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Models;
 using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Models.TowerSets;
+using Assets.Scripts.Simulation;
 using Assets.Scripts.Simulation.Input;
+using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Projectiles;
 using Assets.Scripts.Simulation.Track;
 using Assets.Scripts.Unity;
@@ -16,6 +18,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class InGameExt
     {
+        public static Simulation GetGameSimulation(this InGame inGame) => inGame.bridge.GameSimulation;
+        public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
         public static Map GetMap(this InGame inGame) => inGame.bridge.simulation.Map;
 
         public static bool IsInPublic(this InGame inGame) => (inGame.IsInRace() || inGame.IsInPublicCoop() || inGame.IsInOdyssey());
@@ -45,9 +49,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<TowerToSimulation> GetTowers(this InGame inGame) => inGame.bridge.GetAllTowers();
         public static List<AbilityToSimulation> GetAbilities(this InGame inGame) => inGame.bridge.GetAllAbilities(true);
         public static List<Projectile> GetProjectiles(this InGame inGame) => inGame.bridge.GetAllProjectiles();
-        public static TowerInventory GetTowerInventory(this InGame inGame) => TowerInventory_Init.towerInventory;
-        //public static List<TowerDetailsModel> GetAllTowerDetailModels(this InGame inGame) => TowerInventory_Init.allTowers;
-
+        public static TowerInventory GetTowerInventory(this InGame inGame, int index) => inGame.bridge.simulation.GetTowerInventory(index);
+        public static TowerManager GetTowerManager(this InGame inGame, int index) => inGame.bridge.simulation.towerManager;
 
 
         public static List<BloonToSimulation> GetAllBloons(this InGame inGame) => inGame.bridge.GetAllBloons();

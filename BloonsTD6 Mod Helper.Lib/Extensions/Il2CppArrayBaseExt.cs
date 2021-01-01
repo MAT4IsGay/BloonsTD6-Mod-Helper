@@ -7,11 +7,9 @@ using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
-    public static class Il2CppReferenceArrayExt
+    public static class Il2CppArrayBaseExt
     {
-        /*public static T Find<T>(this Il2CppReferenceArray<T> array, T item) where T : Il2CppObjectBase
-        {
-            
-        }*/
+        // removed for now
+        //public static List<T> ToList<T>(this Il2CppArrayBase<T> il2CppArray) => il2CppArray.ToArray().ToList();
     }
 }

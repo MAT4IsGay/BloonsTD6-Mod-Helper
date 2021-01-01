@@ -11,18 +11,35 @@ using Assets.Scripts.Models.TowerSets;
 using UnhollowerBaseLib;
 using Assets.Scripts.Models.PowerSets;
 using BloonsTD6_Mod_Helper.Lib;
+using Assets.Scripts.Unity.UI_New;
+using Assets.Scripts.Utils;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameExt
     {
+
+        /// <summary>
+        /// Not tested
+        /// </summary>
+        public static List<TowerModel> GetTowerListForTowerType (this Game game, string towerSet)
+        {
+            return Helpers.GetTowerListForTowerType(towerSet).ToSystemList();
+        }
+
+        /// <summary>
+        /// Not implimented yet
+        /// </summary>
+        public static string GetProfileSavePath(this Game game) => "";
+
+        public static UI GetUI(this Game game) => UI.instance;
         public static ProfileModel GetPlayerProfile(this Game game) => game.playerService?.Player?.Data;
         public static Btd6Player GetBtd6Player(this Game game) => game.playerService?.Player;
 
 
-        public static Il2CppReferenceArray<TowerDetailsModel> GetTowerDetailsModels(this Game game) => game.model?.towerSet;
-        public static Il2CppReferenceArray<TowerDetailsModel> GetHeroDetailsModels(this Game game) => game.model?.heroSet;
-        public static Il2CppReferenceArray<PowerDetailsModel> GetPowerDetailsModels(this Game game) => game.model?.powerSet;
+        public static Il2CppReferenceArray<TowerDetailsModel> GetTowerDetailModels(this Game game) => game.model?.towerSet;
+        public static Il2CppReferenceArray<TowerDetailsModel> GetHeroDetailModels(this Game game) => game.model?.heroSet;
+        public static Il2CppReferenceArray<PowerDetailsModel> GetPowerDetailModels(this Game game) => game.model?.powerSet;
 
 
         public static BloonModel GetBloonModel(this Game game, string bloonName) => game.model?.GetBloon(bloonName);
