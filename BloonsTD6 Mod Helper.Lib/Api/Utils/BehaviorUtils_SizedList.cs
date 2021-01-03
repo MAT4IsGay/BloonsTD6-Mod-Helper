@@ -12,7 +12,7 @@ namespace BloonsTD6_Mod_Helper.Api.Utils
 {
     public static class BehaviorUtils_SizedList
     {
-        /// <summary>
+        /*/// <summary>
         /// Check if Behaviors Array contains any behaviors of type T
         /// </summary>
         /// <typeparam name="TSource">Type of behavior to check</typeparam>
@@ -132,6 +132,6 @@ namespace BloonsTD6_Mod_Helper.Api.Utils
             }
 
             newArray = arrayList.ToSizedList();
-        }
+        }*/
     }
 }

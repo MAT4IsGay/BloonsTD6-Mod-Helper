@@ -13,11 +13,21 @@ using Assets.Scripts.Models.PowerSets;
 using BloonsTD6_Mod_Helper.Lib;
 using Assets.Scripts.Unity.UI_New;
 using Assets.Scripts.Utils;
+using Assets.Scripts.Unity.Menu;
+using Assets.Scripts.Unity.Localization;
+using Assets.Scripts.Unity.UI_New.InGame.RightMenu;
+using Assets.Scripts.Unity.UI_New.Popups;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameExt
     {
+        public static PopupScreen GetPopupScreen(this Game game) => PopupScreen.instance;
+        public static ShopMenu GetShopMenu(this Game game) => ShopMenu.instance;
+        public static CommonForegroundScreen GetCommonForegroundScreen(this Game game) => CommonForegroundScreen.instance;
+        public static CommonBackgroundScreen GetCommonBackgroundScreen(this Game game) => CommonBackgroundScreen.instance;
+        public static LocalizationManager GetLocalizationManager(this Game game) => LocalizationManager.instance;
+        public static MenuManager GetMenuManager(this Game game) => MenuManager.instance;
 
         /// <summary>
         /// Not tested

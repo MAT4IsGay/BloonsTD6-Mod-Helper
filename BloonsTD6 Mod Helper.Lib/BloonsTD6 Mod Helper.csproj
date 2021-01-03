@@ -39,6 +39,9 @@
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.dll</HintPath>
+    </Reference>
     <Reference Include="MelonLoader.ModHandler">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.ModHandler.dll</HintPath>
       <Private>False</Private>
@@ -81,33 +84,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Coop\DynamicInstance.cs" />
+    <Compile Include="Api\Coop\MessageUtils.cs" />
+    <Compile Include="Api\Coop\ModMessage.cs" />
     <Compile Include="Api\Utils\BehaviorUtils_SizedList.cs" />
     <Compile Include="Api\Utils\BehaviorUtils_Il2CppReferenceArray.cs" />
     <Compile Include="Api\Utils\Il2CppUtils.cs" />
     <Compile Include="Extensions\CollectionExtensions\ArrayExt.cs" />
     <Compile Include="Extensions\AttackModelExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToTowerMutatorModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToWeaponModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToBloonModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AirUnitModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AbilityModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\BloonModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\BiohackModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToTowerSupportModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\Broken-MapGizmoBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\Broken-EntityBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToTowerSupport_MutatorTower_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\PowerModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\MapGizmoModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\PetModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\GameModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\EmissionModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\ProjectileModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\SlowMainMoabModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\WeaponModelBehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToBloonInZoneModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\BehaviorExtensions\TowerModelBehaviorExt.cs" />
+    <Compile Include="Extensions\CollectionExtensions\Behaviors\List_BehaviorExt.cs" />
+    <Compile Include="Extensions\NKMultiGameInterfaceExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerMutatorModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToWeaponModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToBloonModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AirUnitModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AbilityModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\BloonModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\BiohackModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerSupportModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\Broken-MapGizmoBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\Broken-EntityBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerSupport_MutatorTower_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\PowerModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\MapGizmoModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\PetModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\GameModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\EmissionModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\ProjectileModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\SlowMainMoabModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AttackModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\WeaponModelBehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToBloonInZoneModel_BehaviorExt.cs" />
+    <Compile Include="Extensions\Old-BehaviorExtensions\TowerModelBehaviorExt.cs" />
     <Compile Include="Extensions\Il2CppArrayBaseExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppReferenceArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppGenericsExt.cs" />
@@ -129,6 +137,9 @@
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
+    <Compile Include="Patches\NKMultiConnection_Send.cs" />
+    <Compile Include="Patches\NKMultiConnection_Receive.cs" />
+    <Compile Include="Patches\NKMultiGameInterface_Update.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

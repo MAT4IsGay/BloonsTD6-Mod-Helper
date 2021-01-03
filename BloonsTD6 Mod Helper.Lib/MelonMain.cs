@@ -10,6 +10,7 @@ namespace BloonsTD6_Mod_Helper
     public class MelonMain : MelonMod
     {
         internal static string modDir = $"{Environment.CurrentDirectory}\\Mods\\{Assembly.GetExecutingAssembly().GetName().Name}";
+        public static string coopMessageCode = "BTD6_ModHelper";
 
         public override void OnApplicationStart()
         {

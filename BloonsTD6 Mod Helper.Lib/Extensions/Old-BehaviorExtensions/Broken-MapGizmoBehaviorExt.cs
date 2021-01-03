@@ -12,7 +12,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
     public static class MapGizmoBehaviorExt
     {
         // Currently broken. Might need a new BehaviorUtils class for handling SizedLists
-        public static bool HasBehavior<T>(this MapGizmo model) where T : MapGizmoBehavior
+        /*public static bool HasBehavior<T>(this MapGizmo model) where T : MapGizmoBehavior
         {
             return BehaviorUtils_SizedList.HasBehavior<MapGizmoBehavior, T>(model.behaviors);
         }
@@ -49,6 +49,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             BehaviorUtils_SizedList.RemoveBehaviors<MapGizmoBehavior, T>(model.behaviors, out SizedList<MapGizmoBehavior> moddedArray);
             model.behaviors = moddedArray;
-        }
+        }*/
     }
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BloonsTD6_Mod_Helper.Extensions.CollectionExtensions.Behaviors
+namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class List_BehaviorExt
     {
-        public static bool HasValue<TSource>(this List<TSource> list) where TSource : Model
+        /*public static bool HasValue<TSource>(this List<TSource> list, T) where TSource : Model
         {
             return BehaviorUtils_Il2CppReferenceArray.HasBehavior<TowerBehaviorModel, TSource>(model.behaviors);
         }
@@ -44,6 +44,6 @@ namespace BloonsTD6_Mod_Helper.Extensions.CollectionExtensions.Behaviors
         {
             BehaviorUtils_Il2CppReferenceArray.RemoveBehaviors<TowerBehaviorModel, T>(model.behaviors, out Il2CppReferenceArray<TowerBehaviorModel> moddedArray);
             model.behaviors = moddedArray;
-        }
+        }*/
     }
 }

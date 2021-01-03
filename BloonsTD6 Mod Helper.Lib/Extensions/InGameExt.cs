@@ -3,6 +3,7 @@ using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Simulation;
 using Assets.Scripts.Simulation.Input;
+using Assets.Scripts.Simulation.SMath;
 using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Projectiles;
 using Assets.Scripts.Simulation.Track;
@@ -50,7 +51,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<AbilityToSimulation> GetAbilities(this InGame inGame) => inGame.bridge.GetAllAbilities(true);
         public static List<Projectile> GetProjectiles(this InGame inGame) => inGame.bridge.GetAllProjectiles();
         public static TowerInventory GetTowerInventory(this InGame inGame, int index) => inGame.bridge.simulation.GetTowerInventory(index);
-        public static TowerManager GetTowerManager(this InGame inGame, int index) => inGame.bridge.simulation.towerManager;
+        public static TowerManager GetTowerManager(this InGame inGame) => inGame.bridge.simulation.towerManager;
+
+
+        public static void GetMapDimensions(this InGame inGame)
+        {
+            Vector2 topLeft = new Vector2(-149.9228f, -115.2562f);
+            Vector2 bottomRight = new Vector2(150.0713f, 115.4701f);
+        }
 
 
         public static List<BloonToSimulation> GetAllBloons(this InGame inGame) => inGame.bridge.GetAllBloons();
