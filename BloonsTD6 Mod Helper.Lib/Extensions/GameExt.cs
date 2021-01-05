@@ -41,11 +41,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return Helpers.GetTowerListForTowerType(towerSet).ToSystemList();
         }
 
-        /// <summary>
-        /// Not implimented yet
-        /// </summary>
-        public static string GetProfileSavePath(this Game game) => "";
-
         public static UI GetUI(this Game game) => UI.instance;
         public static ProfileModel GetPlayerProfile(this Game game) => game.playerService?.Player?.Data;
         public static Btd6Player GetBtd6Player(this Game game) => game.playerService?.Player;
@@ -67,7 +62,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static double GetMonkeyMoney(this Game game) => game.GetPlayerProfile().monkeyMoney.Value;
         public static void SetMonkeyMoney(this Game game, double amount)
         {
-            var monkeyMoney = game.GetPlayerProfile().monkeyMoney;
+            var monkeyMoney = game.GetPlayerProfile()?.monkeyMoney;
             if (monkeyMoney != null)
                 monkeyMoney.Value = amount;
         }
@@ -110,12 +105,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<BloonEmissionModel> CreateBloonEmissionModel(this Game game, string bloonName, float spacing, int number)
         {
             List<BloonEmissionModel> bloonEmissionModels = new List<BloonEmissionModel>();
-            float time = 0;
+
             for (int i = 0; i < number; i++)
-            {
-                time += spacing;
-                bloonEmissionModels.Add(new BloonEmissionModel(bloonName, time, bloonName));
-            }
+                bloonEmissionModels.Add(new BloonEmissionModel(bloonName, (spacing * i), bloonName));
 
             return bloonEmissionModels;
         }

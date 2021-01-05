@@ -90,18 +90,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(array))
                 return null;
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                var item = array[i];
-                try
-                {
-                    if (item.TryCast<TCast>() != null)
-                        return item.TryCast<TCast>();
-                }
-                catch (Exception) { }
-            }
-
-            return null;
+            var result = array.FirstOrDefault(item => item.TryCast<TCast>() != null);
+            return result.TryCast<TCast>();
         }
 
         public static List<TCast> GetItemsOfType<TSource, TCast>(this TSource[] array)

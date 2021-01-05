@@ -101,30 +101,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return null;
 
             const int offset = 1;
-            foreach (var upgradeModel in tempTower.GetAppliedUpgrades())
-            {
-                if (upgradeModel.path != path || upgradeModel.tier != tier - offset)
-                    continue;
-
-                return upgradeModel;
-            }
+            var appliedUpgrades = tempTower.GetAppliedUpgrades();
+            var results = appliedUpgrades.FirstOrDefault(model => model.path == path && model.tier == (tier - offset));
 
             return null;
         }
 
-        public static List<TowerToSimulation> GeTowerToSimulations(this TowerModel towerModel)
+        public static List<TowerToSimulation> GetTowerSims(this TowerModel towerModel)
         {
             var towers = InGame.instance?.bridge?.GetAllTowers();
             if (towers is null || towers.Count == 0)
                 return null;
 
-            List<TowerToSimulation> desiredTowers = new List<TowerToSimulation>();
-            foreach (var tower in towers)
-            {
-                if (tower.Def == towerModel)
-                    desiredTowers.Add(tower);
-            }
-
+            var desiredTowers = towers.Where(towerSim => towerSim.tower.towerModel.name == towerModel.name).ToSystemList();
             return desiredTowers;
         }
     }

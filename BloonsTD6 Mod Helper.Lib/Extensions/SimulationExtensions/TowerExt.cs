@@ -15,33 +15,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static TowerToSimulation GetTowerSim(this Tower tower)
         {
             var towerSims = InGame.instance?.bridge?.GetAllTowers();
-            
-            foreach (var towerSim in towerSims)
-            {
-                var simTower = towerSim.GetSimTower();
-                if (simTower == tower)
-                    return towerSim;
-            }
-
-            return null;
-        }
-
-        public static Attack GetAttack(this Tower tower)
-        {
-            return tower.GetTowerBehavior<Attack>();
-        }
-
-        public static T GetTowerBehavior<T>(this Tower tower) where T : TowerBehavior
-        {
-            var behaviors = tower.towerBehaviors;
-            for (int i = 0; i < behaviors.count; i++)
-            {
-                var behavior = behaviors[i];
-                if (behavior.model.name.Contains(typeof(T).Name))
-                    return behavior.TryCast<T>();
-            }
-
-            return null;
+            return towerSims.FirstOrDefault(sim => sim.tower == tower);
         }
     }
 }

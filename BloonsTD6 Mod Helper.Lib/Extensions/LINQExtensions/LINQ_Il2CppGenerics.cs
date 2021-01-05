@@ -1,20 +1,39 @@
 ﻿using Il2CppSystem.Collections.Generic;
 using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class LINQ_Il2CppGenerics
     {
-        /*public static T FirstOrDefault<T>(this List<T> source) where T : Il2CppSystem.Object
+        public static T First<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
         {
-            var sortedList = (from number in source
-                              orderby number).ToList();
-        }*/
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    return item;
+            }
+            throw new NullReferenceException();
+        }
 
-        /*public static double Median<T>(this IEnumerable<T> numbers,
-                       Func<T, double> selector) => (from num in numbers select selector(num)).Median();*/
+        public static T FirstOrDefault<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
+        {
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    return item;
+            }
+            return null;
+        }
+
+        public static List<T> Where<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
+        {
+            List<T> result = new List<T>();
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    result.Add(item);
+            }
+            return result;
+        }
     }
 }
