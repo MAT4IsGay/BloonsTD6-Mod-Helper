@@ -113,7 +113,6 @@
     <Compile Include="Api\Coop\Chat_Message.cs" />
     <Compile Include="Api\Coop\DynamicInstance.cs" />
     <Compile Include="Api\Coop\MessageUtils.cs" />
-    <Compile Include="Api\Utils\Il2CppUtils.cs" />
     <Compile Include="Api\JsonSerializer.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AbilityModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
@@ -172,6 +171,7 @@
   <ItemGroup>
     <None Include="Resources\ingame_popup.bundle" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\Mods" /y</PostBuildEvent>

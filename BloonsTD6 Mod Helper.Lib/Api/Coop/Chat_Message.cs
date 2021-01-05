@@ -1,13 +1,12 @@
 ﻿using UnhollowerBaseLib;
 using NinjaKiwi.NKMulti;
-using Assets.Scripts.Unity;
 using Newtonsoft.Json;
 
 namespace BloonsTD6_Mod_Helper.Api.Coop
 {
     public class Chat_Message
     {
-        public const string chatCoopCode = "BTD6_Chat_Msg";
+        public const string chatCoopCode = "CHAT";
         public int PeerID { get; set; }
         public string Sender { get; set; }
         public string Message { get; set; }
@@ -22,6 +21,7 @@ namespace BloonsTD6_Mod_Helper.Api.Coop
             PeerID = message.PeerID;
             Sender = message.Sender;
             Message = message.Message;
+            IsPrivateMessage = message.IsPrivateMessage;
         }
 
         public Chat_Message Read(string json)

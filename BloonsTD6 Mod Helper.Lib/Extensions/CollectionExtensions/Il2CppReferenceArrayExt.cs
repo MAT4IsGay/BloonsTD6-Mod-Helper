@@ -17,7 +17,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             List<T> newList = new List<T>();
             foreach (var item in referenceArray)
                 newList.Add(item);
-
+            
             return newList;
         }
 
@@ -72,6 +72,30 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return lockList;
         }
+
+        public static Il2CppReferenceArray<T> Clone<T>(this Il2CppReferenceArray<T> list) where T: Il2CppSystem.Object
+        {
+            List<T> newList = new List<T>();
+            foreach (var item in list)
+                newList.Add(item);
+
+            return newList.ToIl2CppReferenceArray();
+        }
+
+        public static Il2CppReferenceArray<TCast> CloneAs<TSource, TCast>(this Il2CppReferenceArray<TSource> list)
+            where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
+        {
+            List<TCast> newList = new List<TCast>();
+            foreach (var item in list)
+                newList.Add(item.TryCast<TCast>());
+
+            return newList.ToIl2CppReferenceArray();
+        }
+
+
+
+
+
 
 
         public static bool HasItemsOfType<TSource, TCast>(this Il2CppReferenceArray<TSource> referenceArray)

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Utils;
-using BloonsTD6_Mod_Helper.Api.Utils;
 using Il2CppSystem.Collections.Generic;
 using System;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             System.Collections.Generic.List<T> newList = new System.Collections.Generic.List<T>();
             foreach (var item in il2CppList)
                 newList.Add(item);
-
+            
             return newList;
         }
 
@@ -49,11 +48,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return sizedList;
         }
 
-        public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this List<T> il2CppList) where T : Il2CppObjectBase
+        public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this List<T> il2CppList) where T : Il2CppSystem.Object
         {
             var il2cppArray = new Il2CppReferenceArray<T>(0);
             for (int i = 0; i < il2CppList.Count; i++)
-                Il2CppUtils.Add(il2cppArray, il2CppList[i], out il2cppArray);
+                il2cppArray = il2cppArray.Add(il2CppList[i]);
 
             return il2cppArray;
         }
@@ -69,6 +68,28 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return lockList;
         }
+
+
+        public static List<T> Clone<T>(this List<T> list)
+        {
+            List<T> newList = new List<T>();
+            foreach (var item in list)
+                newList.Add(item);
+
+            return newList;
+        }
+
+        public static List<TCast> CloneAs<TSource, TCast>(this List<TSource> list)
+            where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
+        {
+            List<TCast> newList = new List<TCast>();
+            foreach (var item in list)
+                newList.Add(item.TryCast<TCast>());
+
+            return newList;
+        }
+
+
 
 
 

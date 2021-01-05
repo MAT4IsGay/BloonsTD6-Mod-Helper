@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Utils;
-using BloonsTD6_Mod_Helper.Api.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +27,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             var il2cppArray = new Il2CppReferenceArray<T>(0);
             for (int i = 0; i < array.Length; i++)
-                Il2CppUtils.Add(il2cppArray, array[i], out il2cppArray);
+                il2cppArray = il2cppArray.Add(array[i]);
 
             return il2cppArray;
         }
@@ -56,6 +55,34 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return lockList;
         }
+
+
+        public static T[] Clone<T>(this T[] array)
+        {
+            T[] newArray = new T[] { };
+            foreach (var item in array)
+            {
+                Array.Resize(ref newArray, newArray.Length + 1);
+                newArray[newArray.Length - 1] = item;
+            }
+
+            return newArray;
+        }
+
+        public static TCast[] CloneAs<TSource, TCast>(this TSource[] array) 
+            where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
+        {
+            TCast[] newArray = new TCast[] { };
+            foreach (var item in array)
+            {
+                Array.Resize(ref newArray, newArray.Length + 1);
+                newArray[newArray.Length - 1] = item.TryCast<TCast>();
+            }
+
+            return newArray;
+        }
+
+
 
 
 

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Utils;
-using BloonsTD6_Mod_Helper.Api.Utils;
 using System;
 using System.Collections.Generic;
 using UnhollowerBaseLib;
@@ -22,7 +21,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             Il2CppSystem.Collections.Generic.List<T> il2CppList = new Il2CppSystem.Collections.Generic.List<T>();
             for (int i = 0; i < sizedList.count; i++)
                 il2CppList.Add(sizedList[i]);
-
+            
             return il2CppList;
         }
 
@@ -39,11 +38,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newArray;
         }        
 
-        public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this SizedList<T> sizedList) where T : Il2CppObjectBase
+        public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this SizedList<T> sizedList) where T : Il2CppSystem.Object
         {
             var il2cppArray = new Il2CppReferenceArray<T>(0);
             for (int i = 0; i < sizedList.count; i++)
-                Il2CppUtils.Add(il2cppArray, sizedList[i], out il2cppArray);
+                il2cppArray = il2cppArray.Add(sizedList[i]);
 
             return il2cppArray;
         }
@@ -59,6 +58,27 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return lockList;
         }
+
+
+        public static SizedList<T> Clone<T>(this SizedList<T> list)
+        {
+            SizedList<T> newList = new SizedList<T>();
+            for (int i = 0; i < list.count; i++)
+                newList.Add(list[i]);
+
+            return newList;
+        }
+
+        public static SizedList<TCast> CloneAs<TSource, TCast>(this SizedList<TSource> list)
+            where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
+        {
+            SizedList<TCast> newList = new SizedList<TCast>();
+            for (int i = 0; i < list.count; i++)
+                newList.Add(list[i].TryCast<TCast>());
+
+            return newList;
+        }
+
 
 
 
