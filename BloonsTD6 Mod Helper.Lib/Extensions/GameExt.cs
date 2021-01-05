@@ -17,11 +17,15 @@ using Assets.Scripts.Unity.Menu;
 using Assets.Scripts.Unity.Localization;
 using Assets.Scripts.Unity.UI_New.InGame.RightMenu;
 using Assets.Scripts.Unity.UI_New.Popups;
+using BloonsTD6_Mod_Helper.Api;
+using Assets.Scripts.Models.Rounds;
+using NinjaKiwi.LiNK;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameExt
     {
+        public static JsonSerializer GetJsonSerializer(this Game game) => new JsonSerializer();
         public static PopupScreen GetPopupScreen(this Game game) => PopupScreen.instance;
         public static ShopMenu GetShopMenu(this Game game) => ShopMenu.instance;
         public static CommonForegroundScreen GetCommonForegroundScreen(this Game game) => CommonForegroundScreen.instance;
@@ -45,14 +49,18 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static UI GetUI(this Game game) => UI.instance;
         public static ProfileModel GetPlayerProfile(this Game game) => game.playerService?.Player?.Data;
         public static Btd6Player GetBtd6Player(this Game game) => game.playerService?.Player;
-
+        public static LiNKAccount GetPlayerLiNKAccount(this Game game) => game.playerService?.Player?.LiNKAccount;
 
         public static Il2CppReferenceArray<TowerDetailsModel> GetTowerDetailModels(this Game game) => game.model?.towerSet;
         public static Il2CppReferenceArray<TowerDetailsModel> GetHeroDetailModels(this Game game) => game.model?.heroSet;
         public static Il2CppReferenceArray<PowerDetailsModel> GetPowerDetailModels(this Game game) => game.model?.powerSet;
 
 
-        public static BloonModel GetBloonModel(this Game game, string bloonName) => game.model?.GetBloon(bloonName);
+        public static BloonModel GetBloonModel(this Game game, string bloonName)
+        {
+            return game.model?.bloons?.FirstOrDefault(bloon => bloon.name == bloonName);
+        }
+
         public static List<BloonModel> GetAllBloonModels(this Game game) => game.model?.bloons?.ToList();
         
 
@@ -86,10 +94,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static void ShowMessage(this Game game, string message, [Optional] string title)
-        {
-            game.ShowMessage(message, 2f, title);
-        }
+        public static void ShowMessage(this Game game, string message, [Optional] string title) => game.ShowMessage(message, 2f, title);
 
         public static void ShowMessage(this Game game, string message, float displayTime, [Optional] string title)
         {
@@ -100,6 +105,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
             msg.NkhText.Title = title;
 
             NotificationMgr.AddNotification(msg);
+        }
+
+        public static List<BloonEmissionModel> CreateBloonEmissionModel(this Game game, string bloonName, float spacing, int number)
+        {
+            List<BloonEmissionModel> bloonEmissionModels = new List<BloonEmissionModel>();
+            float time = 0;
+            for (int i = 0; i < number; i++)
+            {
+                time += spacing;
+                bloonEmissionModels.Add(new BloonEmissionModel(bloonName, time, bloonName));
+            }
+
+            return bloonEmissionModels;
         }
     }
 }

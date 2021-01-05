@@ -19,9 +19,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class InGameExt
     {
+
         public static Simulation GetGameSimulation(this InGame inGame) => inGame.bridge.GameSimulation;
         public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
         public static Map GetMap(this InGame inGame) => inGame.bridge.simulation.Map;
+
 
         public static bool IsInPublic(this InGame inGame) => (inGame.IsInRace() || inGame.IsInPublicCoop() || inGame.IsInOdyssey());
         public static bool IsInRace(this InGame inGame) => MainMenuEventPanel_OpenRaceEventScreen.IsInRace;
@@ -64,21 +66,28 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<BloonToSimulation> GetAllBloons(this InGame inGame) => inGame.bridge.GetAllBloons();
         public static int GetRoundNumber(this InGame inGame) => inGame.bridge.GetCurrentRound();
         public static void SetRound(this InGame inGame, int round) => inGame.bridge.simulation.map.spawner.SetRound(round);
+
+        
+
         public static void SpawnBloons(this InGame inGame, string bloonName, float spacing, int number)
         {
-            Il2CppReferenceArray<BloonEmissionModel> bloonEmissionModels = new Il2CppReferenceArray<BloonEmissionModel>(number);
-            float time = 0;
-            for (int i = 0; i < number; i++)
-            {
-                time += spacing;
-                bloonEmissionModels[i] = (new BloonEmissionModel(bloonName, time, bloonName));
-            }
-
+            var bloonEmissionModels = Game.instance.CreateBloonEmissionModel(bloonName, spacing, number).ToIl2CppReferenceArray();
             inGame.SpawnBloons(bloonEmissionModels);
         }
 
+        public static void SpawnBloons(this InGame inGame, System.Collections.Generic.List<BloonEmissionModel> bloonEmissionModels) =>
+
+          inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.GetRoundNumber(), 0);
+
+
+        public static void SpawnBloons(this InGame inGame, List<BloonEmissionModel> bloonEmissionModels) =>
+
+           inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.GetRoundNumber(), 0);
+
+
         public static void SpawnBloons(this InGame inGame, Il2CppReferenceArray<BloonEmissionModel> bloonEmissionModels) =>
             inGame.bridge.SpawnBloons(bloonEmissionModels, inGame.GetRoundNumber(), 0);
+
 
         public static void SpawnBloons(this InGame inGame, int round)
         {

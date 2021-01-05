@@ -59,5 +59,131 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return lockList;
         }
+
+
+
+
+
+
+        public static bool HasItemsOfType<TSource, TCast>(this SizedList<TSource> sizedList) where TSource : Il2CppSystem.Object
+            where TCast : Il2CppSystem.Object
+        {
+            for (int i = 0; i < sizedList.count; i++)
+            {
+                var item = sizedList[i];
+                try
+                {
+                    if (item.TryCast<TCast>() != null)
+                        return true;
+                }
+                catch (Exception) { }
+            }
+
+            return false;
+        }
+
+
+        public static SizedList<T> Add<T>(this SizedList<T> sizedList, T objectToAdd) where T : Il2CppSystem.Object
+        {
+            var list = sizedList.ToList();
+            list.Add(objectToAdd);
+            return list.ToSizedList();
+        }
+
+        public static TCast GetItemOfType<TSource, TCast>(this SizedList<TSource> sizedList) where TCast : Il2CppSystem.Object
+            where TSource : Il2CppSystem.Object
+        {
+            if (!HasItemsOfType<TSource, TCast>(sizedList))
+                return null;
+
+            for (int i = 0; i < sizedList.count; i++)
+            {
+                var item = sizedList[i];
+                try
+                {
+                    if (item.TryCast<TCast>() != null)
+                        return item.TryCast<TCast>();
+                }
+                catch (Exception) { }
+            }
+
+            return null;
+        }
+
+        public static List<TCast> GetItemsOfType<TSource, TCast>(this SizedList<TSource> sizedList) where TSource : Il2CppSystem.Object
+            where TCast : Il2CppSystem.Object
+        {
+            if (!HasItemsOfType<TSource, TCast>(sizedList))
+                return null;
+
+            List<TCast> list = new List<TCast>();
+            for (int i = 0; i < sizedList.count; i++)
+            {
+                var item = sizedList[i];
+                try
+                {
+                    var tryCast = item.TryCast<TCast>();
+                    if (tryCast != null)
+                        list.Add(tryCast);
+                }
+                catch (Exception) { }
+            }
+
+            return list;
+        }
+
+
+        public static SizedList<TSource> RemoveItemOfType<TSource, TCast>(this SizedList<TSource> sizedList)
+            where TSource : Il2CppSystem.Object
+            where TCast : Il2CppSystem.Object
+        {
+            var behavior = GetItemOfType<TSource, TCast>(sizedList);
+            return RemoveItem(sizedList, behavior);
+        }
+
+
+        public static SizedList<TSource> RemoveItem<TSource, TCast>(this SizedList<TSource> sizedList, TCast itemToRemove)
+            where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
+        {
+            if (!HasItemsOfType<TSource, TCast>(sizedList))
+                return sizedList;
+
+            var arrayList = sizedList.ToList();
+
+            for (int i = 0; i < sizedList.Count; i++)
+            {
+                var item = sizedList[i];
+                if (item is null || !item.Equals(itemToRemove.TryCast<TCast>()))
+                    continue;
+
+                arrayList.RemoveAt(i);
+                break;
+            }
+
+            return arrayList.ToSizedList();
+        }
+
+
+        public static SizedList<TSource> RemoveItemsOfType<TSource, TCast>(this SizedList<TSource> sizedList)
+            where TSource : Il2CppSystem.Object
+            where TCast : Il2CppSystem.Object
+        {
+            if (!HasItemsOfType<TSource, TCast>(sizedList))
+                return sizedList;
+
+            int numRemoved = 0;
+            var arrayList = sizedList.ToList();
+            for (int i = 0; i < sizedList.Count; i++)
+            {
+                var item = sizedList[i];
+                if (item is null || item.TryCast<TCast>() == null)
+                    continue;
+
+                arrayList.RemoveAt(i - numRemoved);
+                numRemoved++;
+            }
+
+            return arrayList.ToSizedList();
+        }
     }
 }

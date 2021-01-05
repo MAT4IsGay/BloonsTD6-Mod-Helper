@@ -1,14 +1,13 @@
-﻿using MelonLoader;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using UnityEngine;
 
 namespace BloonsTD6_Mod_Helper.Api
 {
-    public class Serializer
+    public class JsonSerializer
     {
-        
-        public static string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false) where T : class
+        public string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false)
         {
             Formatting formatting = (shouldIndent) ? Formatting.Indented : Formatting.None;
             string json = JsonConvert.SerializeObject(objectToSerialize, formatting);
@@ -20,7 +19,7 @@ namespace BloonsTD6_Mod_Helper.Api
         /// </summary>
         /// <typeparam name="T">The type to load</typeparam>
         /// <param name="filePath">Location of the file</param>
-        public static T LoadFromFile<T>(string filePath) where T : class
+        public T LoadFromFile<T>(string filePath) where T : class
         {
             if (!IsPathValid(filePath))
                 return null;
@@ -32,7 +31,7 @@ namespace BloonsTD6_Mod_Helper.Api
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        private static bool IsPathValid(string filePath)
+        private bool IsPathValid(string filePath)
         {
             Guard.ThrowIfStringIsNull(filePath, "Can't load file, path is null");
             return File.Exists(filePath);
@@ -46,7 +45,7 @@ namespace BloonsTD6_Mod_Helper.Api
         /// <param name="jsonObject">Object to save. Must be of Type T</param>
         /// <param name="savePath">Location to save file to</param>
         /// <param name="overwriteExisting">Overwrite the file if it already exists</param>
-        public static void SaveToFile<T>(T jsonObject, string savePath, bool shouldIndent = false, bool overwriteExisting = true) where T : class
+        public void SaveToFile<T>(T jsonObject, string savePath, bool shouldIndent = false, bool overwriteExisting = true) where T : class
         {
             Guard.ThrowIfStringIsNull(savePath, "Can't save file, save path is null");
             CreateDirIfNotFound(savePath);
@@ -59,7 +58,7 @@ namespace BloonsTD6_Mod_Helper.Api
             serialize.Close();
         }
 
-        private static void CreateDirIfNotFound(string dir)
+        private void CreateDirIfNotFound(string dir)
         {
             FileInfo f = new FileInfo(dir);
             Directory.CreateDirectory(f.Directory.FullName);

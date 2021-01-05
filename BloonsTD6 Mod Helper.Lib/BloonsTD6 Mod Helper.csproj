@@ -51,11 +51,17 @@
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NinjaKiwi.Common">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\NinjaKiwi.Common.dll</HintPath>
+    </Reference>
     <Reference Include="NinjaKiwi.LiNK">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\NinjaKiwi.LiNK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Json">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\System.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +71,9 @@
     <Reference Include="UnhollowerBaseLib">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="UnhollowerRuntimeLib">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.dll</HintPath>
@@ -76,62 +85,67 @@
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.Il2CppAssetBundleManager">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Il2CppImageConversionManager">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Coop\Chat_Message.cs" />
     <Compile Include="Api\Coop\DynamicInstance.cs" />
     <Compile Include="Api\Coop\MessageUtils.cs" />
-    <Compile Include="Api\Coop\ModMessage.cs" />
-    <Compile Include="Api\Utils\BehaviorUtils_SizedList.cs" />
-    <Compile Include="Api\Utils\BehaviorUtils_Il2CppReferenceArray.cs" />
     <Compile Include="Api\Utils\Il2CppUtils.cs" />
+    <Compile Include="Api\JsonSerializer.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\AbilityModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\BloonModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\EmissionModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\PetModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\PowerModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\ProjectileModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\TowerModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\WeaponModelBehaviorExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ArrayExt.cs" />
-    <Compile Include="Extensions\AttackModelExt.cs" />
-    <Compile Include="Extensions\CollectionExtensions\Behaviors\List_BehaviorExt.cs" />
-    <Compile Include="Extensions\NKMultiGameInterfaceExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerMutatorModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToWeaponModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToBloonModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AirUnitModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AbilityModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\BloonModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\BiohackModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerSupportModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\Broken-MapGizmoBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\Broken-EntityBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToTowerSupport_MutatorTower_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\PowerModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\MapGizmoModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\PetModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\GameModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\EmissionModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\ProjectileModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\SlowMainMoabModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AttackModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\WeaponModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\AddBehaviorToBloonInZoneModel_BehaviorExt.cs" />
-    <Compile Include="Extensions\Old-BehaviorExtensions\TowerModelBehaviorExt.cs" />
-    <Compile Include="Extensions\Il2CppArrayBaseExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\AttackModelExt.cs" />
+    <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppGenerics.cs" />
+    <Compile Include="Extensions\CoopExtensions\NKMultiGameInterfaceExt.cs" />
+    <Compile Include="Extensions\CollectionExtensions\Il2CppArrayBaseExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppReferenceArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppGenericsExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ListExt.cs" />
-    <Compile Include="Extensions\ProjectileExt.cs" />
+    <Compile Include="Extensions\SimulationExtensions\ProjectileExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\SizedListExt.cs" />
-    <Compile Include="Extensions\TowerExt.cs" />
-    <Compile Include="Extensions\BloonExt.cs" />
-    <Compile Include="Extensions\BloonModelExt.cs" />
+    <Compile Include="Extensions\UnityExtensions\Texture2DExt.cs" />
+    <Compile Include="Extensions\SimulationExtensions\TowerExt.cs" />
+    <Compile Include="Extensions\SimulationExtensions\BloonExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\BloonModelExt.cs" />
     <Compile Include="Extensions\GameExt.cs" />
     <Compile Include="Extensions\InGameExt.cs" />
-    <Compile Include="Extensions\MainMenuExt.cs" />
-    <Compile Include="Extensions\TowerDetailsModelExt.cs" />
+    <Compile Include="Extensions\UIExtensions\MainMenuExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\TowerDetailsModelExt.cs" />
     <Compile Include="Api\Guard.cs" />
-    <Compile Include="Extensions\TowerModelExt.cs" />
-    <Compile Include="Extensions\UpgradeModelExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\TowerModelExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\UpgradeModelExt.cs" />
+    <Compile Include="Extensions\UnityExtensions\Vector3Ext.cs" />
     <Compile Include="Lib\InGameMessage.cs" />
     <Compile Include="MelonMain.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
@@ -143,7 +157,6 @@
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Api\Serializer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
