@@ -124,6 +124,7 @@
     <Compile Include="Extensions\BehaviorExtensions\TowerModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\WeaponModelBehaviorExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ArrayExt.cs" />
+    <Compile Include="Extensions\CollectionExtensions\IEnumerableExt.cs" />
     <Compile Include="Extensions\ModelExtensions\AttackModelExt.cs" />
     <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppGenerics.cs" />
     <Compile Include="Extensions\CoopExtensions\NKMultiGameInterfaceExt.cs" />

@@ -85,10 +85,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
 
 
-
+        
         public static bool HasItemsOfType<TSource, TCast>(this TSource[] array) where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
+            // Doing this the ugly way to guarantee no errors. Had a couple of bizarre errors in testing when using LINQ
             for (int i = 0; i < array.Length; i++)
             {
                 var item = array[i];
@@ -127,20 +128,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(array))
                 return null;
 
-            List<TCast> list = new List<TCast>();
-            for (int i = 0; i < array.Length; i++)
-            {
-                var item = array[i];
-                try
-                {
-                    var tryCast = item.TryCast<TCast>();
-                    if (tryCast != null)
-                        list.Add(tryCast);
-                }
-                catch (Exception) { }
-            }
-
-            return list;
+            var results = array.Where(item => item.TryCast<TCast>() != null);
+            return results.CloneAs<TSource, TCast>().ToList();
         }
 
         public static TSource[] RemoveItemOfType<TSource, TCast>(this TSource[] array)
