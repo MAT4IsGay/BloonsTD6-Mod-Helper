@@ -21,9 +21,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (spawner is null)
                 return;
 
-            var chargedMutators = new List<Bloon.ChargedMutator>().ToIl2CppList();
-            var nonChargedMutators = new List<BehaviorMutator>().ToIl2CppList();
-            spawner.Emit(bloonModel, 0, 0, chargedMutators, nonChargedMutators);
+            var chargedMutators = new Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator>();
+            var nonChargedMutators = new Il2CppSystem.Collections.Generic.List<BehaviorMutator>();
+            spawner.Emit(bloonModel, InGame.instance.GetRoundNumber(), 0, chargedMutators, nonChargedMutators);
         }
 
         /*public static void Spawn(this BloonModel bloonModel)

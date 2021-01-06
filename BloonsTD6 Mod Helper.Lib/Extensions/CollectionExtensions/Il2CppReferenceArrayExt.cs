@@ -113,9 +113,29 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> referenceArray, T objectToAdd) where T : Il2CppSystem.Object
         {
-            var list = referenceArray.ToList();
-            list.Add(objectToAdd);
-            return list.ToIl2CppReferenceArray();
+            Il2CppReferenceArray<T> newRef = new Il2CppReferenceArray<T>(referenceArray.Count + 1);
+            for (int i = 0; i < referenceArray.Count; i++)
+                newRef[i] = referenceArray[i];
+
+            newRef[newRef.Length - 1] = objectToAdd;
+            return newRef;
+        }
+
+        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> referenceArray, Il2CppReferenceArray<T> objectsToAdd) where T : Il2CppSystem.Object
+        {
+            var size = referenceArray.Count + objectsToAdd.Count;
+            Il2CppReferenceArray<T> newReference = new Il2CppReferenceArray<T>(size);
+
+            var tempList = new List<T>(referenceArray);
+            tempList.AddRange(objectsToAdd);
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                var item = tempList[i];
+                newReference[i] = item;
+            }
+
+            return newReference;
         }
 
         public static TCast GetItemOfType<TSource, TCast>(this Il2CppReferenceArray<TSource> referenceArray)

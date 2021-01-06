@@ -14,9 +14,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Texture2D LoadFromFile(this Texture2D texture, string filePath)
         {
-            Texture2D loadedTexture = new Texture2D(2, 2);
-            ImageConversion.LoadImage(loadedTexture, File.ReadAllBytes(filePath));
-            return loadedTexture;
+            ImageConversion.LoadImage(texture, File.ReadAllBytes(filePath));
+            return texture;
         }
     }
 }

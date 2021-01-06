@@ -1,51 +1,27 @@
 ﻿using Assets.Scripts.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class IEnumerableExt
     {
-        public static List<T> ToList<T>(this IEnumerable<T> enumerable)
-        {
-            List<T> newList = new List<T>();
-            for (int i = 0; i < enumerable.Count(); i++)
-                newList.Add(enumerable.ElementAt(i));
-
-            return newList;
-        }
-
         public static Il2CppSystem.Collections.Generic.List<T> ToIl2CppList<T>(this IEnumerable<T> enumerable)
         {
             Il2CppSystem.Collections.Generic.List<T> il2CppList = new Il2CppSystem.Collections.Generic.List<T>();
             for (int i = 0; i < enumerable.Count(); i++)
                 il2CppList.Add(enumerable.ElementAt(i));
-
+            
             return il2CppList;
-        }
-
-        public static T[] ToArray<T>(this SizedList<T> enumerable)
-        {
-            T[] newArray = new T[] { };
-            for (int i = 0; i < enumerable.count; i++)
-            {
-                var item = enumerable[i];
-                Array.Resize(ref newArray, newArray.Length + 1);
-                newArray[newArray.Length - 1] = item;
-            }
-
-            return newArray;
         }
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this IEnumerable<T> enumerable) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(0);
+            var il2cppArray = new Il2CppReferenceArray<T>(enumerable.Count());
+
             for (int i = 0; i < enumerable.Count(); i++)
-                il2cppArray = il2cppArray.Add(enumerable.ElementAt(i));
+                il2cppArray[i] = enumerable.ElementAt(i);
 
             return il2cppArray;
         }

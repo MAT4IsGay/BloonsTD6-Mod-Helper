@@ -32,7 +32,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 nkGI.relayConnection.Writer.Write(message);
         }
 
-        public static T ReadMessage<T>(this NKMultiGameInterface nkGI, Il2CppStructArray<byte> messageBytes) where T : class
+        public static T ReadMessage<T>(this NKMultiGameInterface nkGI, Il2CppStructArray<byte> messageBytes)
         {
             return MessageUtils.ReadMessage<T>(messageBytes);
         }

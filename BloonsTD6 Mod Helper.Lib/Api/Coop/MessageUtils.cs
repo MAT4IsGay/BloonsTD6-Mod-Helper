@@ -14,7 +14,7 @@ namespace BloonsTD6_Mod_Helper.Api.Coop
             return new Message(code, serialize);
         }
 
-        public static T ReadMessage<T>(Il2CppStructArray<byte> serializedMessage) where T : class
+        public static T ReadMessage<T>(Il2CppStructArray<byte> serializedMessage)
         {
             var deserialize = SerialisationUtil.Deserialise<T>(serializedMessage);
             return deserialize;

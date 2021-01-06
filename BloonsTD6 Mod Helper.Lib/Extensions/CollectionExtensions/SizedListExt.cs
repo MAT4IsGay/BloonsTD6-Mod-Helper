@@ -40,9 +40,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this SizedList<T> sizedList) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(0);
-            for (int i = 0; i < sizedList.count; i++)
-                il2cppArray = il2cppArray.Add(sizedList[i]);
+            var il2cppArray = new Il2CppReferenceArray<T>(sizedList.Count);
+
+            for (int i = 0; i < sizedList.Count; i++)
+                il2cppArray[i] = sizedList[i];
 
             return il2cppArray;
         }
