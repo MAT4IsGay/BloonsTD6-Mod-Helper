@@ -36,7 +36,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (bloonId.Contains("Regrow") && removeRegrow)
                 bloonId = bloonId.Replace("Regrow", "");
 
-            var newBloonModel = Game.instance.GetBloonModel(bloonId);
+            var newBloonModel = Game.instance.model.GetBloonModel(bloonId);
             bloon.bloonModel = newBloonModel;
         }
 
@@ -49,27 +49,27 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             if (setCamo)
             {
-                bool doesCamoExist = Game.instance.GetBloonModel(bloonModel.baseId + "Camo") != null;
+                bool doesCamoExist = Game.instance.model.GetBloonModel(bloonModel.baseId + "Camo") != null;
                 if (doesCamoExist)
                     camoText = "Camo";
             }
 
             if (setFortified)
             {
-                bool doesFortifiedExist = Game.instance.GetBloonModel(bloonModel.baseId + "Fortified") != null;
+                bool doesFortifiedExist = Game.instance.model.GetBloonModel(bloonModel.baseId + "Fortified") != null;
                 if (doesFortifiedExist)
                     fortifiedText = "Fortified";
             }
 
             if (setRegrow)
             {
-                bool doesHaveRegrow = Game.instance.GetBloonModel(bloonModel.baseId + "Regrow") != null;
+                bool doesHaveRegrow = Game.instance.model.GetBloonModel(bloonModel.baseId + "Regrow") != null;
                 if (doesHaveRegrow)
                     regrowText = "Regrow";
             }
 
             string newBloonID = bloonModel.baseId + regrowText + fortifiedText + camoText;
-            bloon.bloonModel = Game.instance.GetBloonModel(newBloonID);
+            bloon.bloonModel = Game.instance.model.GetBloonModel(newBloonID);
         }
     }
 }

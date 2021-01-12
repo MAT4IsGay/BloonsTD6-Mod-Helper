@@ -51,12 +51,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static Il2CppReferenceArray<PowerDetailsModel> GetPowerDetailModels(this Game game) => game.model?.powerSet;
 
 
-        public static BloonModel GetBloonModel(this Game game, string bloonName)
+        // moved
+        /*public static BloonModel GetBloonModel(this Game game, string bloonName)
         {
             return game.model?.bloons?.FirstOrDefault(bloon => bloon.name == bloonName);
-        }
+        }*/
 
-        public static List<BloonModel> GetAllBloonModels(this Game game) => game.model?.bloons?.ToList();
+
+        // being removed
+        //public static List<BloonModel> GetAllBloonModels(this Game game) => game.model?.bloons?.ToList();
         
 
         public static double GetMonkeyMoney(this Game game) => game.GetPlayerProfile().monkeyMoney.Value;
@@ -68,11 +71,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static UpgradeModel GetUpgradeModel(this Game game, string upgradeName) => game.model?.GetUpgrade(upgradeName);
+        // being removed
+        //public static UpgradeModel GetUpgradeModel(this Game game, string upgradeName) => game.model?.GetUpgrade(upgradeName);
 
 
-        public static List<TowerModel> GetTowerModels(this Game game) => game.model?.towers?.ToList();
-        public static List<TowerModel> GetTowerModels(this Game game, string towerBaseId)
+        // being removed
+        //public static List<TowerModel> GetTowerModels(this Game game) => game.model?.towers?.ToList();
+        
+        
+        // moved
+        /*public static List<TowerModel> GetTowerModels(this Game game, string towerBaseId)
         {
             var allTowerModels = game.model?.towers;
             if (allTowerModels is null)
@@ -80,13 +88,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             var desieredTowerModels = allTowerModels.Where(t => t.baseId == towerBaseId).ToList();
             return desieredTowerModels;
-        }
+        }*/
 
-        public static TowerModel GetTowerModel(this Game game, string towerName, [Optional] int pathOneUpgrade,
+
+
+        // being removed
+        /*public static TowerModel GetTowerModel(this Game game, string towerName, [Optional] int pathOneUpgrade,
            [Optional] int pathTwoUpgrade, [Optional] int pathThreeUpgrade)
         {
             return game.model?.GetTower(towerName, pathOneUpgrade, pathTwoUpgrade, pathThreeUpgrade);
-        }
+        }*/
 
 
         public static void ShowMessage(this Game game, string message, [Optional] string title) => game.ShowMessage(message, 2f, title);
@@ -102,7 +113,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
             NotificationMgr.AddNotification(msg);
         }
 
-        public static List<BloonEmissionModel> CreateBloonEmissionModel(this Game game, string bloonName, float spacing, int number)
+        // moved
+        /*public static List<BloonEmissionModel> CreateBloonEmissionModel(this Game game, string bloonName, float spacing, int number)
         {
             List<BloonEmissionModel> bloonEmissionModels = new List<BloonEmissionModel>();
 
@@ -110,6 +122,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 bloonEmissionModels.Add(new BloonEmissionModel(bloonName, (spacing * i), bloonName));
 
             return bloonEmissionModels;
-        }
+        }*/
     }
 }

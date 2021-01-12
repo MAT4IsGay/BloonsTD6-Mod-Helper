@@ -4,7 +4,7 @@ using BloonsTD6_Mod_Helper.Lib;
 using MelonLoader;
 using System;
 using System.Reflection;
-
+using BloonsTD6_Mod_Helper.Extensions;
 namespace BloonsTD6_Mod_Helper
 {
     internal class MelonMain : MelonMod

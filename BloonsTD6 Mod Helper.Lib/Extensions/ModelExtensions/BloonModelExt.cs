@@ -1,17 +1,20 @@
 ﻿using Assets.Scripts.Models.Bloons;
+using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Simulation.Objects;
 using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame;
 using System.Collections.Generic;
 using System.Linq;
+using UnhollowerBaseLib;
+
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class BloonModelExt
     {
         public static int? GetIndex(this BloonModel bloonModel)
         {
-            var allBloons = Game.instance?.GetAllBloonModels();
+            var allBloons = Game.instance?.model?.bloons;
             return allBloons.FindIndex(bloon => bloon.name == bloonModel.name);
         }
 
@@ -26,11 +29,20 @@ namespace BloonsTD6_Mod_Helper.Extensions
             spawner.Emit(bloonModel, InGame.instance.GetRoundNumber(), 0, chargedMutators, nonChargedMutators);
         }
 
+        //possibly bugged. Will come back to later
         /*public static void Spawn(this BloonModel bloonModel)
         {
             var spawner = InGame.instance.GetMap().spawner;
             spawner.Emit(bloonModel, 0, 0, new Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator>(),
                 new Il2CppSystem.Collections.Generic.List<BehaviorMutator>());
         }*/
+
+
+        public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this BloonModel bloonModel, int count, int spacing)
+        {
+            return Game.instance?.model?.CreateBloonEmissionModel(bloonModel, count, spacing);
+        }
+
+        
     }
 }

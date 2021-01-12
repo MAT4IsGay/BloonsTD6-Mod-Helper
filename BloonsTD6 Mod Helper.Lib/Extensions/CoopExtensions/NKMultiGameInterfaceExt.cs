@@ -36,5 +36,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             return MessageUtils.ReadMessage<T>(messageBytes);
         }
+
+        public static Chat_Message ReadChatMessage(this NKMultiGameInterface nkGI, Message message)
+        {
+            if (message.Code != Chat_Message.chatCoopCode) 
+                return null;
+            var json = Game.instance.nkGI.ReadMessage<string>(message.bytes);
+            var deserialized = Game.instance.GetJsonSerializer().DeserializeJson<Chat_Message>(json);
+            return deserialized;
+        }
     }
 }

@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Json">
       <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\System.Json.dll</HintPath>
     </Reference>
@@ -114,6 +115,7 @@
     <Compile Include="Api\Coop\DynamicInstance.cs" />
     <Compile Include="Api\Coop\MessageUtils.cs" />
     <Compile Include="Api\JsonSerializer.cs" />
+    <Compile Include="Api\SpriteRegister.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AbilityModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\BloonModelBehaviorExt.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Extensions\BehaviorExtensions\WeaponModelBehaviorExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\IEnumerableExt.cs" />
+    <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppReferenceArray.cs" />
     <Compile Include="Extensions\ModelExtensions\AttackModelExt.cs" />
     <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppGenerics.cs" />
     <Compile Include="Extensions\CoopExtensions\NKMultiGameInterfaceExt.cs" />
@@ -132,6 +135,8 @@
     <Compile Include="Extensions\CollectionExtensions\Il2CppReferenceArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppGenericsExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ListExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\GameModelExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\WeaponModelExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\ProjectileExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\SizedListExt.cs" />
     <Compile Include="Extensions\UnityExtensions\Texture2DExt.cs" />
@@ -155,6 +160,7 @@
     <Compile Include="Patches\NKMultiConnection_Receive.cs" />
     <Compile Include="Patches\NKMultiGameInterface_Update.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
+    <Compile Include="Patches\ResourceLoader_LoadSpriteFromSpriteReferenceAsync.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

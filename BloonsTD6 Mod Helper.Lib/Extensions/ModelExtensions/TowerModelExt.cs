@@ -2,7 +2,9 @@
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Mods;
+using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Upgrades;
+using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Simulation.Towers.Behaviors.Attack;
 using Assets.Scripts.Unity;
@@ -26,13 +28,13 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static void SetMaxAmount(this TowerModel towerModel, int max)
         {
             towerModel.GetTowerDetailsModel().towerCount = max;
-            var details = Game.instance?.GetTowerDetailModels().TryCast<Il2CppSystem.Collections.Generic.List<TowerDetailsModel>>();
-            InGame.instance?.GetTowerInventory(0).SetTowerMaxes(details);
+            var details = Game.instance?.model.GetAllTowerDetails();
+            InGame.instance.GetTowerInventory().SetTowerMaxes(details);
         }
 
         public static TowerDetailsModel GetTowerDetailsModel(this TowerModel towerModel)
         {
-            return Game.instance?.model?.towerSet?.FirstOrDefault(tower => tower.towerId == towerModel.baseId);
+            return Game.instance?.model?.GetAllTowerDetails()?.FirstOrDefault(tower => tower.towerId == towerModel.baseId);
         }
 
         public static TowerPurchaseButton GetTowerPurchaseButton(this TowerModel towerModel)
@@ -54,6 +56,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static bool? IsTowerUnlocked(this TowerModel towerModel)
         {
             return Game.instance?.GetBtd6Player()?.HasUnlockedTower(towerModel.baseId);
+        }
+
+        public static bool? IsHeroUnlocked(this TowerModel towerModel)
+        {
+            return Game.instance?.GetBtd6Player()?.HasUnlockedHero(towerModel.baseId);
         }
 
         public static bool? IsUpgradeUnlocked(this TowerModel towerModel, int path, int tier)
@@ -114,6 +121,28 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             var desiredTowers = towers.Where(towerSim => towerSim.tower.towerModel.name == towerModel.name).ToSystemList();
             return desiredTowers;
+        }
+
+        public static List<AttackModel> GetAttackModels(this TowerModel towerModel) => towerModel.GetBehaviors<AttackModel>();
+
+        public static List<WeaponModel> GetWeaponModels(this TowerModel towerModel)
+        {
+            List<WeaponModel> weaponModels = new List<WeaponModel>();
+            var attackModels = towerModel.GetAttackModels();
+            foreach (var attackModel in attackModels)
+                weaponModels.AddRange(attackModel.GetBehaviors<WeaponModel>());
+
+            return weaponModels;
+        }
+
+        public static List<ProjectileModel> GetWeaponProjectiles(this TowerModel towerModel)
+        {
+            var projeciles = new List<ProjectileModel>();
+            var weaponModels = towerModel.GetWeaponModels();
+            foreach (var weaponModel in weaponModels)
+                projeciles.Add(weaponModel.projectile);
+
+            return projeciles;
         }
     }
 }

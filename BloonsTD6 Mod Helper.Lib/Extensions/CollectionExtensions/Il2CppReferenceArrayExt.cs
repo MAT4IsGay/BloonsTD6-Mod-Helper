@@ -97,7 +97,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
 
 
-
         public static bool HasItemsOfType<TSource, TCast>(this Il2CppReferenceArray<TSource> referenceArray)
             where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object

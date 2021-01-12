@@ -13,15 +13,35 @@ using Assets.Scripts.Unity.UI_New.InGame;
 using BloonsTD6_Mod_Helper.Patches;
 using Il2CppSystem.Collections.Generic;
 using UnhollowerBaseLib;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Assets.Scripts.Simulation.Simulation;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class InGameExt
     {
+        public static GameObject GetInGameUI(this InGame inGame)
+        {
+            var scene = SceneManager.GetSceneByName("InGameUi");
+            var rootGameObjects = scene.GetRootGameObjects();
 
-        public static Simulation GetGameSimulation(this InGame inGame) => inGame.bridge.GameSimulation;
-        public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
+            const int uiIndex = 1;
+            var ui = rootGameObjects[uiIndex];
+            return ui;
+        }
+
+
+        //being removed
+        //public static Simulation GetGameSimulation(this InGame inGame) => inGame.bridge.GameSimulation;
+
+        //being removed
+        //public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
+
+        public static string GetSavePath(this InGame inGame) => InGame.savePath;
+
+        public static Simulation GetSimulation(this InGame inGame) => inGame.bridge.simulation;
+
         public static Map GetMap(this InGame inGame) => inGame.bridge.simulation.Map;
 
 
@@ -49,17 +69,21 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static void SetMaxHealth(this InGame inGame, double amount) => inGame.bridge.simulation.maxHealth.Value = amount;
 
 
-        public static List<TowerToSimulation> GetTowers(this InGame inGame) => inGame.bridge.GetAllTowers();
+        public static List<TowerToSimulation> GetTowersOnMap(this InGame inGame) => inGame.bridge.GetAllTowers();
         public static List<AbilityToSimulation> GetAbilities(this InGame inGame) => inGame.bridge.GetAllAbilities(true);
         public static List<Projectile> GetProjectiles(this InGame inGame) => inGame.bridge.GetAllProjectiles();
-        public static TowerInventory GetTowerInventory(this InGame inGame, int index) => inGame.bridge.simulation.GetTowerInventory(index);
         public static TowerManager GetTowerManager(this InGame inGame) => inGame.bridge.simulation.towerManager;
+
+        //not using this one because it doesn't seem to work
+        //public static TowerInventory GetTowerInventory(this InGame inGame, int index) => inGame.bridge.simulation.GetTowerInventory(index);
+        public static TowerInventory GetTowerInventory(this InGame inGame) => TowerInventory_Init.towerInventory;
+        
 
 
         public static void GetMapDimensions(this InGame inGame)
         {
-            Vector2 topLeft = new Vector2(-149.9228f, -115.2562f);
-            Vector2 bottomRight = new Vector2(150.0713f, 115.4701f);
+            /*Vector2 topLeft = new Vector2(-149.9228f, -115.2562f);
+            Vector2 bottomRight = new Vector2(150.0713f, 115.4701f);*/
         }
 
 
@@ -69,9 +93,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         
 
-        public static void SpawnBloons(this InGame inGame, string bloonName, float spacing, int number)
+        public static void SpawnBloons(this InGame inGame, string bloonName, int number, float spacing)
         {
-            var bloonEmissionModels = Game.instance.CreateBloonEmissionModel(bloonName, spacing, number).ToIl2CppReferenceArray();
+            var bloonEmissionModels = Game.instance.model.CreateBloonEmissionModel(bloonName, number, spacing).ToIl2CppReferenceArray();
             inGame.SpawnBloons(bloonEmissionModels);
         }
 
@@ -92,7 +116,12 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static void SpawnBloons(this InGame inGame, int round)
         {
             GameModel model = Game.instance.model;
-            if (round < 100)
+
+            int index = (round < 100) ? round - 1 : round - 100;
+            var emissions = (round < 100) ? model.GetRoundSet().rounds[index].emissions : model.freeplayGroups[index].bloonEmissions;
+            InGame.instance.SpawnBloons(emissions);
+            //removed. Leaving until new solution tested
+            /*if (round < 100)
             {
                 var rounds = model.GetRoundSet().rounds;
                 var emissions = rounds[round - 1].emissions;
@@ -102,7 +131,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             {
                 var emissions = model.freeplayGroups[round - 100].bloonEmissions;
                 inGame.SpawnBloons(emissions);
-            }
+            }*/
         }
     }
 }
