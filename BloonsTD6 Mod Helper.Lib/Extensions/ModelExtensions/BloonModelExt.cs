@@ -3,6 +3,7 @@ using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Simulation.Objects;
 using Assets.Scripts.Unity;
+using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             var chargedMutators = new Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator>();
             var nonChargedMutators = new Il2CppSystem.Collections.Generic.List<BehaviorMutator>();
-            spawner.Emit(bloonModel, InGame.instance.GetRoundNumber(), 0, chargedMutators, nonChargedMutators);
+            spawner.Emit(bloonModel, InGame.Bridge.GetCurrentRound(), 0, chargedMutators, nonChargedMutators);
         }
 
         //possibly bugged. Will come back to later
@@ -43,6 +44,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return Game.instance?.model?.CreateBloonEmissionModel(bloonModel, count, spacing);
         }
 
-        
+
+        public static List<BloonToSimulation> GetBloonSims(this BloonModel bloonModel)
+        {
+            var bloonSims = InGame.instance?.bridge?.GetAllBloons();
+            if (bloonSims is null || bloonSims.Count == 0)
+                return null;
+
+            var results = bloonSims.Where(b => b.GetBaseModel().IsEqual(bloonModel)).ToSystemList();
+            return results;
+        }
     }
 }

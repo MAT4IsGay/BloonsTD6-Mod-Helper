@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Models;
 using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.Towers.Behaviors;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Mods;
 using Assets.Scripts.Models.Towers.Projectiles;
@@ -123,22 +125,40 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return desiredTowers;
         }
 
+        public static HeroModel GetHeroModel(this TowerModel towerModel) => towerModel.GetBehavior<HeroModel>();
+        public static List<AbilityModel> GetAbilites(this TowerModel towerModel) => towerModel.GetBehaviors<AbilityModel>();
         public static List<AttackModel> GetAttackModels(this TowerModel towerModel) => towerModel.GetBehaviors<AttackModel>();
 
-        public static List<WeaponModel> GetWeaponModels(this TowerModel towerModel)
+        public static List<WeaponModel> GetWeapons(this TowerModel towerModel)
         {
-            List<WeaponModel> weaponModels = new List<WeaponModel>();
             var attackModels = towerModel.GetAttackModels();
+            if (attackModels is null)
+                return null;
+
+            if (attackModels.Count == 0)
+                return new List<WeaponModel>();
+
+            List<WeaponModel> weaponModels = new List<WeaponModel>();
             foreach (var attackModel in attackModels)
-                weaponModels.AddRange(attackModel.GetBehaviors<WeaponModel>());
+            {
+                var weapons = attackModel.weapons;
+                if (weapons != null)
+                    weaponModels.AddRange(weapons);
+            }
 
             return weaponModels;
         }
 
         public static List<ProjectileModel> GetWeaponProjectiles(this TowerModel towerModel)
         {
+            var weaponModels = towerModel.GetWeapons();
+            if (weaponModels is null)
+                return null;
+
+            if (weaponModels.Count == 0)
+                return new List<ProjectileModel>();
+
             var projeciles = new List<ProjectileModel>();
-            var weaponModels = towerModel.GetWeaponModels();
             foreach (var weaponModel in weaponModels)
                 projeciles.Add(weaponModel.projectile);
 

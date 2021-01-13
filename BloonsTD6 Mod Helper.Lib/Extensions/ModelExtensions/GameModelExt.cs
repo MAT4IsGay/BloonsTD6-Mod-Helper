@@ -2,7 +2,12 @@
 using Assets.Scripts.Models.Bloons;
 using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities;
+using Assets.Scripts.Models.Towers.Behaviors.Attack;
+using Assets.Scripts.Models.Towers.Projectiles;
+using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Models.TowerSets;
+using BloonsTD6_Mod_Helper.Api.Builders;
 using BloonsTD6_Mod_Helper.Patches;
 using System;
 using System.Collections.Generic;
@@ -15,6 +20,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameModelExt
     {
+        public static BloonModelBuilder GetBloonModelBuilder(this GameModel model) => BloonModelBuilder.Instance;
+     
         public static Il2CppSystem.Collections.Generic.List<TowerDetailsModel> GetAllTowerDetails(this GameModel model)
         {
             return TowerInventory_Init.allTowers;
@@ -51,6 +58,70 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 bloonEmissionModels.Add(new BloonEmissionModel(bloonName, (spacing * i), bloonName));
 
             return bloonEmissionModels.ToIl2CppReferenceArray();
+        }
+
+        public static List<AttackModel> GetAllAttackModels(this GameModel model)
+        {
+            var attackModels = new List<AttackModel>();
+            var towers = model.towers;
+
+            foreach (var tower in towers)
+            {
+                var attacks = tower.GetAttackModels();
+                if (attacks != null && attacks.Count > 0)
+                    attackModels.AddRange(attacks);
+            }
+
+            return attackModels;
+        }
+
+        public static List<WeaponModel> GetAllWeaponModels(this GameModel model)
+        {
+            var weaponModels = new List<WeaponModel>();
+            var attackModels = model.GetAllAttackModels();
+
+            foreach (var attackModel in attackModels)
+            {
+                var weapons = attackModel.weapons;
+                if (weapons != null && weapons.Count > 0)
+                    weaponModels.AddRange(weapons);
+            }
+
+            return weaponModels;
+        }
+
+        public static List<ProjectileModel> GetAllProjectileModels(this GameModel model)
+        {
+            var projectileModels = new List<ProjectileModel>();
+            var weaponModels = model.GetAllWeaponModels();
+
+            foreach (var weaponModel in weaponModels)
+            {
+                if (weaponModel.projectile != null)
+                    projectileModels.Add(weaponModel.projectile);
+            }
+
+            return projectileModels;
+        }
+
+        public static List<AbilityModel> GetAllAbilityModels(this GameModel model)
+        {
+            var abilityModels = new List<AbilityModel>();
+            var towers = model.towers;
+
+            foreach (var tower in towers)
+            {
+                var abilities = tower.GetAbilites();
+                if (abilities != null && abilities.Count >0)
+                    abilityModels.AddRange(abilities);
+            }
+
+            return abilityModels;
+        }
+
+        public static List<TowerModel> GetTowerModelsWithAbilities(this GameModel model)
+        {
+            return model.towers.Where(t => t.GetAbilites() != null).ToList();
         }
     }
 }

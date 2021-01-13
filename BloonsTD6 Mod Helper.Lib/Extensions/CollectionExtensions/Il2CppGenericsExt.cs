@@ -171,7 +171,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return RemoveItem(list, item);
         }
 
-
         public static List<TSource> RemoveItem<TSource, TCast>(this List<TSource> list, TCast itemToRemove)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
@@ -190,7 +189,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
             }
             return newList;
         }
-
 
         public static List<TSource> RemoveItemsOfType<TSource, TCast>(this List<TSource> list)
             where TSource : Il2CppSystem.Object

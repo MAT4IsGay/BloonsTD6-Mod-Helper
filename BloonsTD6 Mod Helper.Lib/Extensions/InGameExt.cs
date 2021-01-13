@@ -69,9 +69,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static void SetMaxHealth(this InGame inGame, double amount) => inGame.bridge.simulation.maxHealth.Value = amount;
 
 
-        public static List<TowerToSimulation> GetTowersOnMap(this InGame inGame) => inGame.bridge.GetAllTowers();
-        public static List<AbilityToSimulation> GetAbilities(this InGame inGame) => inGame.bridge.GetAllAbilities(true);
-        public static List<Projectile> GetProjectiles(this InGame inGame) => inGame.bridge.GetAllProjectiles();
         public static TowerManager GetTowerManager(this InGame inGame) => inGame.bridge.simulation.towerManager;
 
         //not using this one because it doesn't seem to work
@@ -86,9 +83,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
             Vector2 bottomRight = new Vector2(150.0713f, 115.4701f);*/
         }
 
-
-        public static List<BloonToSimulation> GetAllBloons(this InGame inGame) => inGame.bridge.GetAllBloons();
-        public static int GetRoundNumber(this InGame inGame) => inGame.bridge.GetCurrentRound();
         public static void SetRound(this InGame inGame, int round) => inGame.bridge.simulation.map.spawner.SetRound(round);
 
         
@@ -101,16 +95,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SpawnBloons(this InGame inGame, System.Collections.Generic.List<BloonEmissionModel> bloonEmissionModels) =>
 
-          inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.GetRoundNumber(), 0);
+          inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.bridge.GetCurrentRound(), 0);
 
 
         public static void SpawnBloons(this InGame inGame, List<BloonEmissionModel> bloonEmissionModels) =>
 
-           inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.GetRoundNumber(), 0);
+           inGame.bridge.SpawnBloons(bloonEmissionModels.ToIl2CppReferenceArray(), inGame.bridge.GetCurrentRound(), 0);
 
 
         public static void SpawnBloons(this InGame inGame, Il2CppReferenceArray<BloonEmissionModel> bloonEmissionModels) =>
-            inGame.bridge.SpawnBloons(bloonEmissionModels, inGame.GetRoundNumber(), 0);
+            inGame.bridge.SpawnBloons(bloonEmissionModels, inGame.bridge.GetCurrentRound(), 0);
 
 
         public static void SpawnBloons(this InGame inGame, int round)

@@ -8,6 +8,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class Texture2DExt
     {
+        public static Texture2D CreateFromColor(this Texture2D texture2D, UnityEngine.Color color)
+        {
+            texture2D = new Texture2D(1, 1);
+            texture2D.SetPixel(0, 0, color);
+            texture2D.Apply();
+            return texture2D;
+        }
+
         public static void SaveToPNG(this Texture2D texture, string filePath)
         {
             var bytes = ImageConversion.EncodeToPNG(texture).ToArray();
