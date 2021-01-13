@@ -10,10 +10,10 @@ using UnityEngine.UI;
 namespace BloonsTD6_Mod_Helper.Patches
 {
     [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-    public class ResourceLoader_LoadSpriteFromSpriteReferenceAsync
+    internal class ResourceLoader_LoadSpriteFromSpriteReferenceAsync
     {
         [HarmonyPostfix]
-        public static void Postfix(ref SpriteReference reference, ref Image image)
+        internal static void Postfix(ref SpriteReference reference, ref Image image)
         {
             if (reference == null || image == null || SpriteRegister.register.Count == 0)
                 return;
@@ -26,7 +26,7 @@ namespace BloonsTD6_Mod_Helper.Patches
                 var val = entry.Value;
                 if (entry.Value == null)
                 {
-                    Texture2D pngTexture = SpriteRegister.TextureFromPNG(entry.Key);
+                    Texture2D pngTexture = SpriteRegister.Instance.TextureFromPNG(entry.Key);
                     val = Sprite.Create(pngTexture, new Rect(0.0f, 0.0f, pngTexture.width, pngTexture.height), default);
                 }
 

@@ -25,6 +25,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameExt
     {
+        public static SpriteRegister GetSpriteRegister(this Game game) => SpriteRegister.Instance;
         public static JsonSerializer GetJsonSerializer(this Game game) => new JsonSerializer();
         public static PopupScreen GetPopupScreen(this Game game) => PopupScreen.instance;
         public static ShopMenu GetShopMenu(this Game game) => ShopMenu.instance;

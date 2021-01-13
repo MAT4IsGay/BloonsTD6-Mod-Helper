@@ -6,11 +6,26 @@ using System.IO;
 using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using BloonsTD6_Mod_Helper.Extensions;
 
 namespace BloonsTD6_Mod_Helper.Api
 {
     public class SpriteRegister
     {
+        private static SpriteRegister spriteRegister;
+
+        public static SpriteRegister Instance
+        {
+            get
+            {
+                if (spriteRegister is null)
+                    spriteRegister = new SpriteRegister();
+
+                return spriteRegister;
+            }
+            set { spriteRegister = value; }
+        }
+
         public static Dictionary<string, Sprite> register = new Dictionary<string, Sprite>();
 
         public Texture2D TextureFromPNG(string path)
