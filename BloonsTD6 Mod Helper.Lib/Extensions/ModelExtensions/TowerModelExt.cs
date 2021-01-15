@@ -39,9 +39,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return Game.instance?.model?.GetAllTowerDetails()?.FirstOrDefault(tower => tower.towerId == towerModel.baseId);
         }
 
+        /// <summary>
+        /// Not currently working
+        /// </summary>
         public static TowerPurchaseButton GetTowerPurchaseButton(this TowerModel towerModel)
         {
             var allButtons = ShopMenu.instance.towerPurchaseButtons;
+            if (allButtons == null)
+                return null;
+
             var result = allButtons.ToArray().FirstOrDefault(a => a.TryCast<TowerPurchaseButton>()?.baseTowerModel == towerModel);
             return result.TryCast<TowerPurchaseButton>();
         }

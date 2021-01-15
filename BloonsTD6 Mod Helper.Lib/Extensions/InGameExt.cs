@@ -16,6 +16,7 @@ using UnhollowerBaseLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Assets.Scripts.Simulation.Simulation;
+using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -32,16 +33,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        //being removed
-        //public static Simulation GetGameSimulation(this InGame inGame) => inGame.bridge.GameSimulation;
-
-        //being removed
-        //public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
-
+        
+        public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
         public static string GetSavePath(this InGame inGame) => InGame.savePath;
-
         public static Simulation GetSimulation(this InGame inGame) => inGame.bridge.simulation;
-
         public static Map GetMap(this InGame inGame) => inGame.bridge.simulation.Map;
 
 
@@ -77,10 +72,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
         
 
 
-        public static void GetMapDimensions(this InGame inGame)
+        public static void GetMapDimensions(this InGame inGame, out Vector2 topLeft, out Vector2 bottomRight)
         {
-            /*Vector2 topLeft = new Vector2(-149.9228f, -115.2562f);
-            Vector2 bottomRight = new Vector2(150.0713f, 115.4701f);*/
+            topLeft = new Vector2(-149.9228f, -115.2562f);
+            bottomRight = new Vector2(150.0713f, 115.4701f);
         }
 
         public static void SetRound(this InGame inGame, int round) => inGame.bridge.simulation.map.spawner.SetRound(round);
@@ -114,6 +109,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             int index = (round < 100) ? round - 1 : round - 100;
             var emissions = (round < 100) ? model.GetRoundSet().rounds[index].emissions : model.freeplayGroups[index].bloonEmissions;
             InGame.instance.SpawnBloons(emissions);
+
             //removed. Leaving until new solution tested
             /*if (round < 100)
             {
