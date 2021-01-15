@@ -140,6 +140,7 @@
     <Compile Include="Extensions\CollectionExtensions\Il2CppGenericsExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ListExt.cs" />
     <Compile Include="Extensions\ModelExtensions\GameModelExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\ModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ProjectileModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ProjectileToSimulation.cs" />
     <Compile Include="Extensions\ModelExtensions\WeaponModelExt.cs" />

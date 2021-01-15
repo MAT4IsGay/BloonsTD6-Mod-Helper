@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using MelonLoader.ICSharpCode.SharpZipLib.Zip;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -41,6 +42,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             var resourceBytes = new ImageConverter().ConvertTo(image, typeof(byte[]));
             ImageConversion.LoadImage(texture2D, (byte[])resourceBytes);
             return texture2D;
+        }
+
+        public static Texture2D CreateFromFileInZip(ZipFile zipFile, string pathInZip)
+        {
+
         }
 
         public static Sprite CreateSpriteFromTexture(this Texture2D texture2D, float pixelsPerUnit)
