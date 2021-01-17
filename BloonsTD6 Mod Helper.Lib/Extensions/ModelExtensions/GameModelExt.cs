@@ -44,6 +44,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return model.towers?.Where(t => t.baseId == towerBaseId).ToList();
         }
 
+        public static TowerModel GetTowerModel(this GameModel model, TowerType towerType, int path1 = 0, int path2 = 0, int path3 = 0)
+            => model.GetTower(towerType.ToString(), path1, path2, path3);
+
 
         public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this GameModel model, BloonModel bloonModel, int number, float spacing)
         {

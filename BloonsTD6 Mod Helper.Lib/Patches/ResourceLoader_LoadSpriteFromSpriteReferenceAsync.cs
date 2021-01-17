@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Utils;
 using BloonsTD6_Mod_Helper.Api;
 using Harmony;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace BloonsTD6_Mod_Helper.Patches
         [HarmonyPostfix]
         internal static void Postfix(ref SpriteReference reference, ref Image image)
         {
+            /*MelonLogger.Log(reference.GUID);
+            MelonLogger.Log(reference.guidRef);
+            MelonLogger.Log(image.name);
+            MelonLogger.Log(image.sprite.name);*/
             if (reference == null || image == null || SpriteRegister.register.Count == 0)
                 return;
 

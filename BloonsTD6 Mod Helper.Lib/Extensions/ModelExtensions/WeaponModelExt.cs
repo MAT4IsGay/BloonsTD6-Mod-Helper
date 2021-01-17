@@ -8,6 +8,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class WeaponModelExt
     {
-
+        /*public static void GetSprite(this WeaponModel weaponModel)
+        {
+            
+        }*/
     }
 }

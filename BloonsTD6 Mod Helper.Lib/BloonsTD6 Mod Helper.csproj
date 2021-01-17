@@ -123,6 +123,7 @@
     <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\BloonModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\EmissionModelBehaviorExt.cs" />
+    <Compile Include="Extensions\BehaviorExtensions\EntityBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\PetModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\PowerModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\ProjectileModelBehaviorExt.cs" />
@@ -130,7 +131,11 @@
     <Compile Include="Extensions\BehaviorExtensions\WeaponModelBehaviorExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\IEnumerableExt.cs" />
+    <Compile Include="Extensions\CollectionExtensions\LockedListExt.cs" />
+    <Compile Include="Extensions\Il2CppSystemExtensions\Il2CppSystemObjectExt.cs" />
     <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppReferenceArray.cs" />
+    <Compile Include="Extensions\LINQExtensions\LINQ_SizedList.cs" />
+    <Compile Include="Extensions\LINQExtensions\LINQ_LockedList.cs" />
     <Compile Include="Extensions\ModelExtensions\AbilityModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\AttackModelExt.cs" />
     <Compile Include="Extensions\LINQExtensions\LINQ_Il2CppGenerics.cs" />
@@ -139,12 +144,15 @@
     <Compile Include="Extensions\CollectionExtensions\Il2CppReferenceArrayExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\Il2CppGenericsExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\ListExt.cs" />
+    <Compile Include="Extensions\ModelExtensions\DisplayModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\GameModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ProjectileModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ProjectileToSimulation.cs" />
     <Compile Include="Extensions\ModelExtensions\WeaponModelExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\BloonToSimulationExt.cs" />
+    <Compile Include="Extensions\SimulationExtensions\DisplayNodeExt.cs" />
+    <Compile Include="Extensions\SimulationExtensions\EntityExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\ProjectileExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\SizedListExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\UnityToSimulationExty.cs" />
@@ -172,6 +180,7 @@
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
     <Compile Include="Patches\ResourceLoader_LoadSpriteFromSpriteReferenceAsync.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
+    <Compile Include="Patches\Tower_Initialise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

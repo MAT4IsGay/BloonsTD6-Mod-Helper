@@ -44,10 +44,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return texture2D;
         }
 
-        public static Texture2D CreateFromFileInZip(ZipFile zipFile, string pathInZip)
+        /// <summary>
+        /// Not added yet
+        /// </summary>
+        /*public static Texture2D CreateFromFileInZip(ZipFile zipFile, string pathInZip)
         {
-
-        }
+            
+            return null;
+        }*/
 
         public static Sprite CreateSpriteFromTexture(this Texture2D texture2D, float pixelsPerUnit)
         {

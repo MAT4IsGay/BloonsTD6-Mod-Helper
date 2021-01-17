@@ -10,36 +10,57 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static bool HasBehavior<T>(this AddBehaviorToBloonModel model) where T : Model
         {
+            if (model.behaviors is null)
+                return false;
+
             return model.behaviors.HasItemsOfType<BloonBehaviorModel, T>();
         }
 
         public static T GetBehavior<T>(this AddBehaviorToBloonModel model) where T : Model
         {
+            if (model.behaviors is null)
+                return default;
+
             return model.behaviors.GetItemOfType<BloonBehaviorModel, T>();
         }
 
         public static List<T> GetBehaviors<T>(this AddBehaviorToBloonModel model) where T : Model
         {
+            if (model.behaviors is null)
+                return null;
+
             return model.behaviors.GetItemsOfType<BloonBehaviorModel, T>();
         }
 
         public static void AddBehavior<T>(this AddBehaviorToBloonModel model, T behavior) where T : BloonBehaviorModel
         {
+            if (model.behaviors is null)
+                return;
+
             model.behaviors = model.behaviors.Add(behavior);
         }
 
         public static void RemoveBehavior<T>(this AddBehaviorToBloonModel model) where T : Model
         {
+            if (model.behaviors is null)
+                return;
+
             model.behaviors = model.behaviors.RemoveItemOfType<BloonBehaviorModel, T>();
         }
 
         public static void RemoveBehavior<T>(this AddBehaviorToBloonModel model, T behavior) where T : Model
         {
+            if (model.behaviors is null)
+                return;
+
             model.behaviors = model.behaviors.Remove(behavior);
         }
 
         public static void RemoveBehaviors<T>(this AddBehaviorToBloonModel model) where T : Model
         {
+            if (model.behaviors is null)
+                return;
+
             model.behaviors = model.behaviors.RemoveItemsOfType<BloonBehaviorModel, T>();
         }
     }

@@ -20,11 +20,13 @@ using Assets.Scripts.Unity.UI_New.Popups;
 using BloonsTD6_Mod_Helper.Api;
 using Assets.Scripts.Models.Rounds;
 using NinjaKiwi.LiNK;
+using MelonLoader.ICSharpCode.SharpZipLib.Zip;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class GameExt
     {
+        public static Assets.Scripts.Unity.Display.Factory GetDisplayFactory(this Game game) => game.scene?.factory;
         public static SpriteRegister GetSpriteRegister(this Game game) => SpriteRegister.Instance;
         public static JsonSerializer GetJsonSerializer(this Game game) => new JsonSerializer();
         public static PopupScreen GetPopupScreen(this Game game) => PopupScreen.instance;
@@ -113,16 +115,5 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             NotificationMgr.AddNotification(msg);
         }
-
-        // moved
-        /*public static List<BloonEmissionModel> CreateBloonEmissionModel(this Game game, string bloonName, float spacing, int number)
-        {
-            List<BloonEmissionModel> bloonEmissionModels = new List<BloonEmissionModel>();
-
-            for (int i = 0; i < number; i++)
-                bloonEmissionModels.Add(new BloonEmissionModel(bloonName, (spacing * i), bloonName));
-
-            return bloonEmissionModels;
-        }*/
     }
 }

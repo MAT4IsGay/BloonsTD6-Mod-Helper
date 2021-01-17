@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Projectiles;
+using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Unity;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return projectileModels;
         }
+
+        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) => attackModel.weapons.Add(weaponToAdd);
     }
 }

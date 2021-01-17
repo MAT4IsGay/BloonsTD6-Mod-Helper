@@ -16,9 +16,11 @@ using Assets.Scripts.Unity.UI_New.InGame.RightMenu;
 using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
 using MelonLoader;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnhollowerBaseLib;
+using UnhollowerRuntimeLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -147,7 +149,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return weaponModels;
         }
 
-        public static List<ProjectileModel> GetWeaponProjectiles(this TowerModel towerModel)
+        /*public static List<ProjectileModel> GetWeaponProjectiles(this TowerModel towerModel)
         {
             var weaponModels = towerModel.GetWeapons();
             if (weaponModels is null)
@@ -161,6 +163,82 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 projeciles.Add(weaponModel.projectile);
 
             return projeciles;
+        }*/
+
+        // Thanks to doombubbles for creating this
+        public static List<ProjectileModel> GetAllProjectiles(TowerModel towerModel)
+        {
+            List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
+            foreach (var weaponModel in towerModel.GetWeapons())
+            {
+                if (weaponModel.projectile != null)
+                {
+                    allProjectiles.Add(weaponModel.projectile);
+                    allProjectiles.AddRange(GetSubProjectiles(weaponModel.projectile.behaviors));
+                }
+                allProjectiles.AddRange(GetSubProjectiles(weaponModel.behaviors));
+            }
+            allProjectiles.AddRange(GetSubProjectiles(towerModel.behaviors)); //this is new
+            return allProjectiles;
         }
+        private static List<ProjectileModel> GetSubProjectiles(IEnumerable<Model> behaviors)
+        {
+            List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
+            foreach (var behavior in behaviors)
+            {
+                var projectileField = behavior.TypeInfo.GetField("projectile");
+                if (projectileField == null) // this is new
+                {
+                    projectileField = behavior.TypeInfo.GetField("projectileModel");
+                }
+                if (projectileField != null)
+                {
+                    var projectileModel = projectileField.GetValue(behavior).Cast<ProjectileModel>();
+                    if (projectileModel != null)
+                    {
+                        allProjectiles.Add(projectileModel);
+                        allProjectiles.AddRange(GetSubProjectiles(projectileModel.behaviors));
+                    }
+                }
+            }
+            return allProjectiles;
+        }
+
+        /*public static List<T> GetBehaviorsInDependents<T>(this TowerModel towerModel) where T : Model
+        {
+            var items = new List<T>();
+            var fields = towerModel.TypeInfo.GetFields();
+            foreach (var field in fields)
+            {
+                var isBehavior = field.Name.ToLower().Contains("behavior");
+                if (!isBehavior)
+                    continue;
+
+
+            }
+
+            return items;
+        }
+
+
+
+        private static List<T> GetSubBehaviors<T>(this TowerModel towerModel, IEnumerable<Model> behaviors) where T : Model
+        {
+            var items = new List<T>();
+            foreach (var behavior in behaviors)
+            {
+                var behaviorField = behavior.TypeInfo.GetField("behaviors");
+                if (behavior is null)
+                    continue;
+
+                var behaviorModel = behaviorField.GetValue(behavior).TryCast<T>();
+                if (behaviorModel == null)
+                    continue;
+
+                items.Add(behaviorModel);
+            }
+
+            return items;
+        }*/
     }
 }

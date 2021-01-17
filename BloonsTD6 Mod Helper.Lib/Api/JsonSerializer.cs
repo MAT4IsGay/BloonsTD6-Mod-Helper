@@ -12,10 +12,12 @@ namespace BloonsTD6_Mod_Helper.Api
             return JsonUtility.ToJson(il2cppObject, shouldIndent);
         }
 
-        public string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false)
+        public string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false, bool ignoreNulls = false)
         {
             Formatting formatting = (shouldIndent) ? Formatting.Indented : Formatting.None;
-            return JsonConvert.SerializeObject(objectToSerialize, formatting);
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = (ignoreNulls) ? NullValueHandling.Ignore : NullValueHandling.Include;
+            return JsonConvert.SerializeObject(objectToSerialize, formatting, settings);
         }
 
 
@@ -71,7 +73,7 @@ namespace BloonsTD6_Mod_Helper.Api
         /// <param name="jsonObject">Object to save. Must be of Type T</param>
         /// <param name="savePath">Location to save file to</param>
         /// <param name="overwriteExisting">Overwrite the file if it already exists</param>
-        public void SaveToFile<T>(T jsonObject, string savePath, bool shouldIndent = false, bool overwriteExisting = true)
+        public void SaveToFile<T>(T jsonObject, string savePath, bool shouldIndent = false, bool ignoreNulls = false, bool overwriteExisting = true)
         {
             Guard.ThrowIfStringIsNull(savePath, "Can't save file, save path is null");
             CreateDirIfNotFound(savePath);
@@ -79,7 +81,7 @@ namespace BloonsTD6_Mod_Helper.Api
             bool keepOriginal = !overwriteExisting;
             StreamWriter serialize = new StreamWriter(savePath, keepOriginal);
 
-            string json = SerializeJson(jsonObject, shouldIndent);
+            string json = SerializeJson(jsonObject, shouldIndent, ignoreNulls);
             serialize.Write(json);
             serialize.Close();
         }

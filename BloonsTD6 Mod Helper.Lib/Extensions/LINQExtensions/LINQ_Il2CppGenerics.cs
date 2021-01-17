@@ -22,7 +22,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 if (predicate(item))
                     return item;
             }
-            return null;
+            return default;
         }
 
         public static List<T> Where<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object

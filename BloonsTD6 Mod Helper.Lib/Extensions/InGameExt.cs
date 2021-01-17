@@ -2,7 +2,9 @@
 using Assets.Scripts.Models.Rounds;
 using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Simulation;
+using Assets.Scripts.Simulation.Factory;
 using Assets.Scripts.Simulation.Input;
+using Assets.Scripts.Simulation.Objects;
 using Assets.Scripts.Simulation.SMath;
 using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Projectiles;
@@ -17,6 +19,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Assets.Scripts.Simulation.Simulation;
 using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
+using Il2CppType = UnhollowerRuntimeLib.Il2CppType;
+using Assets.Scripts.Simulation.Behaviors;
+using Assets.Scripts.Utils;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -33,7 +38,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        
+        public static FactoryFactory GetMainFactory(this InGame inGame) => inGame.bridge.simulation.factory;
         public static GameModel GetGameModel(this InGame inGame) => inGame.bridge.GameSimulation.model;
         public static string GetSavePath(this InGame inGame) => InGame.savePath;
         public static Simulation GetSimulation(this InGame inGame) => inGame.bridge.simulation;
@@ -80,7 +85,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SetRound(this InGame inGame, int round) => inGame.bridge.simulation.map.spawner.SetRound(round);
 
-        
+        public static SizedList<T> GetAllObjectsOfType<T>(this InGame inGame) where T : RootObject, new()
+        {
+            var factory = inGame.bridge.simulation.factory.GetFactory<T>();
+            return factory.all;
+        }
 
         public static void SpawnBloons(this InGame inGame, string bloonName, int number, float spacing)
         {
