@@ -104,15 +104,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static LockList<T> Add<T>(this LockList<T> lockList, T objectToAdd) where T : Il2CppSystem.Object
+        // Might be removed
+        /*public static LockList<T> AddTo<T>(this LockList<T> lockList, T objectToAdd) where T : Il2CppSystem.Object
         {
             lockList.Add(objectToAdd);
             return lockList;
-        }
+        }*/
 
-        public static LockList<TSource> Add<TSource, TCast>(this LockList<TSource> lockList, TCast objectToAdd) 
+        public static LockList<TSource> AddTo<TSource, TCast>(this LockList<TSource> lockList, TCast objectToAdd) 
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
+            if (lockList is null)
+                lockList = new LockList<TSource>();
+
             lockList.Add(objectToAdd.TryCast<TSource>());
             return lockList;
         }

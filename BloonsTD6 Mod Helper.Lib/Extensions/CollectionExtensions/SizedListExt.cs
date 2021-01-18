@@ -104,12 +104,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static SizedList<T> Add<T>(this SizedList<T> sizedList, T objectToAdd) where T : Il2CppSystem.Object
+        // Might be removed. Need to see if normal Add works
+        /*public static SizedList<T> AddTo<T>(this SizedList<T> sizedList, T objectToAdd) where T : Il2CppSystem.Object
         {
+            if (sizedList is null)
+                sizedList = new SizedList<T>();
+
             var list = sizedList.ToList();
             list.Add(objectToAdd);
             return list.ToSizedList();
-        }
+        }*/
 
         public static TCast GetItemOfType<TSource, TCast>(this SizedList<TSource> sizedList) where TCast : Il2CppSystem.Object
             where TSource : Il2CppSystem.Object

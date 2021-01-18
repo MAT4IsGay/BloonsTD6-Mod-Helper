@@ -115,11 +115,45 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static List<T> Add<T>(this List<T> list, T objectToAdd) where T : Il2CppSystem.Object
+        //likely to be removed
+        /*public static List<T> AddTo<T>(this List<T> list, T objectToAdd) where T : Il2CppSystem.Object
         {
+            if (list is null)
+                list = new List<T>();
+
             list.Add(objectToAdd);
             return list;
         }
+
+        public static List<T> AddTo<T>(this List<T> list, List<T> objectsToAdd) where T : Il2CppSystem.Object
+        {
+            if (list is null)
+                list = new List<T>();
+
+            var size = list.Count + objectsToAdd.Count;
+            var newReference = new T[size];
+
+            var tempList = new List<T>();
+            tempList.add
+            tempList.AddRange(objectsToAdd);
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                var item = tempList[i];
+                newReference[i] = item;
+            }
+
+            return newReference;
+        }
+
+        public static T[] AddTo<T>(this T[] array, List<T> objectsToAdd) where T : Il2CppSystem.Object
+        {
+            return array.AddTo(objectsToAdd.ToArray());
+        }*/
+
+
+
+
 
         public static TCast GetItemOfType<TSource, TCast>(this List<TSource> list) where TCast : Il2CppSystem.Object
             where TSource : Il2CppSystem.Object

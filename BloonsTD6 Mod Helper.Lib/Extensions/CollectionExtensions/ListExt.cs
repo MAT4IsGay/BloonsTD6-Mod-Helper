@@ -98,11 +98,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static List<T> Add<T>(this List<T> list, T objectToAdd) where T : Il2CppSystem.Object
+        // Will be removed if regular List.Add works with Il2CppSystem.Object
+        /*public static List<T> AddTo<T>(this List<T> list, T objectToAdd) where T : Il2CppSystem.Object
         {
+            if (list is null)
+                list = new List<T>();
+
             list.Add(objectToAdd);
             return list;
-        }
+        }*/
+
 
         public static TCast GetItemOfType<TSource, TCast>(this List<TSource> list) where TCast : Il2CppSystem.Object
             where TSource : Il2CppSystem.Object

@@ -30,6 +30,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return projectileModels;
         }
 
-        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) => attackModel.weapons.Add(weaponToAdd);
+        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) => attackModel.weapons.AddTo(weaponToAdd);
     }
 }

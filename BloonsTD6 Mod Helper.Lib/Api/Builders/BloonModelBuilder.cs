@@ -15,8 +15,8 @@ namespace BloonsTD6_Mod_Helper.Api.Builders
             set { instance = value; }
         }
 
-        public void AddToGame(BloonModel bloonModel) => Game.instance.model.bloons.Add(bloonModel);
-        public void AddToGame(Il2CppReferenceArray<BloonModel> bloonModels) => Game.instance.model.bloons.Add(bloonModels);
+        public void AddToGame(BloonModel bloonModel) => Game.instance.model.bloons.AddTo(bloonModel);
+        public void AddToGame(Il2CppReferenceArray<BloonModel> bloonModels) => Game.instance.model.bloons.AddTo(bloonModels);
 
         public BloonModel Create(string name, BloonModel baseModel = null)
         {

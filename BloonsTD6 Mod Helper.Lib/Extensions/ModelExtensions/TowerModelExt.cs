@@ -166,7 +166,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }*/
 
         // Thanks to doombubbles for creating this
-        public static List<ProjectileModel> GetAllProjectiles(TowerModel towerModel)
+        public static List<ProjectileModel> GetAllProjectiles(this TowerModel towerModel)
         {
             List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
             foreach (var weaponModel in towerModel.GetWeapons())
