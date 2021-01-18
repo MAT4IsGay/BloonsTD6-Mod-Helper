@@ -129,6 +129,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<AbilityModel> GetAbilites(this TowerModel towerModel) => towerModel.GetBehaviors<AbilityModel>();
         public static List<AttackModel> GetAttackModels(this TowerModel towerModel) => towerModel.GetBehaviors<AttackModel>();
 
+
         public static List<WeaponModel> GetWeapons(this TowerModel towerModel)
         {
             var attackModels = towerModel.GetAttackModels();
@@ -148,22 +149,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             return weaponModels;
         }
-
-        /*public static List<ProjectileModel> GetWeaponProjectiles(this TowerModel towerModel)
-        {
-            var weaponModels = towerModel.GetWeapons();
-            if (weaponModels is null)
-                return null;
-
-            if (weaponModels.Count == 0)
-                return new List<ProjectileModel>();
-
-            var projeciles = new List<ProjectileModel>();
-            foreach (var weaponModel in weaponModels)
-                projeciles.Add(weaponModel.projectile);
-
-            return projeciles;
-        }*/
 
         // Thanks to doombubbles for creating this
         public static List<ProjectileModel> GetAllProjectiles(this TowerModel towerModel)
@@ -203,42 +188,5 @@ namespace BloonsTD6_Mod_Helper.Extensions
             }
             return allProjectiles;
         }
-
-        /*public static List<T> GetBehaviorsInDependents<T>(this TowerModel towerModel) where T : Model
-        {
-            var items = new List<T>();
-            var fields = towerModel.TypeInfo.GetFields();
-            foreach (var field in fields)
-            {
-                var isBehavior = field.Name.ToLower().Contains("behavior");
-                if (!isBehavior)
-                    continue;
-
-
-            }
-
-            return items;
-        }
-
-
-
-        private static List<T> GetSubBehaviors<T>(this TowerModel towerModel, IEnumerable<Model> behaviors) where T : Model
-        {
-            var items = new List<T>();
-            foreach (var behavior in behaviors)
-            {
-                var behaviorField = behavior.TypeInfo.GetField("behaviors");
-                if (behavior is null)
-                    continue;
-
-                var behaviorModel = behaviorField.GetValue(behavior).TryCast<T>();
-                if (behaviorModel == null)
-                    continue;
-
-                items.Add(behaviorModel);
-            }
-
-            return items;
-        }*/
     }
 }
