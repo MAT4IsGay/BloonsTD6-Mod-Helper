@@ -183,10 +183,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TCast : Il2CppSystem.Object
         {
             var behavior = GetItemOfType<TSource, TCast>(referenceArray);
-            return Remove(referenceArray, behavior);
+            return RemoveItem(referenceArray, behavior);
         }
 
-        public static Il2CppReferenceArray<TSource> Remove<TSource, TCast>(this Il2CppReferenceArray<TSource> referenceArray, TCast itemToRemove)
+        public static Il2CppReferenceArray<TSource> RemoveItem<TSource, TCast>(this Il2CppReferenceArray<TSource> referenceArray, TCast itemToRemove)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             if (!HasItemsOfType<TSource, TCast>(referenceArray))

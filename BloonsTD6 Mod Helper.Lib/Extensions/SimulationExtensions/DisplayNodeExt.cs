@@ -11,11 +11,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static List<DisplayBehavior> GetDisplayBehaviors_WithThisNode(this DisplayNode displayNode)
         {
-            var displayNodes = InGame.instance.bridge.simulation.factory.GetFactory<DisplayBehavior>().all;
+            var displayNodes = InGame.instance?.bridge?.simulation?.factory?.GetFactory<DisplayBehavior>()?.all;
             if (displayNode is null)
                 return null;
 
-            var results = displayNodes.Where(behavior => behavior.node.ReferenceEquals(displayNode));
+            var results = displayNodes.Where(behavior => behavior.node.Equals(displayNode));
             if (results is null)
                 return null;
 

@@ -7,6 +7,8 @@ using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Models.TowerSets;
+using Assets.Scripts.Simulation.Bloons;
+using Assets.Scripts.Simulation.Objects;
 using BloonsTD6_Mod_Helper.Api.Builders;
 using BloonsTD6_Mod_Helper.Patches;
 using System;
@@ -48,20 +50,38 @@ namespace BloonsTD6_Mod_Helper.Extensions
             => model.GetTower(towerType.ToString(), path1, path2, path3);
 
 
-        public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this GameModel model, BloonModel bloonModel, int number, float spacing)
+        public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissions(this GameModel model, BloonModel bloonModel, int number, float spacing)
         {
-            return model.CreateBloonEmissionModel(bloonModel.name, number, spacing);
+            return model.CreateBloonEmissions(bloonModel.name, number, spacing);
         }
 
-        public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this GameModel model, string bloonName, int number, float spacing)
+        public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissions(this GameModel model, string bloonName, int number, float spacing)
         {
             var bloonEmissionModels = new List<BloonEmissionModel>();
 
             for (int i = 0; i < number; i++)
-                bloonEmissionModels.Add(new BloonEmissionModel(bloonName, (spacing * i), bloonName));
+                bloonEmissionModels.Add(model.CreateBloonEmission(bloonName, time: spacing * i));
 
             return bloonEmissionModels.ToIl2CppReferenceArray();
         }
+
+        public static BloonEmissionModel CreateBloonEmission(this GameModel model, string bloonName, float time)
+        {
+            return new BloonEmissionModel("", time, bloonName);
+        }
+
+        public static BloonEmissionModel CreateBloonEmission(this GameModel model, string bloonName, float time, 
+           Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator> chargedMutators, Il2CppSystem.Collections.Generic.List<BehaviorMutator> behaviorMutators)
+        {
+            return new BloonEmissionModel("", time, bloonName, chargedMutators, behaviorMutators);
+        }
+
+        public static BloonGroupModel CreateBloonGroup(this GameModel model, string bloonName, float startTime, float spacing, int count)
+        {
+            float endTime = startTime + (spacing * count);
+            return new BloonGroupModel("", bloonName, startTime, endTime, count);
+        }
+
 
         public static List<AttackModel> GetAllAttackModels(this GameModel model)
         {
@@ -71,7 +91,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             foreach (var tower in towers)
             {
                 var attacks = tower.GetAttackModels();
-                if (attacks != null && attacks.Count > 0)
+                if (attacks != null && attacks.Any())
                     attackModels.AddRange(attacks);
             }
 
@@ -86,7 +106,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             foreach (var attackModel in attackModels)
             {
                 var weapons = attackModel.weapons;
-                if (weapons != null && weapons.Count > 0)
+                if (weapons != null && weapons.Any())
                     weaponModels.AddRange(weapons);
             }
 
@@ -96,13 +116,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<ProjectileModel> GetAllProjectileModels(this GameModel model)
         {
             var projectileModels = new List<ProjectileModel>();
-            var weaponModels = model.GetAllWeaponModels();
+            var towerModels = model.towers;
 
-            foreach (var weaponModel in weaponModels)
-            {
-                if (weaponModel.projectile != null)
-                    projectileModels.Add(weaponModel.projectile);
-            }
+            foreach (var towerModel in towerModels)
+                projectileModels.AddRange(towerModel.GetAllProjectiles());
 
             return projectileModels;
         }
@@ -115,7 +132,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             foreach (var tower in towers)
             {
                 var abilities = tower.GetAbilites();
-                if (abilities != null && abilities.Count >0)
+                if (abilities != null && abilities.Any())
                     abilityModels.AddRange(abilities);
             }
 

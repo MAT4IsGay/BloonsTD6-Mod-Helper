@@ -41,14 +41,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this BloonModel bloonModel, int count, int spacing)
         {
-            return Game.instance?.model?.CreateBloonEmissionModel(bloonModel, count, spacing);
+            return Game.instance?.model?.CreateBloonEmissions(bloonModel, count, spacing);
         }
 
 
         public static List<BloonToSimulation> GetBloonSims(this BloonModel bloonModel)
         {
             var bloonSims = InGame.instance?.bridge?.GetAllBloons();
-            if (bloonSims is null || bloonSims.Count == 0)
+            if (bloonSims is null || !bloonSims.Any())
                 return null;
 
             var results = bloonSims.Where(b => b.GetBaseModel().IsEqual(bloonModel)).ToSystemList();

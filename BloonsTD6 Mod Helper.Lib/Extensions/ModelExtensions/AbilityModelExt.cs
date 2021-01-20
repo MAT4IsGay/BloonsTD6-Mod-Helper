@@ -10,7 +10,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<AbilityToSimulation> GetAbilitySims(this AbilityModel abiltyModel)
         {
             var abilitySims = InGame.instance?.bridge?.GetAllAbilities(true);
-            if (abilitySims is null || abilitySims.Count == 0)
+            if (abilitySims is null || !abilitySims.Any())
                 return null;
 
             var results = abilitySims.Where(ability => ability.ability.abilityModel.IsEqual(abiltyModel)).ToSystemList();

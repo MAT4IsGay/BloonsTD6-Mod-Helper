@@ -43,5 +43,31 @@ namespace BloonsTD6_Mod_Helper.Extensions
             }
             return result;
         }
+
+        public static int FindIndex<T>(this LockList<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
+        {
+            for (int i = 0; i < source.Count; i++)
+            {
+                if (predicate(source[i]))
+                    return i;
+            }
+
+            return -1;
+        }
+
+        public static bool Any<T>(this LockList<T> source) where T : Il2CppSystem.Object
+        {
+            if (source is null)
+                return false;
+
+            bool hasItems = false;
+            for (int i = 0; i < source.Count; i++)
+            {
+                hasItems = true;
+                break;
+            }
+
+            return hasItems;
+        }
     }
 }

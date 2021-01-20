@@ -14,11 +14,18 @@ namespace BloonsTD6_Mod_Helper.Api
 
         public string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false, bool ignoreNulls = false)
         {
-            Formatting formatting = (shouldIndent) ? Formatting.Indented : Formatting.None;
             var settings = new JsonSerializerSettings();
             settings.NullValueHandling = (ignoreNulls) ? NullValueHandling.Ignore : NullValueHandling.Include;
-            return JsonConvert.SerializeObject(objectToSerialize, formatting, settings);
+            return SerializeJson(objectToSerialize, settings, shouldIndent: shouldIndent);
         }
+
+        public string SerializeJson<T>(T objectToSerialize, JsonSerializerSettings serializerSettings, bool shouldIndent = false)
+        {
+            Formatting formatting = (shouldIndent) ? Formatting.Indented : Formatting.None;
+            return JsonConvert.SerializeObject(objectToSerialize, formatting, serializerSettings);
+        }
+
+
 
 
         public T Il2CppDeserializeJson<T>(string text) => JsonUtility.FromJson<T>(text);
@@ -85,6 +92,21 @@ namespace BloonsTD6_Mod_Helper.Api
             serialize.Write(json);
             serialize.Close();
         }
+
+        public void SaveToFile<T>(T jsonObject, string savePath, JsonSerializerSettings serializerSettings
+            , bool shouldIndent = false, bool overwriteExisting = true)
+        {
+            Guard.ThrowIfStringIsNull(savePath, "Can't save file, save path is null");
+            CreateDirIfNotFound(savePath);
+
+            bool keepOriginal = !overwriteExisting;
+            StreamWriter serialize = new StreamWriter(savePath, keepOriginal);
+
+            string json = SerializeJson(jsonObject, serializerSettings, shouldIndent);
+            serialize.Write(json);
+            serialize.Close();
+        }
+
 
 
         public void Il2CppSaveToFile<T>(T jsonObject, string savePath, bool shouldIndent = false, bool overwriteExisting = true)

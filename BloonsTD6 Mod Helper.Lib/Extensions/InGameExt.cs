@@ -93,7 +93,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SpawnBloons(this InGame inGame, string bloonName, int number, float spacing)
         {
-            var bloonEmissionModels = Game.instance.model.CreateBloonEmissionModel(bloonName, number, spacing).ToIl2CppReferenceArray();
+            var bloonEmissionModels = Game.instance.model.CreateBloonEmissions(bloonName, number, spacing).ToIl2CppReferenceArray();
             inGame.SpawnBloons(bloonEmissionModels);
         }
 

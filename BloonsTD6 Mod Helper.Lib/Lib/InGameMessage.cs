@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using BloonsTD6_Mod_Helper.Extensions;
+using System.Linq;
 
 namespace BloonsTD6_Mod_Helper.Lib
 {
@@ -297,12 +298,12 @@ namespace BloonsTD6_Mod_Helper.Lib
         {
             lock (notifications)
             {
-                if (notifications.Count > 0)
+                if (notifications.Any())
                 {
                     notifications[notifications.Count - 1].OnUpdate(new Notification.NotificationEventArgs());
                 }
 
-                if (notificationQueue.Count > 0 && notifications.Count == 0)
+                if (notificationQueue.Any() && notifications.Count == 0)
                 {
                     while (notifications.Count < maxMessagesAtOnce)
                     {

@@ -27,9 +27,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
             allProjectiles.AddRange(GetSubProjectiles(attackModel.behaviors)); //this is new
             return allProjectiles;
         }
+
         private static List<ProjectileModel> GetSubProjectiles(IEnumerable<Model> behaviors)
         {
             List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
+
+            if (behaviors is null)
+                return allProjectiles;
+
             foreach (var behavior in behaviors)
             {
                 var projectileField = behavior.TypeInfo.GetField("projectile");

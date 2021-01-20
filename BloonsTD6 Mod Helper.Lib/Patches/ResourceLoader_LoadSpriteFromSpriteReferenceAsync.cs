@@ -20,7 +20,7 @@ namespace BloonsTD6_Mod_Helper.Patches
             MelonLogger.Log(reference.guidRef);
             MelonLogger.Log(image.name);
             MelonLogger.Log(image.sprite.name);*/
-            if (reference == null || image == null || SpriteRegister.register.Count == 0)
+            if (reference == null || image == null || !SpriteRegister.register.Any())
                 return;
 
             foreach (KeyValuePair<string, Sprite> entry in SpriteRegister.register)

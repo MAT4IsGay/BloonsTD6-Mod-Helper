@@ -118,7 +118,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<TowerToSimulation> GetTowerSims(this TowerModel towerModel)
         {
             var towers = InGame.instance?.bridge?.GetAllTowers();
-            if (towers is null || towers.Count == 0)
+            if (towers is null || !towers.Any())
                 return null;
 
             var desiredTowers = towers.Where(towerSim => towerSim.tower.towerModel.name == towerModel.name).ToSystemList();
@@ -136,7 +136,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (attackModels is null)
                 return null;
 
-            if (attackModels.Count == 0)
+            if (!attackModels.Any())
                 return new List<WeaponModel>();
 
             List<WeaponModel> weaponModels = new List<WeaponModel>();
@@ -153,39 +153,12 @@ namespace BloonsTD6_Mod_Helper.Extensions
         // Thanks to doombubbles for creating this
         public static List<ProjectileModel> GetAllProjectiles(this TowerModel towerModel)
         {
-            List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
-            foreach (var weaponModel in towerModel.GetWeapons())
+            var allProjectiles = new List<ProjectileModel>();
+            foreach (var attackModel in towerModel.GetAttackModels())
             {
-                if (weaponModel.projectile != null)
-                {
-                    allProjectiles.Add(weaponModel.projectile);
-                    allProjectiles.AddRange(GetSubProjectiles(weaponModel.projectile.behaviors));
-                }
-                allProjectiles.AddRange(GetSubProjectiles(weaponModel.behaviors));
+                allProjectiles.AddRange(attackModel.GetAllProjectiles());
             }
-            allProjectiles.AddRange(GetSubProjectiles(towerModel.behaviors)); //this is new
-            return allProjectiles;
-        }
-        private static List<ProjectileModel> GetSubProjectiles(IEnumerable<Model> behaviors)
-        {
-            List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
-            foreach (var behavior in behaviors)
-            {
-                var projectileField = behavior.TypeInfo.GetField("projectile");
-                if (projectileField == null) // this is new
-                {
-                    projectileField = behavior.TypeInfo.GetField("projectileModel");
-                }
-                if (projectileField != null)
-                {
-                    var projectileModel = projectileField.GetValue(behavior).Cast<ProjectileModel>();
-                    if (projectileModel != null)
-                    {
-                        allProjectiles.Add(projectileModel);
-                        allProjectiles.AddRange(GetSubProjectiles(projectileModel.behaviors));
-                    }
-                }
-            }
+
             return allProjectiles;
         }
     }

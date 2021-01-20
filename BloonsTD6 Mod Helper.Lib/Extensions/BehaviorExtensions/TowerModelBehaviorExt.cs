@@ -34,7 +34,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void RemoveBehavior<T>(this TowerModel model, T behavior) where T : Model
         {
-            model.behaviors = model.behaviors.Remove(behavior);
+            model.behaviors = model.behaviors.RemoveItem(behavior);
         }
 
         public static void RemoveBehaviors<T>(this TowerModel model) where T : Model

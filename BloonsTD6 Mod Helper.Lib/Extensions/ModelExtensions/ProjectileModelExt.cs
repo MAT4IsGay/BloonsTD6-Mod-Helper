@@ -13,7 +13,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<Projectile> GetProjectileSims(this ProjectileModel projectileModel)
         {
             var projectileSims = InGame.instance?.bridge?.GetAllProjectiles();
-            if (projectileSims is null || projectileSims.Count == 0)
+            if (projectileSims is null || !projectileSims.Any())
                 return null;
 
             var results = projectileSims.Where(projectile => projectile.projectileModel.name == projectileModel.name).ToSystemList();
