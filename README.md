@@ -25,6 +25,9 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
 - Support for modding textures/sprites/3d models
 - More
 
+## Testimonies
+Mod makers that have used this API say it's at least 3 times easier to use and more powerful than the next leading API. 
+
 ## Future plans
 The API already has a lot of features added, however it's no where near done. My goal is to make this a universal mod helper for btd6 so there's still a ton of work ahead. 
 
