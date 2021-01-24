@@ -21,8 +21,8 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
   
 - Fully custom bloon sets (not possible before), BloonBuilder (for creating custom bloon types), Json Serializer, and other useful features
 - Co-op modding techniques
-- Bugfixes
-- Support for modding textures/sprites/3d models
+- Bugfixes for BTD6
+- Support for custom textures/sprites/3d models
 - More
 
 ## Testimonies
