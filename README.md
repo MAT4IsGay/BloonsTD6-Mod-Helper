@@ -2,7 +2,7 @@
 A powerful and easy to use API for BTD6 modding. It was created with the successes and failures of previous APIs in mind so it should be significantly easier to use.
 
 ## How to use it
-Like other API, download/clone it. In your mod's Visual Studio project, a reference to `BloonsTD6 Mod Helper.dll`. Then at the top of each file in your project, add `using BloonsTD6_Mod_Helper.Extensions;`. Thats it. Each file that has this line at the top will have complete access to all of the features added by the API. This API is built using extension methods, which means it's created to work along side BTD6's own code. So just make your mods like normal and you'll see the new features pop up in Visual Studio Intellisense.
+Like other API, download/clone it. In your mod's Visual Studio project, a reference to `BloonsTD6 Mod Helper.dll`. Then at the top of each file in your project, add `using BloonsTD6_Mod_Helper.Extensions;`. Thats it. Each file that has this line at the top will have complete access to all of the features added by the API. This API is built using extension methods, which means it's created to work along side BTD6's own code. So just make your mods like normal and you'll see the new features pop up in Visual Studio Intellisense. As a side note, make sure the mod is in your BloonsTD6/Mods folder. It needs to be run like a mod
 
 ## What can this API currently help with
 - Much of the useful BTD6 code is hidden, deeply nested, and located in obscure places. The API moves them to `Game.instance` and `InGame.instance` whenever possible to make them significantly easier to access and bring awareness to their existance.
@@ -21,7 +21,12 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
   - More
 - Fully custom bloon sets (not possible before), BloonBuilder (for creating custom bloon types), Json Serializer, and other useful features
 - Co-op modding techniques
+- Bugfixes
+- Support for modding textures/sprites/3d models
 - More
 
 ## Future plans
 The API already has a lot of features added, however it's no where near done. My goal is to make this a universal mod helper for btd6 so there's still a ton of work ahead. 
+
+## Credits
+So far I've been the only developer for the API, however I've had a lot of help from Mr.Nuke, James, DoomBubbles, and Timotheee when it came to testing/suggesting new features. This API would not be possible without all of their help and suggestions. Since this api was built off of the successes/ failures of Gurren Core and NKHook6, it does reuse some of the extensions from them. Thanks to ASM for creating those original methods
