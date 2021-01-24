@@ -18,7 +18,7 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
   - New support for getting items, adding items, and removing items
   - Custom linq extensions for easier manipluation
   - More
-- Fully custom bloon sets (not possible before), BloonBuilder (for creating custom bloon types), Json Serializer, and other useful features
+- Fully custom bloon sets (not possible in vanila BTD6), BloonBuilder (easier time creating custom bloon types), Json Serializer, and other useful features
 - Co-op modding techniques
 - Bugfixes for BTD6
 - Support for custom textures/sprites/3d models
