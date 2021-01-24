@@ -24,4 +24,4 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
 - More
 
 ## Future plans
-The API already has a lot of features added, however it's no where near done. The goal is to make this a universal mod helper for btd6. To achieve this goal many features need to be added
+The API already has a lot of features added, however it's no where near done. My goal is to make this a universal mod helper for btd6 so there's still a ton of work ahead. 
