@@ -14,11 +14,11 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
   - Can get every created instance from a model. Ex: Can get every Tower/TowerToSimulation from a specific TowerModel. Applies to everything in this list
 - Massive amounts of support added for Behaviors. Can easily look for, add, and remove behaviors from nearly everything that has "behaviors"
 - Added extension methods for Arrays, System.Lists, Il2CppSystem.Lists, LockLists, SizedLists, IEnumerables, and Il2CppReferenceArrays
-  - Can convert between all of them
-  - Can duplicate/Clone
+  - Can convert between all of them, duplicate/clone, and change the "Type" that the collection is.
   - New support for getting items, adding items, and removing items
   - Custom linq extensions for easier manipluation
   - More
+  
 - Fully custom bloon sets (not possible before), BloonBuilder (for creating custom bloon types), Json Serializer, and other useful features
 - Co-op modding techniques
 - Bugfixes
