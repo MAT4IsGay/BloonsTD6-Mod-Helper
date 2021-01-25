@@ -77,11 +77,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
         
 
 
-        public static void GetMapDimensions(this InGame inGame, out Vector2 topLeft, out Vector2 bottomRight)
+        /*public static void GetMapDimensions(this InGame inGame, out Vector2 topLeft, out Vector2 bottomRight)
         {
             topLeft = new Vector2(-149.9228f, -115.2562f);
             bottomRight = new Vector2(150.0713f, 115.4701f);
-        }
+        }*/
 
         public static void SetRound(this InGame inGame, int round) => inGame.bridge.simulation.map.spawner.SetRound(round);
 

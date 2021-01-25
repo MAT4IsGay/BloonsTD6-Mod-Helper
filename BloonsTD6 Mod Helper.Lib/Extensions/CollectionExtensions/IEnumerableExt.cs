@@ -41,7 +41,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
 
 
-        public static IEnumerable<T> Clone<T>(this IEnumerable<T> enumerable)
+        public static IEnumerable<T> Duplicate<T>(this IEnumerable<T> enumerable)
         {
             List<T> test = new List<T>();
             foreach (var item in enumerable)
@@ -50,7 +50,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return test.AsEnumerable();
         }
 
-        public static IEnumerable<TCast> CloneAs<TSource, TCast>(this IEnumerable<TSource> enumerable)
+        public static IEnumerable<TCast> DuplicateAs<TSource, TCast>(this IEnumerable<TSource> enumerable)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             List<TCast> test = new List<TCast>();

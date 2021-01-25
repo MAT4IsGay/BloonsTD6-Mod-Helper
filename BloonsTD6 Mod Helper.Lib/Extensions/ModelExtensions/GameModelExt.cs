@@ -33,7 +33,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             var towerDetails = model.GetAllTowerDetails();
             var results = towerDetails.Where(detail => detail.GetShopTowerDetails() != null);
-            return results.CloneAs<TowerDetailsModel, ShopTowerDetailsModel>();
+            return results.DuplicateAs<TowerDetailsModel, ShopTowerDetailsModel>();
         }
 
         public static BloonModel GetBloonModel(this GameModel model, string bloonName)

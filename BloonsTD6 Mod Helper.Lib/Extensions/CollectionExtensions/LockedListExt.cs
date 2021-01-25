@@ -61,7 +61,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static LockList<T> Clone<T>(this LockList<T> list)
+        public static LockList<T> Duplicate<T>(this LockList<T> list)
         {
             LockList<T> newList = new LockList<T>();
             for (int i = 0; i < list.Count; i++)
@@ -70,7 +70,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newList;
         }
 
-        public static LockList<TCast> CloneAs<TSource, TCast>(this LockList<TSource> list)
+        public static LockList<TCast> DuplicateAs<TSource, TCast>(this LockList<TSource> list)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             LockList<TCast> newList = new LockList<TCast>();

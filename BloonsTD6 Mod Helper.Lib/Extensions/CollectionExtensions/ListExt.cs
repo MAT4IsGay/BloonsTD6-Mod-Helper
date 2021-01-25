@@ -58,7 +58,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static List<T> Clone<T>(this List<T> list)
+        public static List<T> Duplicate<T>(this List<T> list)
         {
             List<T> newList = new List<T>();
             foreach (var item in list)
@@ -67,7 +67,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newList;
         }
 
-        public static List<TCast> CloneAs<TSource, TCast>(this List<TSource> list)
+        public static List<TCast> DuplicateAs<TSource, TCast>(this List<TSource> list)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             List<TCast> newList = new List<TCast>();

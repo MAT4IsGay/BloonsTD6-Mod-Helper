@@ -58,7 +58,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static T[] Clone<T>(this T[] array)
+        public static T[] Duplicate<T>(this T[] array)
         {
             T[] newArray = new T[] { };
             foreach (var item in array)
@@ -70,7 +70,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newArray;
         }
 
-        public static TCast[] CloneAs<TSource, TCast>(this TSource[] array) 
+        public static TCast[] DuplicateAs<TSource, TCast>(this TSource[] array) 
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             TCast[] newArray = new TCast[] { };
@@ -165,7 +165,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return null;
 
             var results = array.Where(item => item.TryCast<TCast>() != null);
-            return results.CloneAs<TSource, TCast>().ToList();
+            return results.DuplicateAs<TSource, TCast>().ToList();
         }
 
         public static TSource[] RemoveItemOfType<TSource, TCast>(this TSource[] array)

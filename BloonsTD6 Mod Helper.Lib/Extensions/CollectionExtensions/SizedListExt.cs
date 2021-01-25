@@ -61,7 +61,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static SizedList<T> Clone<T>(this SizedList<T> list)
+        public static SizedList<T> Duplicate<T>(this SizedList<T> list)
         {
             SizedList<T> newList = new SizedList<T>();
             for (int i = 0; i < list.count; i++)
@@ -70,7 +70,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newList;
         }
 
-        public static SizedList<TCast> CloneAs<TSource, TCast>(this SizedList<TSource> list)
+        public static SizedList<TCast> DuplicateAs<TSource, TCast>(this SizedList<TSource> list)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             SizedList<TCast> newList = new SizedList<TCast>();
