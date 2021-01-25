@@ -19,9 +19,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Assets.Scripts.Simulation.Simulation;
 using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
-using Il2CppType = UnhollowerRuntimeLib.Il2CppType;
-using Assets.Scripts.Simulation.Behaviors;
 using Assets.Scripts.Utils;
+using BloonsTD6_Mod_Helper.Api;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -45,10 +44,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static Map GetMap(this InGame inGame) => inGame.bridge.simulation.Map;
 
 
-        public static bool IsInPublic(this InGame inGame) => (inGame.IsInRace() || inGame.IsInPublicCoop() || inGame.IsInOdyssey());
-        public static bool IsInRace(this InGame inGame) => MainMenuEventPanel_OpenRaceEventScreen.IsInRace;
-        public static bool IsInPublicCoop(this InGame inGame) => CoopQuickMatchScreen_Open.IsInPublicCoop;
-        public static bool IsInOdyssey(this InGame inGame) => OdysseyEventScreen_Update.IsInOdyssey;
+        public static bool CanGetFlagged(this InGame inGame) => (inGame.IsInRace() || inGame.IsInPublicCoop() || inGame.IsInOdyssey());
+        public static bool IsInRace(this InGame inGame) => SessionData.IsInRace;
+        public static bool IsInPublicCoop(this InGame inGame) => SessionData.IsInPublicCoop;
+        public static bool IsInOdyssey(this InGame inGame) => SessionData.IsInOdyssey;
 
         
         
@@ -68,6 +67,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static void AddMaxHealth(this InGame inGame, double amount) => inGame.bridge.simulation.maxHealth.Value += amount;
         public static void SetMaxHealth(this InGame inGame, double amount) => inGame.bridge.simulation.maxHealth.Value = amount;
 
+        public static System.Collections.Generic.Dictionary<string, int> GetPoppedBloons(this InGame inGame) => SessionData.PoppedBloons;
 
         public static TowerManager GetTowerManager(this InGame inGame) => inGame.bridge.simulation.towerManager;
 
@@ -113,24 +113,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SpawnBloons(this InGame inGame, int round)
         {
-            GameModel model = Game.instance.model;
+            GameModel model = inGame.GetGameModel();
 
             int index = (round < 100) ? round - 1 : round - 100;
             var emissions = (round < 100) ? model.GetRoundSet().rounds[index].emissions : model.freeplayGroups[index].bloonEmissions;
             InGame.instance.SpawnBloons(emissions);
-
-            //removed. Leaving until new solution tested
-            /*if (round < 100)
-            {
-                var rounds = model.GetRoundSet().rounds;
-                var emissions = rounds[round - 1].emissions;
-                inGame.SpawnBloons(emissions);
-            }
-            if (round > 100)
-            {
-                var emissions = model.freeplayGroups[round - 100].bloonEmissions;
-                inGame.SpawnBloons(emissions);
-            }*/
         }
     }
 }

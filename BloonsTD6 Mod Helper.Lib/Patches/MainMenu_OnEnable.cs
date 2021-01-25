@@ -1,5 +1,8 @@
 ﻿using Assets.Scripts.Unity.UI_New.Main;
+using BloonsTD6_Mod_Helper.Api;
 using Harmony;
+using System;
+using System.Collections.Generic;
 
 namespace BloonsTD6_Mod_Helper.Patches
 {
@@ -9,14 +12,17 @@ namespace BloonsTD6_Mod_Helper.Patches
         [HarmonyPostfix]
         internal static void Postfix()
         {
-            ResetPlayerInPublic();
+            ResetSessionData();
         }
 
-        private static void ResetPlayerInPublic()
+        private static void ResetSessionData()
         {
-            CoopQuickMatchScreen_Open.IsInPublicCoop = false;
-            MainMenuEventPanel_OpenRaceEventScreen.IsInRace = false;
-            OdysseyEventScreen_Update.IsInOdyssey = false;
+            SessionData.PoppedBloons = new Dictionary<string, int>();
+            SessionData.RoundSet = null;
+
+            SessionData.IsInPublicCoop = false;
+            SessionData.IsInRace = false;
+            SessionData.IsInOdyssey = false;
         }
     }
 }

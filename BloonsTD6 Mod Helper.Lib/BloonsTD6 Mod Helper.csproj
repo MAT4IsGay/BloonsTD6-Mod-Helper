@@ -173,9 +173,8 @@
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\GameModel_GetRoundSet.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
+    <Compile Include="Patches\Bloon_Degrade.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
-    <Compile Include="Patches\NKMultiConnection_Send.cs" />
-    <Compile Include="Patches\NKMultiConnection_Receive.cs" />
     <Compile Include="Patches\NKMultiGameInterface_Update.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
     <Compile Include="Patches\ResourceLoader_LoadSpriteFromSpriteReferenceAsync.cs" />
