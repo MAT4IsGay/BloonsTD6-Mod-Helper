@@ -18,7 +18,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static bool Any<T>(this Il2CppReferenceArray<T> source) where T : Il2CppSystem.Object
         {
-            if (source is null)
+            return source.Count > 0;
+
+            // will remove code below if code above works
+            /*if (source is null)
                 return false;
 
             bool hasItems = false;
@@ -28,7 +31,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 break;
             }
 
-            return hasItems;
+            return hasItems;*/
         }
     }
 }

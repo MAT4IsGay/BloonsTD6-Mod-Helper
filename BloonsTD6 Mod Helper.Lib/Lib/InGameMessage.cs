@@ -77,7 +77,6 @@ namespace BloonsTD6_Mod_Helper.Lib
             title = gameObject.transform.Find("Image/Title").GetComponent<Text>();
             body = gameObject.transform.Find("Image/Body").GetComponent<Text>();
 
-            MelonLogger.Log("====================");
             
 
             

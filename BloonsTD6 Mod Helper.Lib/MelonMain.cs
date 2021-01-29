@@ -22,11 +22,10 @@ namespace BloonsTD6_Mod_Helper
             if (Game.instance is null)
                 return;
 
-            NotificationMgr.CheckForNotifications();
-
             if (InGame.instance is null)
                 return;
 
+            NotificationMgr.CheckForNotifications();
         }
     }
 }
