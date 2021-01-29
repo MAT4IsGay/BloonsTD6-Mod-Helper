@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using BloonsTD6_Mod_Helper.Extensions;
 using System.Linq;
 
-namespace BloonsTD6_Mod_Helper.Lib
+namespace BloonsTD6_Mod_Helper.Api
 {
     internal class NkhText
     {

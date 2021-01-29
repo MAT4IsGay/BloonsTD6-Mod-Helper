@@ -168,7 +168,7 @@
     <Compile Include="Extensions\ModelExtensions\TowerModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\UpgradeModelExt.cs" />
     <Compile Include="Extensions\UnityExtensions\Vector3Ext.cs" />
-    <Compile Include="Lib\InGameMessage.cs" />
+    <Compile Include="Api\InGameMessage.cs" />
     <Compile Include="MelonMain.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\GameModel_GetRoundSet.cs" />
