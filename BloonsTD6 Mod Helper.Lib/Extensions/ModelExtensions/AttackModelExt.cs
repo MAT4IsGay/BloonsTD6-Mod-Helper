@@ -34,10 +34,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             foreach (Model behavior in behaviors)
             {
-                Il2CppSystem.Reflection.FieldInfo projectileField = behavior.TypeInfo.GetField("projectile");
+                Il2CppSystem.Reflection.FieldInfo projectileField = behavior.GetIl2CppType().GetField("projectile");
                 if (projectileField == null) // this is new
                 {
-                    projectileField = behavior.TypeInfo.GetField("projectileModel");
+                    projectileField = behavior.GetIl2CppType().GetField("projectileModel");
                 }
                 if (projectileField != null)
                 {
