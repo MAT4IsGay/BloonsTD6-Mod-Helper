@@ -14,7 +14,7 @@ namespace BloonsTD6_Mod_Helper.Patches
             if (!hasKey)
                 SessionData.PoppedBloons.Add(__instance.bloonModel.id, 0);
 
-            SessionData.PoppedBloons[__instance.bloonModel.id] = amountPopped+1;
+            SessionData.PoppedBloons[__instance.bloonModel.id] = amountPopped + 1;
             return true;
         }
     }

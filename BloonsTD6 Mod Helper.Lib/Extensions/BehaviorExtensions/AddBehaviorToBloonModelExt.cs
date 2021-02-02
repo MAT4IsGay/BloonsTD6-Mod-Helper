@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Models;
 using Assets.Scripts.Models.Bloons;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using System.Collections.Generic;
 

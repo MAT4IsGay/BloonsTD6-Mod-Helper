@@ -1,11 +1,8 @@
 ﻿using Assets.Scripts.Models;
-using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Weapons;
-using Assets.Scripts.Unity;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -15,7 +12,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<ProjectileModel> GetAllProjectiles(this AttackModel attackModel)
         {
             List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
-            foreach (var weaponModel in attackModel.weapons)
+            foreach (WeaponModel weaponModel in attackModel.weapons)
             {
                 if (weaponModel.projectile != null)
                 {
@@ -35,16 +32,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (behaviors is null)
                 return allProjectiles;
 
-            foreach (var behavior in behaviors)
+            foreach (Model behavior in behaviors)
             {
-                var projectileField = behavior.TypeInfo.GetField("projectile");
+                Il2CppSystem.Reflection.FieldInfo projectileField = behavior.TypeInfo.GetField("projectile");
                 if (projectileField == null) // this is new
                 {
                     projectileField = behavior.TypeInfo.GetField("projectileModel");
                 }
                 if (projectileField != null)
                 {
-                    var projectileModel = projectileField.GetValue(behavior).Cast<ProjectileModel>();
+                    ProjectileModel projectileModel = projectileField.GetValue(behavior).Cast<ProjectileModel>();
                     if (projectileModel != null)
                     {
                         allProjectiles.Add(projectileModel);
@@ -55,7 +52,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return allProjectiles;
         }
 
-        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) => 
+        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd)
+        {
             attackModel.weapons = attackModel.weapons.AddTo(weaponToAdd);
+        }
     }
 }

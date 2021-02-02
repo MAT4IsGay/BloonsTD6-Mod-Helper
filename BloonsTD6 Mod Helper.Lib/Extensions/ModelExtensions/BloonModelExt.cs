@@ -6,7 +6,6 @@ using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
 using System.Collections.Generic;
-using System.Linq;
 using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
@@ -15,18 +14,18 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static int? GetIndex(this BloonModel bloonModel)
         {
-            var allBloons = Game.instance?.model?.bloons;
+            Il2CppReferenceArray<BloonModel> allBloons = Game.instance?.model?.bloons;
             return allBloons.FindIndex(bloon => bloon.name == bloonModel.name);
         }
 
         public static void SpawnBloonModel(this BloonModel bloonModel)
         {
-            var spawner = InGame.instance?.GetMap()?.spawner;
+            Assets.Scripts.Simulation.Track.Spawner spawner = InGame.instance?.GetMap()?.spawner;
             if (spawner is null)
                 return;
 
-            var chargedMutators = new Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator>();
-            var nonChargedMutators = new Il2CppSystem.Collections.Generic.List<BehaviorMutator>();
+            Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator> chargedMutators = new Il2CppSystem.Collections.Generic.List<Bloon.ChargedMutator>();
+            Il2CppSystem.Collections.Generic.List<BehaviorMutator> nonChargedMutators = new Il2CppSystem.Collections.Generic.List<BehaviorMutator>();
             spawner.Emit(bloonModel, InGame.Bridge.GetCurrentRound(), 0, chargedMutators, nonChargedMutators);
         }
 
@@ -47,11 +46,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static List<BloonToSimulation> GetBloonSims(this BloonModel bloonModel)
         {
-            var bloonSims = InGame.instance?.bridge?.GetAllBloons();
+            Il2CppSystem.Collections.Generic.List<BloonToSimulation> bloonSims = InGame.instance?.bridge?.GetAllBloons();
             if (bloonSims is null || !bloonSims.Any())
                 return null;
 
-            var results = bloonSims.Where(b => b.GetBaseModel().IsEqual(bloonModel)).ToSystemList();
+            List<BloonToSimulation> results = bloonSims.Where(b => b.GetBaseModel().IsEqual(bloonModel)).ToSystemList();
             return results;
         }
     }

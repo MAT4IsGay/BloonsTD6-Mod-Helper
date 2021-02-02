@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Models;
 using Assets.Scripts.Models.Towers;
-using MelonLoader;
 using System.Collections.Generic;
 
 namespace BloonsTD6_Mod_Helper.Extensions

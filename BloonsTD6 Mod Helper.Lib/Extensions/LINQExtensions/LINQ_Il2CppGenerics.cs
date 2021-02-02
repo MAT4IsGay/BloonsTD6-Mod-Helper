@@ -7,7 +7,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static T First<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
         {
-            foreach (var item in source)
+            foreach (T item in source)
             {
                 if (predicate(item))
                     return item;
@@ -17,7 +17,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static T FirstOrDefault<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
         {
-            foreach (var item in source)
+            foreach (T item in source)
             {
                 if (predicate(item))
                     return item;
@@ -28,7 +28,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<T> Where<T>(this List<T> source, Func<T, bool> predicate) where T : Il2CppSystem.Object
         {
             List<T> result = new List<T>();
-            foreach (var item in source)
+            foreach (T item in source)
             {
                 if (predicate(item))
                     result.Add(item);

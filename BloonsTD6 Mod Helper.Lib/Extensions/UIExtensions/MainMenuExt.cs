@@ -11,9 +11,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             try
             {
-                var scene = SceneManager.GetSceneByName("MainMenuUi");
-                var rootGameObjects = scene.GetRootGameObjects();
-                var ui = rootGameObjects[0];
+                Scene scene = SceneManager.GetSceneByName("MainMenuUi");
+                UnhollowerBaseLib.Il2CppReferenceArray<GameObject> rootGameObjects = scene.GetRootGameObjects();
+                GameObject ui = rootGameObjects[0];
                 return ui;
             }
             catch (Exception)

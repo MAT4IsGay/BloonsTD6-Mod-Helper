@@ -12,13 +12,13 @@ namespace BloonsTD6_Mod_Helper.Extensions
             Il2CppSystem.Collections.Generic.List<T> il2CppList = new Il2CppSystem.Collections.Generic.List<T>();
             for (int i = 0; i < enumerable.Count(); i++)
                 il2CppList.Add(enumerable.ElementAt(i));
-            
+
             return il2CppList;
         }
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this IEnumerable<T> enumerable) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(enumerable.Count());
+            Il2CppReferenceArray<T> il2cppArray = new Il2CppReferenceArray<T>(enumerable.Count());
 
             for (int i = 0; i < enumerable.Count(); i++)
                 il2cppArray[i] = enumerable.ElementAt(i);
@@ -44,7 +44,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static IEnumerable<T> Duplicate<T>(this IEnumerable<T> enumerable)
         {
             List<T> test = new List<T>();
-            foreach (var item in enumerable)
+            foreach (T item in enumerable)
                 test.Add(item);
 
             return test.AsEnumerable();
@@ -54,7 +54,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             List<TCast> test = new List<TCast>();
-            foreach (var item in enumerable)
+            foreach (TSource item in enumerable)
                 test.Add(item.TryCast<TCast>());
 
             return test.AsEnumerable();

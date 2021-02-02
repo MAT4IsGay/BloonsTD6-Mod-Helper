@@ -9,11 +9,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static List<AbilityToSimulation> GetAbilitySims(this AbilityModel abiltyModel)
         {
-            var abilitySims = InGame.instance?.bridge?.GetAllAbilities(true);
+            Il2CppSystem.Collections.Generic.List<AbilityToSimulation> abilitySims = InGame.instance?.bridge?.GetAllAbilities(true);
             if (abilitySims is null || !abilitySims.Any())
                 return null;
 
-            var results = abilitySims.Where(ability => ability.ability.abilityModel.IsEqual(abiltyModel)).ToSystemList();
+            List<AbilityToSimulation> results = abilitySims.Where(ability => ability.ability.abilityModel.IsEqual(abiltyModel)).ToSystemList();
             return results;
         }
     }

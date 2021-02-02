@@ -1,12 +1,8 @@
-﻿using Assets.Scripts.Utils;
-using Harmony;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using UnityEngine;
-using UnityEngine.UI;
-using BloonsTD6_Mod_Helper.Extensions;
 
 namespace BloonsTD6_Mod_Helper.Api
 {
@@ -23,7 +19,7 @@ namespace BloonsTD6_Mod_Helper.Api
 
                 return spriteRegister;
             }
-            set { spriteRegister = value; }
+            set => spriteRegister = value;
         }
 
         public static Dictionary<string, Sprite> register = new Dictionary<string, Sprite>();
@@ -33,9 +29,7 @@ namespace BloonsTD6_Mod_Helper.Api
             Texture2D text = new Texture2D(2, 2);
 
             if (!ImageConversion.LoadImage(text, File.ReadAllBytes(path)))
-            {
                 throw new Exception("Could not acquire texture from file " + Path.GetFileName(path) + ".");
-            }
 
             return text;
         }
@@ -53,9 +47,7 @@ namespace BloonsTD6_Mod_Helper.Api
             Texture2D text = new Texture2D(2, 2);
 
             if (!ImageConversion.LoadImage(text, File.ReadAllBytes(path)))
-            {
                 throw new Exception("Could not acquire texture from file " + Path.GetFileName(path) + ".");
-            }
 
             return text;
         }
@@ -66,7 +58,10 @@ namespace BloonsTD6_Mod_Helper.Api
         /// </summary>
         /// <param name="path">The location to an image file to be converted.</param>
         /// <param name="pivot">No clue what this does, best bet is using default.</param>
-        public void RegisterSpriteFromImage(string path, Vector2 pivot) => RegisterSpriteFromImage(path, pivot, out _);
+        public void RegisterSpriteFromImage(string path, Vector2 pivot)
+        {
+            RegisterSpriteFromImage(path, pivot, out _);
+        }
 
         /// <summary>
         /// Create a Sprite object and add it to the register. Contains out parameter to obtain the GUID, which is useful when working with SpriteReferences. 
@@ -78,14 +73,14 @@ namespace BloonsTD6_Mod_Helper.Api
         public void RegisterSpriteFromImage(string path, Vector2 pivot, out string guid)
         {
             Texture2D pngTexture = TextureFromPNG(path);
-            guid = path; //Path.GetFileNameWithoutExtension(path);
+            guid = path;
             register.Add(guid, Sprite.Create(pngTexture, new Rect(0.0f, 0.0f, pngTexture.width, pngTexture.height), pivot));
         }
 
         public void RegisterSpriteFromURL(string path, string url, Vector2 pivot, out string guid)
         {
             Texture2D pngTexture = TextureFromLink(path, url);
-            guid = path;//Path.GetFileNameWithoutExtension(path);
+            guid = path;
             register.Add(guid, Sprite.Create(pngTexture, new Rect(0.0f, 0.0f, pngTexture.width, pngTexture.height), pivot));
         }
     }

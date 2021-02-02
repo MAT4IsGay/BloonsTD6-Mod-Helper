@@ -18,10 +18,8 @@ namespace BloonsTD6_Mod_Helper.Api
 
         public static void ThrowIfStringIsNull(string stringToCheck, string message)
         {
-            if (String.IsNullOrEmpty(stringToCheck))
-            {
+            if (string.IsNullOrEmpty(stringToCheck))
                 throw new Exception(message);
-            }
         }
     }
 }

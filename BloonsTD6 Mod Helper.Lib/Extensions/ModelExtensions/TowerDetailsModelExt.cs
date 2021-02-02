@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.UI_New.InGame;
-using Assets.Scripts.Unity.UI_New.InGame.RightMenu;
 using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
 
 namespace BloonsTD6_Mod_Helper.Extensions
@@ -10,14 +8,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static bool IsHero(this TowerDetailsModel towerDetailsModel)
         {
-            var heroDetailsModel = towerDetailsModel.TryCast<HeroDetailsModel>();
-            var isHero = (heroDetailsModel != null);
+            HeroDetailsModel heroDetailsModel = towerDetailsModel.TryCast<HeroDetailsModel>();
+            bool isHero = heroDetailsModel != null;
             return isHero;
         }
 
         public static TowerPurchaseButton GetTowerPurchaseButton(this TowerDetailsModel towerDetailsModel)
         {
-            var towerModel = Game.instance.model.GetTower(towerDetailsModel.towerId);
+            Assets.Scripts.Models.Towers.TowerModel towerModel = Game.instance.model.GetTower(towerDetailsModel.towerId);
             return towerModel.GetTowerPurchaseButton();
         }
 

@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using NinjaKiwi.NKMulti;
+﻿using NinjaKiwi.NKMulti;
 using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Api.Coop
@@ -8,16 +7,15 @@ namespace BloonsTD6_Mod_Helper.Api.Coop
     {
         public static Message CreateMessage<T>(T objectToSend, string code = "") where T : Il2CppSystem.Object
         {
-            var serialize = SerialisationUtil.Serialise(objectToSend);
+            Il2CppStructArray<byte> serialize = SerialisationUtil.Serialise(objectToSend);
 
-            code = (string.IsNullOrEmpty(code)) ? MelonMain.coopMessageCode : code;
+            code = string.IsNullOrEmpty(code) ? MelonMain.coopMessageCode : code;
             return new Message(code, serialize);
         }
 
         public static T ReadMessage<T>(Il2CppStructArray<byte> serializedMessage)
         {
-            var deserialize = SerialisationUtil.Deserialise<T>(serializedMessage);
-            return deserialize;
+            return SerialisationUtil.Deserialise<T>(serializedMessage);
         }
     }
 }

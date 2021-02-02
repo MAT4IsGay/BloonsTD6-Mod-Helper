@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Utils;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
@@ -30,7 +30,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             T[] newArray = new T[] { };
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                T item = lockList[i];
                 Array.Resize(ref newArray, newArray.Length + 1);
                 newArray[newArray.Length - 1] = item;
             }
@@ -40,7 +40,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this LockList<T> lockList) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(lockList.Count);
+            Il2CppReferenceArray<T> il2cppArray = new Il2CppReferenceArray<T>(lockList.Count);
 
             for (int i = 0; i < lockList.Count; i++)
                 il2cppArray[i] = lockList[i];
@@ -91,7 +91,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                TSource item = lockList[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -111,7 +111,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return lockList;
         }*/
 
-        public static LockList<TSource> AddTo<TSource, TCast>(this LockList<TSource> lockList, TCast objectToAdd) 
+        public static LockList<TSource> AddTo<TSource, TCast>(this LockList<TSource> lockList, TCast objectToAdd)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             if (lockList is null)
@@ -130,7 +130,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                TSource item = lockList[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -151,10 +151,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
             List<TCast> list = new List<TCast>();
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                TSource item = lockList[i];
                 try
                 {
-                    var tryCast = item.TryCast<TCast>();
+                    TCast tryCast = item.TryCast<TCast>();
                     if (tryCast != null)
                         list.Add(tryCast);
                 }
@@ -169,7 +169,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
-            var behavior = GetItemOfType<TSource, TCast>(lockList);
+            TCast behavior = GetItemOfType<TSource, TCast>(lockList);
             return RemoveItem(lockList, behavior);
         }
 
@@ -180,11 +180,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(lockList))
                 return lockList;
 
-            var arrayList = lockList.ToList();
+            List<TSource> arrayList = lockList.ToList();
 
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                TSource item = lockList[i];
                 if (item is null || !item.Equals(itemToRemove.TryCast<TCast>()))
                     continue;
 
@@ -204,10 +204,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return lockList;
 
             int numRemoved = 0;
-            var arrayList = lockList.ToList();
+            List<TSource> arrayList = lockList.ToList();
             for (int i = 0; i < lockList.Count; i++)
             {
-                var item = lockList[i];
+                TSource item = lockList[i];
                 if (item is null || item.TryCast<TCast>() == null)
                     continue;
 

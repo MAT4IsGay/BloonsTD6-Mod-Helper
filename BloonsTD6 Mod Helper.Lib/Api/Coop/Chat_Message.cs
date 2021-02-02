@@ -1,6 +1,6 @@
-﻿using UnhollowerBaseLib;
+﻿using Newtonsoft.Json;
 using NinjaKiwi.NKMulti;
-using Newtonsoft.Json;
+using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Api.Coop
 {
@@ -16,8 +16,8 @@ namespace BloonsTD6_Mod_Helper.Api.Coop
 
         public Chat_Message(Il2CppStructArray<byte> messageBytes)
         {
-            var json = SerialisationUtil.Deserialise<string>(messageBytes);
-            var message = Read(json);
+            string json = SerialisationUtil.Deserialise<string>(messageBytes);
+            Chat_Message message = Read(json);
             PeerID = message.PeerID;
             Sender = message.Sender;
             Message = message.Message;

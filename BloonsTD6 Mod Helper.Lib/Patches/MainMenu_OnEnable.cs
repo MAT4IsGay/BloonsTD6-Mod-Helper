@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Unity.UI_New.Main;
 using BloonsTD6_Mod_Helper.Api;
 using Harmony;
-using System;
 using System.Collections.Generic;
 
 namespace BloonsTD6_Mod_Helper.Patches
@@ -19,7 +18,6 @@ namespace BloonsTD6_Mod_Helper.Patches
         {
             SessionData.PoppedBloons = new Dictionary<string, int>();
             SessionData.RoundSet = null;
-
             SessionData.IsInPublicCoop = false;
             SessionData.IsInRace = false;
             SessionData.IsInOdyssey = false;

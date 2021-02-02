@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Utils;
 using Il2CppSystem.Collections.Generic;
 using System;
-using System.Linq;
 using UnhollowerBaseLib;
 
 namespace BloonsTD6_Mod_Helper.Extensions
@@ -14,9 +13,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static System.Collections.Generic.List<T> ToSystemList<T>(this List<T> il2CppList)
         {
             System.Collections.Generic.List<T> newList = new System.Collections.Generic.List<T>();
-            foreach (var item in il2CppList)
+            foreach (T item in il2CppList)
                 newList.Add(item);
-            
+
             return newList;
         }
 
@@ -27,7 +26,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             T[] newArray = new T[] { };
 
-            foreach (var item in il2CppList)
+            foreach (T item in il2CppList)
             {
                 Array.Resize(ref newArray, newArray.Length + 1);
                 newArray[newArray.Length - 1] = item;
@@ -42,7 +41,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static SizedList<T> ToSizedList<T>(this List<T> il2CppList)
         {
             SizedList<T> sizedList = new SizedList<T>();
-            foreach (var item in il2CppList)
+            foreach (T item in il2CppList)
                 sizedList.Add(item);
 
             return sizedList;
@@ -50,7 +49,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this List<T> il2CppList) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(il2CppList.Count);
+            Il2CppReferenceArray<T> il2cppArray = new Il2CppReferenceArray<T>(il2CppList.Count);
 
             for (int i = 0; i < il2CppList.Count; i++)
                 il2cppArray[i] = il2CppList[i];
@@ -64,7 +63,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static LockList<T> ToLockList<T>(this List<T> il2CppList)
         {
             LockList<T> lockList = new LockList<T>();
-            foreach (var item in il2CppList)
+            foreach (T item in il2CppList)
                 lockList.Add(item);
 
             return lockList;
@@ -74,7 +73,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static List<T> Duplicate<T>(this List<T> list)
         {
             List<T> newList = new List<T>();
-            foreach (var item in list)
+            foreach (T item in list)
                 newList.Add(item);
 
             return newList;
@@ -84,7 +83,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             List<TCast> newList = new List<TCast>();
-            foreach (var item in list)
+            foreach (TSource item in list)
                 newList.Add(item.TryCast<TCast>());
 
             return newList;
@@ -102,7 +101,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             for (int i = 0; i < list.Count; i++)
             {
-                var item = list[i];
+                TSource item = list[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -163,7 +162,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             for (int i = 0; i < list.Count; i++)
             {
-                var item = list[i];
+                TSource item = list[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -184,10 +183,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
             List<TCast> results = new List<TCast>();
             for (int i = 0; i < list.Count; i++)
             {
-                var item = list[i];
+                TSource item = list[i];
                 try
                 {
-                    var tryCast = item.TryCast<TCast>();
+                    TCast tryCast = item.TryCast<TCast>();
                     if (tryCast != null)
                         results.Add(tryCast);
                 }
@@ -201,7 +200,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
-            var item = GetItemOfType<TSource, TCast>(list);
+            TCast item = GetItemOfType<TSource, TCast>(list);
             return RemoveItem(list, item);
         }
 
@@ -211,10 +210,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(list))
                 return list;
 
-            var newList = list;
+            List<TSource> newList = list;
             for (int i = 0; i < list.Count; i++)
             {
-                var item = list[i];
+                TSource item = list[i];
                 if (item is null || !item.Equals(itemToRemove.TryCast<TCast>()))
                     continue;
 
@@ -231,11 +230,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(list))
                 return list;
 
-            var newList = list;
+            List<TSource> newList = list;
             int numRemoved = 0;
             for (int i = 0; i < list.Count; i++)
             {
-                var item = list[i];
+                TSource item = list[i];
                 if (item is null || item.TryCast<TCast>() == null)
                     continue;
 

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.IO;
 using UnityEngine;
 
@@ -14,23 +13,31 @@ namespace BloonsTD6_Mod_Helper.Api
 
         public string SerializeJson<T>(T objectToSerialize, bool shouldIndent = false, bool ignoreNulls = false)
         {
-            var settings = new JsonSerializerSettings();
-            settings.NullValueHandling = (ignoreNulls) ? NullValueHandling.Ignore : NullValueHandling.Include;
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = ignoreNulls ? NullValueHandling.Ignore : NullValueHandling.Include
+            };
             return SerializeJson(objectToSerialize, settings, shouldIndent: shouldIndent);
         }
 
         public string SerializeJson<T>(T objectToSerialize, JsonSerializerSettings serializerSettings, bool shouldIndent = false)
         {
-            Formatting formatting = (shouldIndent) ? Formatting.Indented : Formatting.None;
+            Formatting formatting = shouldIndent ? Formatting.Indented : Formatting.None;
             return JsonConvert.SerializeObject(objectToSerialize, formatting, serializerSettings);
         }
 
 
 
 
-        public T Il2CppDeserializeJson<T>(string text) => JsonUtility.FromJson<T>(text);
+        public T Il2CppDeserializeJson<T>(string text)
+        {
+            return JsonUtility.FromJson<T>(text);
+        }
 
-        public T DeserializeJson<T>(string text) => JsonConvert.DeserializeObject<T>(text);
+        public T DeserializeJson<T>(string text)
+        {
+            return JsonConvert.DeserializeObject<T>(text);
+        }
 
 
 
@@ -42,13 +49,13 @@ namespace BloonsTD6_Mod_Helper.Api
         /// <param name="filePath">Location of the file</param>
         public T LoadFromFile<T>(string filePath) where T : class
         {
-            var json = ReadTextFromFile(filePath);
+            string json = ReadTextFromFile(filePath);
             return (string.IsNullOrEmpty(json)) ? null : DeserializeJson<T>(json);
         }
 
         public T Il2CppLoadFromFile<T>(string filePath) where T : class
         {
-            var json = ReadTextFromFile(filePath);
+            string json = ReadTextFromFile(filePath);
             return (string.IsNullOrEmpty(json)) ? null : Il2CppDeserializeJson<T>(json);
         }
 
@@ -58,7 +65,7 @@ namespace BloonsTD6_Mod_Helper.Api
                 return null;
 
             string text = File.ReadAllText(filePath);
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
                 return null;
 
             return text;

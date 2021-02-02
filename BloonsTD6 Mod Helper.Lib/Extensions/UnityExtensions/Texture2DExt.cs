@@ -1,5 +1,4 @@
-﻿using MelonLoader.ICSharpCode.SharpZipLib.Zip;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -19,7 +18,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SaveToPNG(this Texture2D texture, string filePath)
         {
-            var bytes = ImageConversion.EncodeToPNG(texture).ToArray();
+            byte[] bytes = ImageConversion.EncodeToPNG(texture).ToArray();
             File.Create(filePath).Write(bytes, 0, bytes.Length);
         }
 
@@ -31,15 +30,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Texture2D CreateFromProjResource(this Texture2D texture2D, ResourceManager manager, string resourceName)
         {
-            var resource = manager.GetObject(resourceName);
-            var resourceBytes = new ImageConverter().ConvertTo(resource, typeof(byte[]));
+            object resource = manager.GetObject(resourceName);
+            object resourceBytes = new ImageConverter().ConvertTo(resource, typeof(byte[]));
             ImageConversion.LoadImage(texture2D, (byte[])resourceBytes);
             return texture2D;
         }
 
         public static Texture2D CreateFromBitmap(this Texture2D texture2D, Bitmap image)
         {
-            var resourceBytes = new ImageConverter().ConvertTo(image, typeof(byte[]));
+            object resourceBytes = new ImageConverter().ConvertTo(image, typeof(byte[]));
             ImageConversion.LoadImage(texture2D, (byte[])resourceBytes);
             return texture2D;
         }
@@ -55,7 +54,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static Sprite CreateSpriteFromTexture(this Texture2D texture2D, float pixelsPerUnit)
         {
-            return Sprite.Create(texture2D, new Rect(0f, 0f, texture2D.width, texture2D.height), new Vector2() , pixelsPerUnit);
+            return Sprite.Create(texture2D, new Rect(0f, 0f, texture2D.width, texture2D.height), new Vector2(), pixelsPerUnit);
         }
     }
 }

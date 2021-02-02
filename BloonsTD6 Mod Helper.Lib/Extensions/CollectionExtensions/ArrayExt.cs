@@ -14,7 +14,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static Il2CppSystem.Collections.Generic.List<T> ToIl2CppList<T>(this T[] array) where T : Il2CppSystem.Object
         {
             Il2CppSystem.Collections.Generic.List<T> il2CppList = new Il2CppSystem.Collections.Generic.List<T>();
-            foreach (var item in array)
+            foreach (T item in array)
                 il2CppList.Add(item);
 
             return il2CppList;
@@ -25,7 +25,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// </summary>
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this T[] array) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(array.Length);
+            Il2CppReferenceArray<T> il2cppArray = new Il2CppReferenceArray<T>(array.Length);
 
             for (int i = 0; i < array.Length; i++)
                 il2cppArray[i] = array[i];
@@ -39,7 +39,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static SizedList<T> ToSizedList<T>(this T[] array)
         {
             SizedList<T> sizedList = new SizedList<T>();
-            foreach (var item in array)
+            foreach (T item in array)
                 sizedList.Add(item);
 
             return sizedList;
@@ -51,7 +51,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static LockList<T> ToLockList<T>(this T[] array)
         {
             LockList<T> lockList = new LockList<T>();
-            foreach (var item in array)
+            foreach (T item in array)
                 lockList.Add(item);
 
             return lockList;
@@ -61,7 +61,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         public static T[] Duplicate<T>(this T[] array)
         {
             T[] newArray = new T[] { };
-            foreach (var item in array)
+            foreach (T item in array)
             {
                 Array.Resize(ref newArray, newArray.Length + 1);
                 newArray[newArray.Length - 1] = item;
@@ -70,11 +70,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return newArray;
         }
 
-        public static TCast[] DuplicateAs<TSource, TCast>(this TSource[] array) 
+        public static TCast[] DuplicateAs<TSource, TCast>(this TSource[] array)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             TCast[] newArray = new TCast[] { };
-            foreach (var item in array)
+            foreach (TSource item in array)
             {
                 Array.Resize(ref newArray, newArray.Length + 1);
                 newArray[newArray.Length - 1] = item.TryCast<TCast>();
@@ -86,14 +86,14 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
 
 
-        
+
         public static bool HasItemsOfType<TSource, TCast>(this TSource[] array) where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
             // Doing this the ugly way to guarantee no errors. Had a couple of bizarre errors in testing when using LINQ
             for (int i = 0; i < array.Length; i++)
             {
-                var item = array[i];
+                TSource item = array[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -106,12 +106,12 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
 
-        public static T[] AddTo<T> (this T[] array, T objectToAdd) where T : Il2CppSystem.Object
+        public static T[] AddTo<T>(this T[] array, T objectToAdd) where T : Il2CppSystem.Object
         {
             if (array is null)
                 array = new T[0];
 
-            var list = array.ToList();
+            List<T> list = array.ToList();
             list.Add(objectToAdd);
             return list.ToArray();
         }
@@ -121,15 +121,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (array is null)
                 array = new T[0];
 
-            var size = array.Length + objectsToAdd.Length;
+            int size = array.Length + objectsToAdd.Length;
             T[] newReference = new T[size];
 
-            var tempList = new List<T>(array);
+            List<T> tempList = new List<T>(array);
             tempList.AddRange(objectsToAdd);
 
             for (int i = 0; i < tempList.Count; i++)
             {
-                var item = tempList[i];
+                T item = tempList[i];
                 newReference[i] = item;
             }
 
@@ -154,7 +154,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(array))
                 return null;
 
-            var result = array.FirstOrDefault(item => item.TryCast<TCast>() != null);
+            TSource result = array.FirstOrDefault(item => item.TryCast<TCast>() != null);
             return result.TryCast<TCast>();
         }
 
@@ -164,7 +164,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(array))
                 return null;
 
-            var results = array.Where(item => item.TryCast<TCast>() != null);
+            IEnumerable<TSource> results = array.Where(item => item.TryCast<TCast>() != null);
             return results.DuplicateAs<TSource, TCast>().ToList();
         }
 
@@ -172,22 +172,22 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
-            var behavior = GetItemOfType<TSource, TCast>(array);
+            TCast behavior = GetItemOfType<TSource, TCast>(array);
             return RemoveItem(array, behavior);
         }
 
 
-        public static TSource[] RemoveItem<TSource, TCast>(this TSource[] array, TCast itemToRemove) 
+        public static TSource[] RemoveItem<TSource, TCast>(this TSource[] array, TCast itemToRemove)
             where TSource : Il2CppSystem.Object where TCast : Il2CppSystem.Object
         {
             if (!HasItemsOfType<TSource, TCast>(array))
                 return array;
 
-            var arrayList = array.ToList();
+            List<TSource> arrayList = array.ToList();
 
             for (int i = 0; i < array.Length; i++)
             {
-                var item = array[i];
+                TSource item = array[i];
                 if (item is null || !item.Equals(itemToRemove.TryCast<TCast>()))
                     continue;
 
@@ -206,10 +206,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return array;
 
             int numRemoved = 0;
-            var arrayList = array.ToList();
+            List<TSource> arrayList = array.ToList();
             for (int i = 0; i < array.Length; i++)
             {
-                var item = array[i];
+                TSource item = array[i];
                 if (item is null || item.TryCast<TCast>() == null)
                     continue;
 

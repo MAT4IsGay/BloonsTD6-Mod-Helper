@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloonsTD6_Mod_Helper.Extensions
 {
@@ -13,7 +10,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             for (int i = 0; i < source.Count; i++)
             {
-                var item = source[i];
+                T item = source[i];
                 if (predicate(item))
                     return item;
             }
@@ -25,7 +22,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             for (int i = 0; i < source.Count; i++)
             {
-                var item = source[i];
+                T item = source[i];
                 if (predicate(item))
                     return item;
             }
@@ -40,7 +37,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             List<T> result = new List<T>();
             for (int i = 0; i < source.Count; i++)
             {
-                var item = source[i];
+                T item = source[i];
                 if (predicate(item))
                     result.Add(item);
             }

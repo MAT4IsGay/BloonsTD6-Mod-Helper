@@ -1,14 +1,11 @@
-﻿using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.UI_New.InGame;
-using MelonLoader;
+﻿using BloonsTD6_Mod_Helper.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using BloonsTD6_Mod_Helper.Extensions;
-using System.Linq;
 
 namespace BloonsTD6_Mod_Helper.Api
 {
@@ -52,11 +49,11 @@ namespace BloonsTD6_Mod_Helper.Api
             // Initialize game object stuff
             //======
 
-            var popups = SceneManager.GetSceneByName("Popups");
-            var mainMenuWorld = SceneManager.GetSceneByName("MainMenuWorld");
-            var globalScene = SceneManager.GetSceneByName("Global");
-            var commonForeground = SceneManager.GetSceneByName("CommonForegroundUI");
-            var mainMenuUI = SceneManager.GetSceneByName("MainMenuUi");
+            Scene popups = SceneManager.GetSceneByName("Popups");
+            Scene mainMenuWorld = SceneManager.GetSceneByName("MainMenuWorld");
+            Scene globalScene = SceneManager.GetSceneByName("Global");
+            Scene commonForeground = SceneManager.GetSceneByName("CommonForegroundUI");
+            Scene mainMenuUI = SceneManager.GetSceneByName("MainMenuUi");
 
 
             /*img = canvas.transform.Find("Image").GetComponent<Image>();
@@ -68,7 +65,7 @@ namespace BloonsTD6_Mod_Helper.Api
 
 
             gameObject = GameObject.Instantiate(canvas, globalScene.GetRootGameObjects()[0].transform);
-            
+
             //tried this to get popup showing on main menu. Didnt work
             /*var canvasPos = gameObject.transform.position;
             gameObject.transform.position = new Vector3(canvasPos.x, canvasPos.y, -46); //48*/
@@ -77,9 +74,9 @@ namespace BloonsTD6_Mod_Helper.Api
             title = gameObject.transform.Find("Image/Title").GetComponent<Text>();
             body = gameObject.transform.Find("Image/Body").GetComponent<Text>();
 
-            
 
-            
+
+
             //======
             //set ui elements
             //======
@@ -91,16 +88,16 @@ namespace BloonsTD6_Mod_Helper.Api
             body.color = currentMsg.NkhText.BodyColor;
 
             //set pos so elements are positioned correctly
-            var windowHeight = Screen.height;
+            int windowHeight = Screen.height;
             //MelonLogger.Log(windowHeight.ToString());
 
-            var test1 = (windowHeight / 8) * 1.155f;
+            float test1 = (windowHeight / 8) * 1.155f;
             //var spaceBetweenSlots = 110 * slot;
             //var spaceBetweenSlots = 135* slot;
-            var spaceBetweenSlots = test1 * slot;
+            float spaceBetweenSlots = test1 * slot;
 
 
-            var pos = img.transform.position;
+            Vector3 pos = img.transform.position;
             pos.x = -defaultWidth;
             pos.y -= spaceBetweenSlots + 55;
             pos.z = 955;       //might get rid of this later. Setting ui to be very high up so it won't get put under other stuff. Game camera is at about 995
@@ -216,17 +213,11 @@ namespace BloonsTD6_Mod_Helper.Api
                 testZ = z.Value;
 
             if (x != null && y != null)
-            {
                 img.transform.position = new Vector3(x.Value, y.Value, img.transform.position.z);
-            }
             else if (x != null && y == null)
-            {
                 img.transform.position = new Vector3(x.Value, img.transform.position.y, img.transform.position.z + testZ);
-            }
             else if (x == null && y != null)
-            {
                 img.transform.position = new Vector3(img.transform.position.x, y.Value, img.transform.position.z);
-            }
         }
 
 
@@ -234,9 +225,7 @@ namespace BloonsTD6_Mod_Helper.Api
         public class NotificationEventArgs : EventArgs { }
         public void OnUpdate(NotificationEventArgs e)
         {
-            EventHandler<NotificationEventArgs> handler = UpdateEvent;
-            if (handler != null)
-                handler(this, e);
+            UpdateEvent?.Invoke(this, e);
         }
     }
 
@@ -249,11 +238,11 @@ namespace BloonsTD6_Mod_Helper.Api
         public static Queue<NkhMsg> notificationQueue = new Queue<NkhMsg>();
         public static void AddNotification(NkhMsg msg)
         {
-            var globalScene = SceneManager.GetSceneByName("Global");
+            Scene globalScene = SceneManager.GetSceneByName("Global");
             if (!globalScene.IsValid())
                 return;
 
-            var game = globalScene.GetRootGameObjects()[0].transform.Find("Game");
+            Transform game = globalScene.GetRootGameObjects()[0].transform.Find("Game");
             if (game is null)
                 return;
 
@@ -266,12 +255,12 @@ namespace BloonsTD6_Mod_Helper.Api
 
             lock (notifications)
             {
-                
+
                 int slot = 0;
                 for (int i = 0; i < maxMessagesAtOnce; i++)  //this terrible looking code gets first availible slot for message. prevents overlapping msgs
                 {
                     bool skip = false;
-                    foreach (var item in notifications)
+                    foreach (Notification item in notifications)
                     {
                         if (item.slot == i)
                         {
@@ -286,7 +275,7 @@ namespace BloonsTD6_Mod_Helper.Api
                     slot = i;
                     break;
                 }
-                
+
                 Notification notification = new Notification(slot, msg);
                 notifications.Add(notification);
             }
@@ -298,9 +287,7 @@ namespace BloonsTD6_Mod_Helper.Api
             lock (notifications)
             {
                 if (notifications.Any())
-                {
                     notifications[notifications.Count - 1].OnUpdate(new Notification.NotificationEventArgs());
-                }
 
                 if (notificationQueue.Any() && notifications.Count == 0)
                 {

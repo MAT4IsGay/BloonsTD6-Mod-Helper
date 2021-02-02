@@ -11,19 +11,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
     {
         public static void SetCamo(this Bloon bloon, bool isCamo)
         {
-            var bloonModel = bloon.bloonModel;
+            BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(isCamo, bloonModel.isFortified, bloonModel.isGrow);
         }
 
         public static void SetFortified(this Bloon bloon, bool isFortified)
         {
-            var bloonModel = bloon.bloonModel;
+            BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(bloonModel.isCamo, isFortified, bloonModel.isGrow);
         }
 
         public static void SetRegrow(this Bloon bloon, bool isRegrow)
         {
-            var bloonModel = bloon.bloonModel;
+            BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(bloonModel.isCamo, bloonModel.isFortified, isRegrow);
         }
 
@@ -38,15 +38,15 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (bloonId.Contains("Regrow") && removeRegrow)
                 bloonId = bloonId.Replace("Regrow", "");
 
-            var newBloonModel = Game.instance.model.GetBloonModel(bloonId);
+            BloonModel newBloonModel = Game.instance.model.GetBloonModel(bloonId);
             bloon.bloonModel = newBloonModel;
             bloon.UpdateDisplay();
         }
 
         public static void SetBloonStatus(this Bloon bloon, [Optional] bool setCamo, [Optional] bool setFortified, [Optional] bool setRegrow)
         {
-            var model = Game.instance.model;
-            var bloonModel = bloon.bloonModel;
+            Assets.Scripts.Models.GameModel model = Game.instance.model;
+            BloonModel bloonModel = bloon.bloonModel;
 
             string camoText = (setCamo && model.GetBloonModel(bloonModel.baseId + "Camo") != null) ? "Camo" : "";
             string fortifiedText = (setFortified && model.GetBloonModel(bloonModel.baseId + "Fortified") != null) ? "Fortified" : "";

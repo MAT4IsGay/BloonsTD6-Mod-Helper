@@ -12,11 +12,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (displayModel is null)
                 return null;
 
-            var displayBehaviors = InGame.instance?.bridge?.simulation?.factory?.GetFactory<DisplayBehavior>()?.all;
+            Assets.Scripts.Utils.SizedList<DisplayBehavior> displayBehaviors = InGame.instance?.bridge?.simulation?.factory?.GetFactory<DisplayBehavior>()?.all;
             if (displayBehaviors is null)
                 return null;
 
-            var results = displayBehaviors.Where(behavior => behavior.displayModel.IsEqual(displayModel));
+            List<DisplayBehavior> results = displayBehaviors.Where(behavior => behavior.displayModel.IsEqual(displayModel));
             return results;
         }
     }

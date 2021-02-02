@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Utils;
 using BloonsTD6_Mod_Helper.Api;
 using Harmony;
-using MelonLoader;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,7 +26,7 @@ namespace BloonsTD6_Mod_Helper.Patches
                 if (entry.Key != reference.GUID)
                     continue;
 
-                var val = entry.Value;
+                Sprite val = entry.Value;
                 if (entry.Value == null)
                 {
                     Texture2D pngTexture = SpriteRegister.Instance.TextureFromPNG(entry.Key);

@@ -7,7 +7,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class SizedListExt
     {
-        public static List<T> ToList<T> (this SizedList<T> sizedList)
+        public static List<T> ToList<T>(this SizedList<T> sizedList)
         {
             List<T> newList = new List<T>();
             for (int i = 0; i < sizedList.count; i++)
@@ -21,7 +21,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             Il2CppSystem.Collections.Generic.List<T> il2CppList = new Il2CppSystem.Collections.Generic.List<T>();
             for (int i = 0; i < sizedList.count; i++)
                 il2CppList.Add(sizedList[i]);
-            
+
             return il2CppList;
         }
 
@@ -30,17 +30,17 @@ namespace BloonsTD6_Mod_Helper.Extensions
             T[] newArray = new T[] { };
             for (int i = 0; i < sizedList.count; i++)
             {
-                var item = sizedList[i];
+                T item = sizedList[i];
                 Array.Resize(ref newArray, newArray.Length + 1);
                 newArray[newArray.Length - 1] = item;
             }
 
             return newArray;
-        }        
+        }
 
         public static Il2CppReferenceArray<T> ToIl2CppReferenceArray<T>(this SizedList<T> sizedList) where T : Il2CppSystem.Object
         {
-            var il2cppArray = new Il2CppReferenceArray<T>(sizedList.Count);
+            Il2CppReferenceArray<T> il2cppArray = new Il2CppReferenceArray<T>(sizedList.Count);
 
             for (int i = 0; i < sizedList.Count; i++)
                 il2cppArray[i] = sizedList[i];
@@ -91,7 +91,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             for (int i = 0; i < sizedList.count; i++)
             {
-                var item = sizedList[i];
+                TSource item = sizedList[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -123,7 +123,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             for (int i = 0; i < sizedList.count; i++)
             {
-                var item = sizedList[i];
+                TSource item = sizedList[i];
                 try
                 {
                     if (item.TryCast<TCast>() != null)
@@ -144,10 +144,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
             List<TCast> list = new List<TCast>();
             for (int i = 0; i < sizedList.count; i++)
             {
-                var item = sizedList[i];
+                TSource item = sizedList[i];
                 try
                 {
-                    var tryCast = item.TryCast<TCast>();
+                    TCast tryCast = item.TryCast<TCast>();
                     if (tryCast != null)
                         list.Add(tryCast);
                 }
@@ -162,7 +162,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             where TSource : Il2CppSystem.Object
             where TCast : Il2CppSystem.Object
         {
-            var behavior = GetItemOfType<TSource, TCast>(sizedList);
+            TCast behavior = GetItemOfType<TSource, TCast>(sizedList);
             return RemoveItem(sizedList, behavior);
         }
 
@@ -173,11 +173,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             if (!HasItemsOfType<TSource, TCast>(sizedList))
                 return sizedList;
 
-            var arrayList = sizedList.ToList();
+            List<TSource> arrayList = sizedList.ToList();
 
             for (int i = 0; i < sizedList.Count; i++)
             {
-                var item = sizedList[i];
+                TSource item = sizedList[i];
                 if (item is null || !item.Equals(itemToRemove.TryCast<TCast>()))
                     continue;
 
@@ -197,10 +197,10 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return sizedList;
 
             int numRemoved = 0;
-            var arrayList = sizedList.ToList();
+            List<TSource> arrayList = sizedList.ToList();
             for (int i = 0; i < sizedList.Count; i++)
             {
-                var item = sizedList[i];
+                TSource item = sizedList[i];
                 if (item is null || item.TryCast<TCast>() == null)
                     continue;
 
