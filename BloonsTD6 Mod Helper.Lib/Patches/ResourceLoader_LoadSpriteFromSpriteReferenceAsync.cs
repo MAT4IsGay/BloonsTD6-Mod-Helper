@@ -14,27 +14,21 @@ namespace BloonsTD6_Mod_Helper.Patches
         [HarmonyPostfix]
         internal static void Postfix(ref SpriteReference reference, ref Image image)
         {
-            /*MelonLogger.Log(reference.GUID);
-            MelonLogger.Log(reference.guidRef);
-            MelonLogger.Log(image.name);
-            MelonLogger.Log(image.sprite.name);*/
-            if (reference == null || image == null || !SpriteRegister.register.Any())
+            if (reference is null || image is null || !SpriteRegister.register.Any())
                 return;
 
-            foreach (KeyValuePair<string, Sprite> entry in SpriteRegister.register)
+            string guid = reference.GUID;
+            KeyValuePair<string, Sprite>? entryAtRef = SpriteRegister.register.Where(e => e.Key == guid).Select(e => (KeyValuePair<string, Sprite>?)e).FirstOrDefault();
+            if (entryAtRef.HasValue)
             {
-                if (entry.Key != reference.GUID)
-                    continue;
-
-                Sprite val = entry.Value;
-                if (entry.Value == null)
+                Sprite sprite = entryAtRef.Value.Value;
+                if (sprite == null)
                 {
-                    Texture2D pngTexture = SpriteRegister.Instance.TextureFromPNG(entry.Key);
-                    val = Sprite.Create(pngTexture, new Rect(0.0f, 0.0f, pngTexture.width, pngTexture.height), default);
+                    Texture2D pngTexture = SpriteRegister.Instance.TextureFromPNG(guid);
+                    sprite = Sprite.Create(pngTexture, new Rect(0.0f, 0.0f, pngTexture.width, pngTexture.height), default);
                 }
-
-                image.canvasRenderer.SetTexture(val.texture);
-                image.sprite = val;
+                image.canvasRenderer.SetTexture(sprite.texture);
+                image.sprite = sprite;
             }
         }
     }
