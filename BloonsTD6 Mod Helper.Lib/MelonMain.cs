@@ -4,6 +4,7 @@ using BloonsTD6_Mod_Helper.Api;
 using MelonLoader;
 using System;
 using System.Reflection;
+using UnityEngine;
 
 namespace BloonsTD6_Mod_Helper
 {
@@ -22,10 +23,50 @@ namespace BloonsTD6_Mod_Helper
             if (Game.instance is null)
                 return;
 
+            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    DoPatchMethods(mod =>
+                    {
+                        mod.OnKeyDown(key);
+                    });
+                }
+
+                if (Input.GetKeyUp(key))
+                {
+                    DoPatchMethods(mod =>
+                    {
+                        mod.OnKeyUp(key);
+                    });
+                }
+
+                if (Input.GetKey(key))
+                {
+                    DoPatchMethods(mod =>
+                    {
+                        mod.OnKeyHeld(key);
+                    });
+                }
+            }
+
             if (InGame.instance is null)
                 return;
 
             NotificationMgr.CheckForNotifications();
         }
+        
+        
+        public static void DoPatchMethods(Action<BloonsTD6Mod> action)
+        {
+            foreach (var melonMod in MelonHandler.Mods)
+            {
+                if (melonMod is BloonsTD6Mod mod)
+                {
+                    action.Invoke(mod);
+                }
+            }
+        }
+        
     }
 }

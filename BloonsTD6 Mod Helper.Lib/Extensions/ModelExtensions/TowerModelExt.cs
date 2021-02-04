@@ -132,10 +132,20 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             return towerModel.GetBehaviors<AbilityModel>();
         }
+        
+        public static AbilityModel GetAbility(this TowerModel towerModel)
+        {
+            return towerModel.GetAbilites().FirstOrDefault();
+        }
 
         public static List<AttackModel> GetAttackModels(this TowerModel towerModel)
         {
             return towerModel.GetBehaviors<AttackModel>();
+        }
+        
+        public static AttackModel GetAttackModel(this TowerModel towerModel)
+        {
+            return towerModel.GetAttackModels().FirstOrDefault();
         }
 
         public static List<WeaponModel> GetWeapons(this TowerModel towerModel)
@@ -156,6 +166,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
             }
 
             return weaponModels;
+        }
+        
+        public static WeaponModel GetWeapon(this TowerModel towerModel)
+        {
+            return towerModel.GetWeapons().FirstOrDefault();
         }
 
         // Thanks to doombubbles for creating this

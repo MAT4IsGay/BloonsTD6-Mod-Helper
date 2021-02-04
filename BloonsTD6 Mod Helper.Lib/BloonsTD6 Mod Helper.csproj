@@ -95,6 +95,9 @@
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -117,6 +120,7 @@
     <Compile Include="Api\JsonSerializer.cs" />
     <Compile Include="Api\SessionData.cs" />
     <Compile Include="Api\SpriteRegister.cs" />
+    <Compile Include="BloonsTD6Mod.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AddBehaviorToBloonModelExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AbilityModelBehaviorExt.cs" />
     <Compile Include="Extensions\BehaviorExtensions\AttackModelBehaviorExt.cs" />
@@ -165,16 +169,39 @@
     <Compile Include="Extensions\UnityExtensions\Vector3Ext.cs" />
     <Compile Include="Api\InGameMessage.cs" />
     <Compile Include="MelonMain.cs" />
+    <Compile Include="Patches\Bloons\Bloon_Damage.cs" />
+    <Compile Include="Patches\Bloons\Bloon_Damage2.cs" />
+    <Compile Include="Patches\Bloons\Bloon_Initialize.cs" />
+    <Compile Include="Patches\Bloons\Bloon_Leaked.cs" />
+    <Compile Include="Patches\Bloons\Bloon_OnDestroy.cs" />
+    <Compile Include="Patches\Bloons\Bloon_Degrade.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\GameModel_GetRoundSet.cs" />
+    <Compile Include="Patches\InGame_StartMatch.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
-    <Compile Include="Patches\Bloon_Degrade.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
     <Compile Include="Patches\NKMultiGameInterface_Update.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
+    <Compile Include="Patches\Projectiles\Projectile_Initialise.cs" />
+    <Compile Include="Patches\Projectiles\Projectile_UpdatedModel.cs" />
     <Compile Include="Patches\ResourceLoader_LoadSpriteFromSpriteReferenceAsync.cs" />
+    <Compile Include="Patches\InGame_OnVictory.cs" />
+    <Compile Include="Patches\Sim\Simulation_AddCash.cs" />
+    <Compile Include="Patches\Sim\Simulation_OnDefeat.cs" />
+    <Compile Include="Patches\Sim\Simulation_OnRoundEnd.cs" />
+    <Compile Include="Patches\Sim\Simulation_OnRoundStart.cs" />
+    <Compile Include="Patches\Sim\Simulation_RemoveCash.cs" />
+    <Compile Include="Patches\TimeManager_SetFastForward.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
-    <Compile Include="Patches\Tower_Initialise.cs" />
+    <Compile Include="Patches\Towers\TowerManager_UpgradeTower.cs" />
+    <Compile Include="Patches\Towers\Tower_Destroy.cs" />
+    <Compile Include="Patches\Towers\Tower_Highlight.cs" />
+    <Compile Include="Patches\Towers\Tower_Initialise.cs" />
+    <Compile Include="Patches\Towers\Tower_OnSold.cs" />
+    <Compile Include="Patches\Towers\Tower_UnHighlight.cs" />
+    <Compile Include="Patches\Towers\Tower_UpdatedModel.cs" />
+    <Compile Include="Patches\Weapons\Weapon_Initialise.cs" />
+    <Compile Include="Patches\Weapons\Weapon_UpdatedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

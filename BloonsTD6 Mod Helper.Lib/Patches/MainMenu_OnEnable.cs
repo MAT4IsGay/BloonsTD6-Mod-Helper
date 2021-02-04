@@ -12,6 +12,9 @@ namespace BloonsTD6_Mod_Helper.Patches
         internal static void Postfix()
         {
             ResetSessionData();
+            
+            MelonMain.DoPatchMethods(mod => mod.OnMainMenu());
+            
         }
 
         private static void ResetSessionData()
