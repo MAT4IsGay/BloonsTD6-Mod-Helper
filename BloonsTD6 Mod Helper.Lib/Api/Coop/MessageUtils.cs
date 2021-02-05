@@ -17,5 +17,10 @@ namespace BloonsTD6_Mod_Helper.Api.Coop
         {
             return SerialisationUtil.Deserialise<T>(serializedMessage);
         }
+        
+        public static T ReadMessage<T>(Message message)
+        {
+            return ReadMessage<T>(message.bytes);
+        }
     }
 }

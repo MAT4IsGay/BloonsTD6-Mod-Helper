@@ -180,6 +180,7 @@
     <Compile Include="Patches\InGame_StartMatch.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
+    <Compile Include="Patches\NKMultiConnection_Receive.cs" />
     <Compile Include="Patches\NKMultiGameInterface_Update.cs" />
     <Compile Include="Patches\OdysseyEventScreen_Update.cs" />
     <Compile Include="Patches\Projectiles\Projectile_Initialise.cs" />

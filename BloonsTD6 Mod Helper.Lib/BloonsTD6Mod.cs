@@ -8,6 +8,7 @@ using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Projectiles;
 using Assets.Scripts.Simulation.Towers.Weapons;
 using MelonLoader;
+using NinjaKiwi.NKMulti;
 using UnhollowerBaseLib;
 using UnityEngine;
 
@@ -19,6 +20,20 @@ namespace BloonsTD6_Mod_Helper
     public abstract class BloonsTD6Mod : MelonMod
     {
         /// <summary>
+        /// Acts on a Network message that's been sent to the client
+        ///
+        /// Use Game.instance.nkGI.ReadMessage<YOUR_CLASS_NAME>(message) to get back the same object/class you sent.
+        ///
+        /// If this is one of your messages and you're consuming and acting on it, return true.
+        /// Otherwise, return false. Seriously.
+        /// </summary>
+        public virtual bool ActOnMessage(Message message)
+        {
+            return false;
+        }
+        
+        
+        /// <summary>
         /// Called when you go to the main menu screen
         ///
         /// Equivalent to a HarmonyPostFix on MainMenu.OnEnable
@@ -26,7 +41,6 @@ namespace BloonsTD6_Mod_Helper
         public virtual void OnMainMenu()
         {
         }
-
 
         #region Input Hooks
 
@@ -245,37 +259,8 @@ namespace BloonsTD6_Mod_Helper
         }
 
         #endregion
-        
-        /// <summary>
-        /// Called right after a match ends in victory
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
-        /// </summary>
-        public virtual void OnVictory()
-        {
-            
-        }
-        
-        /// <summary>
-        /// Called right after a match starts
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.StartMatch
-        /// </summary>
-        public virtual void OnMatchStarted()
-        {
-            
-        }
-        
-        /// <summary>
-        /// Called right after a game ends in victory
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
-        /// </summary>
-        public virtual void OnFastForwardChanged(bool newValue)
-        {
-            
-        }
-        
+
+        #region Weapon/Projectile Hooks
         
         /// <summary>
         /// Called right after a Weapon is created
@@ -315,5 +300,37 @@ namespace BloonsTD6_Mod_Helper
         {
         }
 
+        #endregion
+
+        
+        /// <summary>
+        /// Called right after a match ends in victory
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
+        /// </summary>
+        public virtual void OnVictory()
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called right after a match starts
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.StartMatch
+        /// </summary>
+        public virtual void OnMatchStarted()
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called right after a game ends in victory
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
+        /// </summary>
+        public virtual void OnFastForwardChanged(bool newValue)
+        {
+            
+        }
     }
 }

@@ -36,6 +36,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
         {
             return MessageUtils.ReadMessage<T>(messageBytes);
         }
+        
+        public static T ReadMessage<T>(this NKMultiGameInterface nkGI, Message message)
+        {
+            return MessageUtils.ReadMessage<T>(message.GetBytes());
+        }
 
         public static Chat_Message ReadChatMessage(this NKMultiGameInterface nkGI, Message message)
         {
