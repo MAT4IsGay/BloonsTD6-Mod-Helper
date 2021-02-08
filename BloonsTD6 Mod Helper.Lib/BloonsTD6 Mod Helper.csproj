@@ -177,6 +177,7 @@
     <Compile Include="Patches\Bloons\Bloon_Degrade.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
     <Compile Include="Patches\GameModel_GetRoundSet.cs" />
+    <Compile Include="Patches\InGame_Restart.cs" />
     <Compile Include="Patches\InGame_StartMatch.cs" />
     <Compile Include="Patches\MainMenuEventPanel_OpenRaceEventScreen.cs" />
     <Compile Include="Patches\MainMenu_OnEnable.cs" />
@@ -196,9 +197,11 @@
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Patches\Towers\TowerManager_UpgradeTower.cs" />
     <Compile Include="Patches\Towers\Tower_Destroy.cs" />
+    <Compile Include="Patches\Towers\Tower_GetSaveData.cs" />
     <Compile Include="Patches\Towers\Tower_Highlight.cs" />
     <Compile Include="Patches\Towers\Tower_Initialise.cs" />
     <Compile Include="Patches\Towers\Tower_OnSold.cs" />
+    <Compile Include="Patches\Towers\Tower_SetSaveData.cs" />
     <Compile Include="Patches\Towers\Tower_UnHighlight.cs" />
     <Compile Include="Patches\Towers\Tower_UpdatedModel.cs" />
     <Compile Include="Patches\Weapons\Weapon_Initialise.cs" />

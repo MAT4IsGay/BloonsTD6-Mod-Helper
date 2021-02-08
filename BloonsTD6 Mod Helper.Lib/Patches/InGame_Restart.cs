@@ -5,13 +5,13 @@ using Harmony;
 
 namespace BloonsTD6_Mod_Helper.Patches
 {
-    [HarmonyPatch(typeof(InGame), nameof(InGame.StartMatch))]
-    internal class InGame_StartMatch
+    [HarmonyPatch(typeof(InGame), nameof(InGame.Restart))]
+    internal class InGame_Restart
     {
         [HarmonyPostfix]
-        internal static void Postfix()
+        internal static void Postfix(bool removeSave)
         {
-            MelonMain.DoPatchMethods(mod => mod.OnMatchStart());
+            MelonMain.DoPatchMethods(mod => mod.OnRestart(removeSave));
         }
     }
 }

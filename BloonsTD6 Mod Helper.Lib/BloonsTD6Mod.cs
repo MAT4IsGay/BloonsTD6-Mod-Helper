@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Models;
+using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Simulation;
 using Assets.Scripts.Simulation.Bloons;
@@ -202,6 +203,30 @@ namespace BloonsTD6_Mod_Helper
         {
         }
         
+        /// <summary>
+        /// Called at the end of each round when a Tower's data is saved
+        ///
+        /// Use saveData.metaData to save custom information
+        /// 
+        /// Equivalent to a HarmonyPostFix on Tower.GetSavedData
+        /// </summary>
+        public virtual void OnTowerSaved(Tower tower, TowerSaveDataModel saveData)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called when you load a save file and a Tower's save data get loaded for the tower
+        ///
+        /// Use saveData.metaData to load custom information
+        /// 
+        /// Equivalent to a HarmonyPostFix on Tower.SetSavedData
+        /// </summary>
+        public virtual void OnTowerLoaded(Tower tower, TowerSaveDataModel saveData)
+        {
+            
+        }
+        
         #endregion
 
         #region Simulation Hooks
@@ -314,11 +339,21 @@ namespace BloonsTD6_Mod_Helper
         }
         
         /// <summary>
-        /// Called right after a match starts
+        /// Called right after a match first starts
         /// 
         /// Equivalent to a HarmonyPostFix on InGame.StartMatch
         /// </summary>
-        public virtual void OnMatchStarted()
+        public virtual void OnMatchStart()
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called when a match is restarted
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.Restart
+        /// </summary>
+        public virtual void OnRestart(bool removeSave)
         {
             
         }

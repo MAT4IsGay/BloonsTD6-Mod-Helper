@@ -4,7 +4,7 @@ using System.Linq;
 using System.Resources;
 using UnityEngine;
 
-namespace BloonsTD6_Mod_Helper.Extensions
+namespace BloonsTD6_Mod_Helper.Extensions.UnityExtensions
 {
     public static class Texture2DExt
     {
