@@ -13,8 +13,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: MelonInfo(typeof(BloonsTD6_Mod_Helper.MelonMain), "BloonsTD6_Mod_Helper", "1.0.0", "Gurrenm4")]
+[assembly: MelonInfo(typeof(BloonsTD6_Mod_Helper.MelonMain), "BloonsTD6_Mod_Helper", "1.0.3", "Gurrenm4 and Doombubbles")]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+
+[assembly: AssemblyVersion("1.0.3")]
+[assembly: AssemblyFileVersion("1.0.3")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -34,5 +37,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0")]
+
