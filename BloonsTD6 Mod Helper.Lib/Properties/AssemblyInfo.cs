@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: MelonInfo(typeof(BloonsTD6_Mod_Helper.MelonMain), "BloonsTD6_Mod_Helper", "1.0.3", "Gurrenm4 and Doombubbles")]
+[assembly: MelonInfo(typeof(BloonsTD6_Mod_Helper.MelonMain), "BloonsTD6_Mod_Helper", "1.0.3", "Gurrenm4, Doombubbles, and BowDown097")]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 
 [assembly: AssemblyVersion("1.0.3")]
