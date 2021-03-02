@@ -28,7 +28,7 @@ Like other API, download/clone it. In your mod's Visual Studio project, a refere
 Mod makers that have used this API say it's at least 3 times easier to use and more powerful than the next leading API. 
 
 ## Credits
-So far I've been the only developer for the API, however I've had a lot of help from Mr.Nuke, James, DoomBubbles, and Timotheee when it came to testing/suggesting new features. This API would not be possible without all of their help and suggestions. Since this api was built off of the successes/ failures of Gurren Core and NKHook6, it does reuse some of the extensions from them. Thanks to ASM for creating those original methods
+This mod wouldn't be possible without all of the contributions from the community. DoomBubbles and Bowdown097 added a lot of nice features to the api and provided a lot of valuable suggestions. Mr.Nuke, James, and Timotheeee we're really helpful when it came to testing/suggesting new features. Since this api was built off of the successes/ failures of Gurren Core and the old NKHook6, it does reuse some of the extensions from them. Thanks to ASM for creating and testing those original methods
 
 ## Future plans
 The API already has a lot of features added, however it's no where near done. My goal is to make this a universal mod helper for btd6 so there's still a ton of work ahead. 
