@@ -12,12 +12,18 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class BloonModelExt
     {
+        /// <summary>
+        /// Get the number position of this bloon from the list of all bloons
+        /// </summary>
         public static int? GetIndex(this BloonModel bloonModel)
         {
             Il2CppReferenceArray<BloonModel> allBloons = Game.instance?.model?.bloons;
             return allBloons.FindIndex(bloon => bloon.name == bloonModel.name);
         }
 
+        /// <summary>
+        /// Spawn this BloonModel on the map right now
+        /// </summary>
         public static void SpawnBloonModel(this BloonModel bloonModel)
         {
             Assets.Scripts.Simulation.Track.Spawner spawner = InGame.instance?.GetMap()?.spawner;
@@ -38,12 +44,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }*/
 
 
+        /// <summary>
+        /// Create a BloonEmissionModel from this BloonModel
+        /// </summary>
+        /// <param name="count">Number of bloons in this emission model</param>
+        /// <param name="spacing">Space between each bloon in this emission model</param>
         public static Il2CppReferenceArray<BloonEmissionModel> CreateBloonEmissionModel(this BloonModel bloonModel, int count, int spacing)
         {
             return Game.instance?.model?.CreateBloonEmissions(bloonModel, count, spacing);
         }
 
-
+        /// <summary>
+        /// Get all BloonToSimulations with this BloonModel
+        /// </summary>
         public static List<BloonToSimulation> GetBloonSims(this BloonModel bloonModel)
         {
             Il2CppSystem.Collections.Generic.List<BloonToSimulation> bloonSims = InGame.instance?.bridge?.GetAllBloons();

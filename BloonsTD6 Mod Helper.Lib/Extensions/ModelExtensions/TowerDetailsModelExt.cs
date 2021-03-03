@@ -6,6 +6,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class TowerDetailsModelExt
     {
+        /// <summary>
+        /// Returns if this TowerDetailModel is actually for a Hero
+        /// </summary>
         public static bool IsHero(this TowerDetailsModel towerDetailsModel)
         {
             HeroDetailsModel heroDetailsModel = towerDetailsModel.TryCast<HeroDetailsModel>();
@@ -13,12 +16,18 @@ namespace BloonsTD6_Mod_Helper.Extensions
             return isHero;
         }
 
+        /// <summary>
+        /// Get the TowerPurchaseButton that is used to buy this specific TowerDetailModel
+        /// </summary>
         public static TowerPurchaseButton GetTowerPurchaseButton(this TowerDetailsModel towerDetailsModel)
         {
             Assets.Scripts.Models.Towers.TowerModel towerModel = Game.instance.model.GetTower(towerDetailsModel.towerId);
             return towerModel.GetTowerPurchaseButton();
         }
 
+        /// <summary>
+        /// Get the ShopTowerDetails for this TowerDetailModel
+        /// </summary>
         public static ShopTowerDetailsModel GetShopTowerDetails(this TowerDetailsModel towerDetailsModel)
         {
             return towerDetailsModel.TryCast<ShopTowerDetailsModel>();

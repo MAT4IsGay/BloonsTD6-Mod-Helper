@@ -9,24 +9,42 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class BloonExt
     {
+        /// <summary>
+        /// Set bloon to be camo or not. Will change bloonModel to camo version if it exists
+        /// </summary>
+        /// <param name="isCamo">Should bloon be camo</param>
         public static void SetCamo(this Bloon bloon, bool isCamo)
         {
             BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(isCamo, bloonModel.isFortified, bloonModel.isGrow);
         }
 
+        /// <summary>
+        /// Set bloon to be fortified or not. Will change bloonModel to fortified version if it exists
+        /// </summary>
+        /// <param name="isFortified">Should bloon be fortified</param>
         public static void SetFortified(this Bloon bloon, bool isFortified)
         {
             BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(bloonModel.isCamo, isFortified, bloonModel.isGrow);
         }
 
+        /// <summary>
+        /// Set bloon to be regrow or not. Will change bloonModel to regrow version if it exists
+        /// </summary>
+        /// <param name="isRegrow">Should bloon be regrow</param>
         public static void SetRegrow(this Bloon bloon, bool isRegrow)
         {
             BloonModel bloonModel = bloon.bloonModel;
             bloon.SetBloonStatus(bloonModel.isCamo, bloonModel.isFortified, isRegrow);
         }
 
+        /// <summary>
+        /// Remove current statuses from bloon
+        /// </summary>
+        /// <param name="removeCamo">Should remove camo if present?</param>
+        /// <param name="removeFortify">Should remove fortify if present?</param>
+        /// <param name="removeRegrow">Should remove regrow if present?</param>
         public static void RemoveBloonStatus(this Bloon bloon, bool removeCamo, bool removeFortify, bool removeRegrow)
         {
             string bloonId = bloon.bloonModel.id;
@@ -43,6 +61,12 @@ namespace BloonsTD6_Mod_Helper.Extensions
             bloon.UpdateDisplay();
         }
 
+        /// <summary>
+        /// Set the statuses of the bloon. Will change bloonModel if one exists with these statuses
+        /// </summary>
+        /// <param name="setCamo">Should have camo?</param>
+        /// <param name="setFortified">Should have fortify?</param>
+        /// <param name="setRegrow">Should have regrow?</param>
         public static void SetBloonStatus(this Bloon bloon, [Optional] bool setCamo, [Optional] bool setFortified, [Optional] bool setRegrow)
         {
             Assets.Scripts.Models.GameModel model = Game.instance.model;
@@ -57,6 +81,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
             bloon.UpdateDisplay();
         }
 
+        /// <summary>
+        /// Get the BloonToSimulation for this specific Bloon
+        /// </summary>
         public static BloonToSimulation GetBloonToSim(this Bloon bloon)
         {
             return InGame.Bridge.GetAllBloons().FirstOrDefault(b => b.id == bloon.Id);

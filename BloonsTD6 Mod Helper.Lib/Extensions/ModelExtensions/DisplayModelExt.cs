@@ -7,6 +7,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class DisplayModelExt
     {
+        /// <summary>
+        /// Get all currently existing Display Behaviors with this Display Model
+        /// </summary>
         public static List<DisplayBehavior> GetDisplayBehaviors_WithThisModel(this DisplayModel displayModel)
         {
             if (displayModel is null)

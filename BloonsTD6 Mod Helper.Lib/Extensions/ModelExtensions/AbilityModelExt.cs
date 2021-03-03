@@ -7,6 +7,11 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class AbilityModelExt
     {
+        /// <summary>
+        /// Get the all AbilityToSimulation with this AbilityModel
+        /// </summary>
+        /// <param name="abiltyModel"></param>
+        /// <returns></returns>
         public static List<AbilityToSimulation> GetAbilitySims(this AbilityModel abiltyModel)
         {
             Il2CppSystem.Collections.Generic.List<AbilityToSimulation> abilitySims = InGame.instance?.bridge?.GetAllAbilities(true);

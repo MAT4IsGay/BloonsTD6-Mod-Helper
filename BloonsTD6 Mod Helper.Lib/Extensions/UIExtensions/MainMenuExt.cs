@@ -7,6 +7,9 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class MainMenuExt
     {
+        /// <summary>
+        /// Get the MainMenu game object
+        /// </summary>
         public static GameObject GetUI(this MainMenu mainMenu)
         {
             try

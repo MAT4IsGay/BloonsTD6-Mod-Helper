@@ -11,7 +11,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class AttackModelExt
     {
+        /// <summary>
+        /// Add a weapon to this Attack Model
+        /// </summary>
+        /// <param name="weaponToAdd">Weapon to add</param>
+        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) =>
+            attackModel.weapons = attackModel.weapons.AddTo(weaponToAdd);
+
         // Thanks to doombubbles for creating this
+        /// <summary>
+        /// Recursively get all ProjectileModels for this attack model and all of it's weapons
+        /// </summary>
+        /// <param name="attackModel"></param>
+        /// <returns></returns>
         public static List<ProjectileModel> GetAllProjectiles(this AttackModel attackModel)
         {
             List<ProjectileModel> allProjectiles = new List<ProjectileModel>();
@@ -27,6 +39,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
             allProjectiles.AddRange(GetSubProjectiles(attackModel.behaviors)); //this is new
             return allProjectiles;
         }
+
 
         private static List<ProjectileModel> GetSubProjectiles(IEnumerable<Model> behaviors)
         {
@@ -54,8 +67,5 @@ namespace BloonsTD6_Mod_Helper.Extensions
             }
             return allProjectiles;
         }
-
-        public static void AddWeapon(this AttackModel attackModel, WeaponModel weaponToAdd) => 
-            attackModel.weapons = attackModel.weapons.AddTo(weaponToAdd);
     }
 }
