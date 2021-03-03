@@ -20,6 +20,19 @@ namespace BloonsTD6_Mod_Helper.Extensions
     public static class GameModelExt
     {
         /// <summary>
+        /// Add a TowerModel to the game.
+        /// </summary>
+        /// <param name="towerModel">TowerModel to add</param>
+        /// <param name="towerDetailsModel">Optionally add a TowerDetailsModel for your towerModel</param>
+        public static void AddTowerToGame(this GameModel model, TowerModel towerModel, TowerDetailsModel towerDetailsModel = null)
+        {
+            model.towers = model.towers.AddTo(towerModel);
+
+            if (towerDetailsModel != null)
+                model.towerSet = model.towerSet.AddTo(towerDetailsModel);
+        }
+
+        /// <summary>
         /// Get the instance of the API's BloonModelBuilder. Used to create custom bloon types and add them to the game
         /// </summary>
         public static BloonModelBuilder GetBloonModelBuilder(this GameModel model)
