@@ -2,12 +2,15 @@
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.TowerSets;
 using Assets.Scripts.Simulation;
 using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Simulation.Objects;
 using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Projectiles;
 using Assets.Scripts.Simulation.Towers.Weapons;
+using Assets.Scripts.Unity;
+using BloonsTD6_Mod_Helper.Extensions;
 using MelonLoader;
 using NinjaKiwi.NKMulti;
 using UnhollowerBaseLib;
@@ -21,6 +24,21 @@ namespace BloonsTD6_Mod_Helper
     public abstract class BloonsTD6Mod : MelonMod
     {
         /// <summary>
+        /// Adds a TowerModel to the official list of TowerModels being used by the game
+        ///
+        /// Equivalent to calling Game.instance.model.AddTowerToGame(...)
+        /// </summary>
+        /// <param name="newTowerModel">The new tower model</param>
+        /// <param name="towerDetailsModel">A TowerDetailsModel to go with it, if it'll be in the shop</param>
+        public static void AddTowerToGame(TowerModel newTowerModel, TowerDetailsModel towerDetailsModel = null)
+        {
+            Game.instance.model.AddTowerToGame(newTowerModel, towerDetailsModel);
+        }
+
+        
+        #region Misc Hooks
+
+        /// <summary>
         /// Acts on a Network message that's been sent to the client
         ///
         /// Use Game.instance.nkGI.ReadMessage<YOUR_CLASS_NAME>(message) to get back the same object/class you sent.
@@ -33,7 +51,20 @@ namespace BloonsTD6_Mod_Helper
             return false;
         }
         
+        /// <summary>
+        /// Called when a new GameModel is created, aka when things like Monkey Knowledge are applied to towers
+        /// 
+        /// Equivalent to a HarmonyPostFix on GameModel_CreatedModded
+        /// </summary>
+        public virtual void OnNewGameModel(GameModel result)
+        {
+            
+        }
+
+        #endregion
         
+        #region Menu Hooks
+
         /// <summary>
         /// Called when you go to the main menu screen
         ///
@@ -42,7 +73,62 @@ namespace BloonsTD6_Mod_Helper
         public virtual void OnMainMenu()
         {
         }
+        
+        
+        
+        /// <summary>
+        /// Called right after a match ends in victory
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
+        /// </summary>
+        public virtual void OnVictory()
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called right after a match is started up (restart included it seems like)
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.StartMatch
+        /// </summary>
+        public virtual void OnMatchStart()
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called when a match is restarted
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.Restart
+        /// </summary>
+        public virtual void OnRestart(bool removeSave)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Called right after a game ends in victory
+        /// 
+        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
+        /// </summary>
+        public virtual void OnFastForwardChanged(bool newValue)
+        {
+            
+        }
+        
+        
+        /// <summary>
+        /// Called right after the game finishes loading everything
+        /// 
+        /// Equivalent to a HarmonyPostFix on TitleScreen.Start
+        /// </summary>
+        public virtual void OnTitleScreen()
+        {
+            
+        }
 
+        #endregion
+        
         #region Input Hooks
 
         /// <summary>
@@ -227,6 +313,18 @@ namespace BloonsTD6_Mod_Helper
             
         }
         
+        /// <summary>
+        /// Called when you load a save file and a Tower's save data get loaded for the tower
+        ///
+        /// Use saveData.metaData to load custom information
+        /// 
+        /// Equivalent to a HarmonyPostFix on Tower.SetSavedData
+        /// </summary>
+        public virtual void CanTowerTargetCamo(Tower tower, ref bool result)
+        {
+            
+        }
+        
         #endregion
 
         #region Simulation Hooks
@@ -326,46 +424,6 @@ namespace BloonsTD6_Mod_Helper
         }
 
         #endregion
-
         
-        /// <summary>
-        /// Called right after a match ends in victory
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
-        /// </summary>
-        public virtual void OnVictory()
-        {
-            
-        }
-        
-        /// <summary>
-        /// Called right after a match first starts
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.StartMatch
-        /// </summary>
-        public virtual void OnMatchStart()
-        {
-            
-        }
-        
-        /// <summary>
-        /// Called when a match is restarted
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.Restart
-        /// </summary>
-        public virtual void OnRestart(bool removeSave)
-        {
-            
-        }
-        
-        /// <summary>
-        /// Called right after a game ends in victory
-        /// 
-        /// Equivalent to a HarmonyPostFix on InGame.OnVictory
-        /// </summary>
-        public virtual void OnFastForwardChanged(bool newValue)
-        {
-            
-        }
     }
 }

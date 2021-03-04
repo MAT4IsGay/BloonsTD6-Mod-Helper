@@ -193,8 +193,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// <summary>
         /// Get a specific Ability of the tower. By default will get the first ability
         /// </summary>
-        /// <param name="index">Index of the ability you want. Default is first ability</param>
-        public static AbilityModel GetAbility(this TowerModel towerModel, int index = 0)
+        public static AbilityModel GetAbility(this TowerModel towerModel)
+        {
+            return towerModel.GetAbilites().FirstOrDefault();
+        }
+        
+        /// <summary>
+        /// Get a specific Ability of the tower.
+        /// </summary>
+        /// <param name="index">Index of the ability you want.</param>
+        public static AbilityModel GetAbility(this TowerModel towerModel, int index)
         {
             return towerModel.GetAbilites()[index];
         }
