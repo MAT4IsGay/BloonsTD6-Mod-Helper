@@ -69,5 +69,15 @@ namespace BloonsTD6_Mod_Helper.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] modoptions {
+            get {
+                object obj = ResourceManager.GetObject("modoptions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

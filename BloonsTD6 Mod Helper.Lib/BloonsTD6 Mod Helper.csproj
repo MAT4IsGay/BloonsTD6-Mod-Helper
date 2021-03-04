@@ -221,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ingame_popup.bundle" />
+    <None Include="Resources\modoptions.bundle" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
