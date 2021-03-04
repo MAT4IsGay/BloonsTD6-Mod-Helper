@@ -42,9 +42,8 @@
     <Reference Include="Il2CppSystem">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.dll</HintPath>
     </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MelonLoader.ModHandler">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.ModHandler.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,6 +116,11 @@
     <Compile Include="Api\Builders\BloonModelBuilder.cs" />
     <Compile Include="Api\Coop\Chat_Message.cs" />
     <Compile Include="Api\Coop\MessageUtils.cs" />
+    <Compile Include="Api\InGame Mod Options\ButtonOption.cs" />
+    <Compile Include="Api\InGame Mod Options\CheckboxOption.cs" />
+    <Compile Include="Api\InGame Mod Options\InputOption.cs" />
+    <Compile Include="Api\InGame Mod Options\ModOptionsMenu.cs" />
+    <Compile Include="Api\InGame Mod Options\SliderOption.cs" />
     <Compile Include="Api\JsonSerializer.cs" />
     <Compile Include="Api\SessionData.cs" />
     <Compile Include="Api\SpriteRegister.cs" />
@@ -229,6 +233,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\Mods" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\Mods" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

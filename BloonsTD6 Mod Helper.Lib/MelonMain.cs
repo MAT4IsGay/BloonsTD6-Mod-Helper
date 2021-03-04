@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame;
 using BloonsTD6_Mod_Helper.Api;
+using BloonsTD6_Mod_Helper.Api.InGame_Mod_Options;
 using MelonLoader;
 using System;
 using System.Reflection;
@@ -12,6 +13,9 @@ namespace BloonsTD6_Mod_Helper
     {
         internal static string modDir = $"{Environment.CurrentDirectory}\\Mods\\{Assembly.GetExecutingAssembly().GetName().Name}";
         public static string coopMessageCode = "BTD6_ModHelper";
+
+        private bool useModOptionsDEBUG = false;
+        private ModOptionsMenu modOptionsUI;
 
         public override void OnApplicationStart()
         {
@@ -53,10 +57,14 @@ namespace BloonsTD6_Mod_Helper
             if (InGame.instance is null)
                 return;
 
+            
+            if (useModOptionsDEBUG && modOptionsUI is null)
+                modOptionsUI = new ModOptionsMenu();
+
             NotificationMgr.CheckForNotifications();
         }
         
-        
+
         public static void DoPatchMethods(Action<BloonsTD6Mod> action)
         {
             foreach (var melonMod in MelonHandler.Mods)
