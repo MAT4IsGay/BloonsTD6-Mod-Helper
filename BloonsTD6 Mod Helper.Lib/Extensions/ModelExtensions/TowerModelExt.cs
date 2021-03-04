@@ -193,8 +193,16 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// <summary>
         /// Get a specific Ability of the tower. By default will get the first ability
         /// </summary>
-        /// <param name="index">Index of the ability you want. Default is first ability</param>
-        public static AbilityModel GetAbility(this TowerModel towerModel, int index = 0)
+        public static AbilityModel GetAbility(this TowerModel towerModel)
+        {
+            return towerModel.GetAbilites().FirstOrDefault();
+        }
+        
+        /// <summary>
+        /// Get a specific Ability of the tower.
+        /// </summary>
+        /// <param name="index">Index of the ability you want.</param>
+        public static AbilityModel GetAbility(this TowerModel towerModel, int index)
         {
             return towerModel.GetAbilites()[index];
         }
@@ -208,14 +216,22 @@ namespace BloonsTD6_Mod_Helper.Extensions
         }
 
         /// <summary>
+        /// Gets the first AttackModel from this TowerModel, if it has one
+        /// </summary>
+        public static AttackModel GetAttackModel(this TowerModel towerModel)
+        {
+            return towerModel.GetAttackModels().FirstOrDefault();
+        }
+
+        /// <summary>
         /// Get one of the AttackModels from this TowerModel. By default will give the first AttackModel
         /// </summary>
         /// <param name="index">Index of the AttackModel you want</param>
-        public static AttackModel GetAttackModel(this TowerModel towerModel, int index = 0)
+        public static AttackModel GetAttackModel(this TowerModel towerModel, int index)
         {
             return towerModel.GetAttackModels()[index];
         }
-
+        
         /// <summary>
         /// Recursively get every WeaponModels this TowerModel has
         /// </summary>
@@ -243,9 +259,17 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// Get one of the WeaponModels this TowerModel has. By default will return the first one
         /// </summary>
         /// <param name="index">Index of WeaponModel that you want</param>
-        public static WeaponModel GetWeapon(this TowerModel towerModel, int index = 0)
+        public static WeaponModel GetWeapon(this TowerModel towerModel, int index)
         {
             return towerModel.GetWeapons()[index];
+        }
+        
+        /// <summary>
+        /// Gets the first WeaponModel this TowerModel has, if it has one.
+        /// </summary>
+        public static WeaponModel GetWeapon(this TowerModel towerModel)
+        {
+            return towerModel.GetWeapons().FirstOrDefault();
         }
 
         // Thanks to doombubbles for creating this

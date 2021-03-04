@@ -155,6 +155,7 @@
     <Compile Include="Extensions\SimulationExtensions\EntityExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\SizedListExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\UnityToSimulationExty.cs" />
+    <Compile Include="Extensions\UnityExtensions\ImageExt.cs" />
     <Compile Include="Extensions\UnityExtensions\Texture2DExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\TowerExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\BloonExt.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Patches\Bloons\Bloon_OnDestroy.cs" />
     <Compile Include="Patches\Bloons\Bloon_Degrade.cs" />
     <Compile Include="Patches\CoopQuickMatchScreen_Open.cs" />
+    <Compile Include="Patches\GameModel_CreateModded.cs" />
     <Compile Include="Patches\GameModel_GetRoundSet.cs" />
     <Compile Include="Patches\InGame_Restart.cs" />
     <Compile Include="Patches\InGame_StartMatch.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="Patches\Sim\Simulation_OnRoundStart.cs" />
     <Compile Include="Patches\Sim\Simulation_RemoveCash.cs" />
     <Compile Include="Patches\TimeManager_SetFastForward.cs" />
+    <Compile Include="Patches\TitleScreen_Start.cs" />
     <Compile Include="Patches\TowerInventory_Init.cs" />
     <Compile Include="Patches\Towers\TowerManager_UpgradeTower.cs" />
     <Compile Include="Patches\Towers\Tower_Destroy.cs" />
