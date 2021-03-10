@@ -6,6 +6,7 @@ using MelonLoader;
 using System;
 using System.Reflection;
 using UnityEngine;
+using BloonsTD6_Mod_Helper.Extensions;
 
 namespace BloonsTD6_Mod_Helper
 {
@@ -22,10 +23,20 @@ namespace BloonsTD6_Mod_Helper
             MelonLogger.Log("Mod has finished loading");
         }
 
+        public void Test()
+        {
+            MelonLogger.Log("AAAA");
+        }
+
         public override void OnUpdate()
         {
             if (Game.instance is null)
                 return;
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                BTD6_UI.MainMenuUI.GetPlayButton().AddOnClick(Test);
+            }
 
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
             {
