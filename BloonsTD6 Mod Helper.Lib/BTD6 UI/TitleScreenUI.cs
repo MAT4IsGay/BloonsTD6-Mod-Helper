@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BloonsTD6_Mod_Helper.Extensions;
 
 namespace BloonsTD6_Mod_Helper.BTD6_UI
 {
@@ -32,7 +33,7 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
 
         public static Button GetStartButton()
         {
-            return GetCanvas().transform.Find("ScreenBoxer/TitleScreen/Start").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("ScreenBoxer/TitleScreen/Start");
         }
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BloonsTD6_Mod_Helper.Extensions; 
 
 namespace BloonsTD6_Mod_Helper.BTD6_UI
 {
@@ -32,7 +33,28 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
 
         public static Toggle GetBeginnerButton()
         {
-            return GetCanvas()?.transform.Find("MapSelectScreen/MapDifficulties/BeginnerBtn").GetComponent<Toggle>();
+            
+            return GetCanvas().GetComponent<Toggle>("MapSelectScreen/MapDifficulties/BeginnerBtn");
+        }
+
+        public static Toggle GetIntermediateButton()
+        {
+            return GetCanvas().GetComponent<Toggle>("MapSelectScreen/MapDifficulties/IntermediateBtn");
+        }
+
+        public static Toggle GetAdvancedButton()
+        {
+            return GetCanvas().GetComponent<Toggle>("MapSelectScreen/MapDifficulties/AdvancedBtn");
+        }
+
+        public static Toggle GetExpertButton()
+        {
+            return GetCanvas().GetComponent<Toggle>("MapSelectScreen/MapDifficulties/ExpertBtn");
+        }
+
+        public static Toggle GetExtremeButton()
+        {
+            return GetCanvas().GetComponent<Toggle>("MapSelectScreen/MapDifficulties/ExtremeBtn");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// </summary>
         public static DisplayNode GetDisplayNode(this Entity entity)
         {
-            return entity.displayBehaviorCache?.node;
+            return entity.GetDisplayBehavior().node;
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
         /// </summary>
         public static UnityDisplayNode GetUnityDisplayNode(this Entity entity)
         {
-            return entity.displayBehaviorCache?.node?.graphic;
+            return entity.GetDisplayNode()?.graphic;
         }
     }
 }

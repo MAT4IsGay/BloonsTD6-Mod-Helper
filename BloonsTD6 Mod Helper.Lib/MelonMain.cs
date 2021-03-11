@@ -7,6 +7,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using BloonsTD6_Mod_Helper.Extensions;
+using System.IO;
 
 namespace BloonsTD6_Mod_Helper
 {
@@ -23,21 +24,15 @@ namespace BloonsTD6_Mod_Helper
             MelonLogger.Log("Mod has finished loading");
         }
 
-        public void test()
-        {
-
-        }
-
         public override void OnUpdate()
         {
             if (Game.instance is null)
                 return;
 
+            // this if statement is used for testing.
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                var toggle = BTD6_UI.MapSelectUI.GetBeginnerButton();
-                MelonLogger.Log(toggle is null);
-                //toggle.onValueChanged.AddListener(new Action<bool>(() => { test(); }));
+                
             }
 
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))

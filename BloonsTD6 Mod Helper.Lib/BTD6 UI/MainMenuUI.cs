@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloonsTD6_Mod_Helper.Extensions;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,62 +33,62 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
 
         public static Button GetMonkeysButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/Monkeys/MonkeysAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/Monkeys/MonkeysAnim/Button");
         }
 
         public static Button GetHeroesButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/Heroes/HeroesAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/Heroes/HeroesAnim/Button");
         }
 
         public static Button GetPlayButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/Play/PlayAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/Play/PlayAnim/Button");
         }
 
         public static Button GetCoopButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/CoOp/CoopAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/CoOp/CoopAnim/Button");
         }
 
         public static Button GetPowersButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/Powers/PowersAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/Powers/PowersAnim/Button");
         }
 
         public static Button GetKnowledgeButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/BottomButtonGroup/Knowledge/KnowledgeAnim/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/BottomButtonGroup/Knowledge/KnowledgeAnim/Button");
         }
 
         public static Button GetSettingsButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/Settings/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/Settings/Button");
         }
 
         public static Button GetAchievementsButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/Achievements/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/Achievements/Button");
         }
 
         public static Button GetStoreButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/Store/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/Store/Button");
         }
 
         public static Button GetTrophyStoreButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/TrophyStore/Button").GetComponent<Button>(); ;
+            return GetCanvas()?.GetComponent<Button>("MainMenu/TrophyStore/Button");
         }
 
         public static Button GetExitButton()
         {
-            return GetCanvas()?.transform.Find("MainMenu/TrophyStore/Button").GetComponent<Button>();
+            return GetCanvas()?.GetComponent<Button>("MainMenu/TrophyStore/Button");
         }
 
         public static NK_TextMeshProUGUI GetXpBarText()
         {
-            return GetCanvas()?.transform.Find("MainMenu/PlayerInfo/XpBar/Text").GetComponent<NK_TextMeshProUGUI>();
+            return GetCanvas()?.GetComponent<NK_TextMeshProUGUI>("MainMenu/PlayerInfo/XpBar/Text");
         }
     }
 }

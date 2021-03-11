@@ -7,7 +7,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class DisplayNodeExt
     {
-        /// <summary>
+        //removed. Seems very excessive
+        /*/// <summary>
         /// Checks all Display Behaviors currently existing and returns all that have this Display Node
         /// </summary>
         public static List<DisplayBehavior> GetDisplayBehaviors_WithThisNode(this DisplayNode displayNode)
@@ -21,6 +22,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
                 return null;
 
             return results;
-        }
+        }*/
     }
 }

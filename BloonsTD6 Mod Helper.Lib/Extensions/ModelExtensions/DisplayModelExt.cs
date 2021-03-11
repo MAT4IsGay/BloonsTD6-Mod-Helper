@@ -7,7 +7,8 @@ namespace BloonsTD6_Mod_Helper.Extensions
 {
     public static class DisplayModelExt
     {
-        /// <summary>
+        //removed. Seems excessive
+        /*/// <summary>
         /// Get all currently existing Display Behaviors with this Display Model
         /// </summary>
         public static List<DisplayBehavior> GetDisplayBehaviors_WithThisModel(this DisplayModel displayModel)
@@ -21,6 +22,6 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
             List<DisplayBehavior> results = displayBehaviors.Where(behavior => behavior.displayModel.IsEqual(displayModel));
             return results;
-        }
+        }*/
     }
 }

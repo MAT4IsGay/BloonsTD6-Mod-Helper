@@ -12,8 +12,7 @@ namespace BloonsTD6_Mod_Helper.Extensions
 
         public static void SetOnClick(this Button button, funcDelegate funcToExecute)
         {
-            button.onClick.RemoveAllPersistantCalls();
-            button.onClick.AddListener(funcToExecute);
+            button.onClick.SetListener(funcToExecute);
         }
 
         public static void RemoveOnClickAction(this Button button, int actionIndex)
