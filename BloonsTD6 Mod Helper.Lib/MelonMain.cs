@@ -23,6 +23,11 @@ namespace BloonsTD6_Mod_Helper
             MelonLogger.Log("Mod has finished loading");
         }
 
+        public void test()
+        {
+
+        }
+
         public override void OnUpdate()
         {
             if (Game.instance is null)
@@ -30,7 +35,9 @@ namespace BloonsTD6_Mod_Helper
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                
+                var toggle = BTD6_UI.MapSelectUI.GetBeginnerButton();
+                MelonLogger.Log(toggle is null);
+                //toggle.onValueChanged.AddListener(new Action<bool>(() => { test(); }));
             }
 
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))

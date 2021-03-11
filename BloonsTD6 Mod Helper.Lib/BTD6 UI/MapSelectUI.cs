@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 namespace BloonsTD6_Mod_Helper.BTD6_UI
 {
-    public static class TitleScreenUI
+    public static class MapSelectUI
     {
         public static Scene? GetScene()
         {
             try
-            { return SceneManager.GetSceneByName("TitleScreenUI"); }
+            { return SceneManager.GetSceneByName("MapSelectUI"); }
             catch (ArgumentException)
             { return null; }
         }
@@ -25,14 +25,14 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
             if (sceneObjects is null || sceneObjects.Count == 0)
                 return null;
 
-            const int canvasIndex = 3;
+            const int canvasIndex = 0;
             var canvas = sceneObjects[canvasIndex];
             return canvas.GetComponent<Canvas>();
         }
 
-        public static Button GetStartButton()
+        public static Toggle GetBeginnerButton()
         {
-            return GetCanvas().transform.Find("ScreenBoxer/TitleScreen/Start").GetComponent<Button>();
+            return GetCanvas()?.transform.Find("MapSelectScreen/MapDifficulties/BeginnerBtn").GetComponent<Toggle>();
         }
     }
 }

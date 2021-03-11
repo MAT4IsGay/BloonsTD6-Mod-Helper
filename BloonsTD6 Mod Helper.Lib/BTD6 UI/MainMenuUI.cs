@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace BloonsTD6_Mod_Helper.BTD6_UI
 {
-    public class MainMenuUI
+    public static class MainMenuUI
     {
         public static Scene? GetScene()
         {
