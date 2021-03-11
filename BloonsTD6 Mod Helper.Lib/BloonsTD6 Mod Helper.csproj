@@ -165,6 +165,7 @@
     <Compile Include="Extensions\SimulationExtensions\EntityExt.cs" />
     <Compile Include="Extensions\CollectionExtensions\SizedListExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\UnityToSimulationExty.cs" />
+    <Compile Include="Extensions\UnityExtensions\ButtonClickedEventExt.cs" />
     <Compile Include="Extensions\UnityExtensions\ButtonExt.cs" />
     <Compile Include="Extensions\UnityExtensions\ImageExt.cs" />
     <Compile Include="Extensions\UnityExtensions\Texture2DExt.cs" />

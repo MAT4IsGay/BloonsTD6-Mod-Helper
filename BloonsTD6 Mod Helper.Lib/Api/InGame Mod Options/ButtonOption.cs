@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using BloonsTD6_Mod_Helper.Extensions;
 
 namespace BloonsTD6_Mod_Helper.Api.InGame_Mod_Options
 {
@@ -22,6 +23,7 @@ namespace BloonsTD6_Mod_Helper.Api.InGame_Mod_Options
             buttonText = parentGO.transform.Find("ModOptions/UI Elements/ButtonOption/Button/Text").GetComponent<Text>();
 
             button.onClick.AddListener(new Action(() => { buttonPressed(); })); //how you'd normally setup button events
+            button.AddOnClick(buttonPressed); //you can also add OnClick events using this BTD6 Mod Helper extension
         }
 
         //This won't help mod makers, but it will show you how to setup button events.

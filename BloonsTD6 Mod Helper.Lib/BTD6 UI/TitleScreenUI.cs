@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -6,10 +7,27 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
 {
     public class TitleScreenUI
     {
+        public static Scene? GetScene()
+        {
+            try
+            { return SceneManager.GetSceneByName("TitleScreenUI"); }
+            catch (ArgumentException)
+            { return null; }
+        }
+
         public static Canvas GetCanvas()
         {
-            var scene = SceneManager.GetSceneByName("TitleScreenUI");
-            return scene.GetRootGameObjects()[3].GetComponent<Canvas>();
+            var scene = GetScene();
+            if (!scene.HasValue)
+                return null;
+
+            var sceneObjects = scene.Value.GetRootGameObjects();
+            if (sceneObjects is null || sceneObjects.Count == 0)
+                return null;
+
+            const int canvasIndex = 3;
+            var canvas = sceneObjects[canvasIndex];
+            return canvas.GetComponent<Canvas>();
         }
 
         public static Button GetStartButton()

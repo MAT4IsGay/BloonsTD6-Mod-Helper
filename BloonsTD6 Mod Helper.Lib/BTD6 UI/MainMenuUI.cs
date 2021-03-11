@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,11 +10,9 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
         public static Scene? GetScene()
         {
             try
-            { SceneManager.GetSceneByName("MainMenuUi"); }
-            catch
+            { return SceneManager.GetSceneByName("MainMenuUi"); }
+            catch (ArgumentException)
             { return null; }
-
-            return null;
         }
 
         public static Canvas GetCanvas()
@@ -23,11 +22,12 @@ namespace BloonsTD6_Mod_Helper.BTD6_UI
                 return null;
 
             var sceneObjects = scene.Value.GetRootGameObjects();
-            if (sceneObjects is null)
+            if (sceneObjects is null || sceneObjects.Count == 0)
                 return null;
 
-            var canvas = sceneObjects?[0];
-            return canvas?.GetComponent<Canvas>();
+            const int canvasIndex = 0;
+            var canvas = sceneObjects[canvasIndex];
+            return canvas.GetComponent<Canvas>();
         }
 
         public static Button GetMonkeysButton()
