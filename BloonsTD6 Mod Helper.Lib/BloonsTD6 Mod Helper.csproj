@@ -170,6 +170,7 @@
     <Compile Include="Extensions\UnityExtensions\ButtonClickedEventExt.cs" />
     <Compile Include="Extensions\UnityExtensions\ButtonExt.cs" />
     <Compile Include="Extensions\UnityExtensions\CanvasExt.cs" />
+    <Compile Include="Extensions\UnityExtensions\ComponentExt.cs" />
     <Compile Include="Extensions\UnityExtensions\GameObjectExt.cs" />
     <Compile Include="Extensions\UnityExtensions\ImageExt.cs" />
     <Compile Include="Extensions\UnityExtensions\Texture2DExt.cs" />
