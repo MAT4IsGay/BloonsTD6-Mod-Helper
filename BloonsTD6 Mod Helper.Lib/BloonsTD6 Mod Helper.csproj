@@ -75,6 +75,9 @@
     <Reference Include="UnhollowerRuntimeLib">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.dll</HintPath>
     </Reference>
@@ -156,6 +159,7 @@
     <Compile Include="Extensions\ModelExtensions\GameModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ModelExt.cs" />
     <Compile Include="Extensions\ModelExtensions\ProjectileModelExt.cs" />
+    <Compile Include="Extensions\NkAssetExtensions\NK_TextMeshProUGUIExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\BloonToSimulationExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\DisplayNodeExt.cs" />
     <Compile Include="Extensions\SimulationExtensions\EntityExt.cs" />

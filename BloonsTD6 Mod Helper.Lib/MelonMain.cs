@@ -33,10 +33,22 @@ namespace BloonsTD6_Mod_Helper
             if (Game.instance is null)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            var scene = BTD6_UI.MainMenuUI.GetScene();
+            if (scene != null)
             {
-                BTD6_UI.MainMenuUI.GetPlayButton().AddOnClick(Test);
+                var playButton = BTD6_UI.MainMenuUI.GetXpBarText();
+                //var text = playButton.GetComponentInChildren<NK_TextMeshProUGUI>();
+                if (playButton != null)
+                    playButton.SetText(playButton.localizeKey, "aaa");
             }
+            
+
+            /*if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                var playButton = BTD6_UI.MainMenuUI.GetPlayButton();
+                var text = playButton.GetComponentInChildren<NK_TextMeshProUGUI>();
+                text.SetText(text.localizeKey, "aaa");
+            }*/
 
             foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
             {
