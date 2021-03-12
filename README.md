@@ -1,10 +1,4 @@
-# This has been archived!!
-## You can get the new mod helepr here: https://github.com/gurrenm3/BTD-Mod-Helper
 
----
----
----
----
 
 
 # BloonsTD6-Mod-Helper
