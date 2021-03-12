@@ -1,3 +1,12 @@
+# This has been archived!!
+## You can get the new mod helepr here: https://github.com/gurrenm3/BTD-Mod-Helper
+
+---
+---
+---
+---
+
+
 # BloonsTD6-Mod-Helper
 A powerful and easy to use API for BTD6 modding. It was created with the successes and failures of previous APIs in mind so it should be significantly easier to use.
 
